@@ -1,19 +1,6 @@
-#currently testing SF POSTing
+#This file is for the posting of the data
 import requests as rqs
-import datetime as dt
-from datetime import timedelta, datetime
-
-workingDate = dt.datetime.now().strftime("%A")
-
-def headerGeneration(filename): #This function generates the headers needed for the JWT (JSON Web Token)
-    with open(f"{filename}.txt") as rf:
-        token = rf.read() #Tokens for sales platforms
-    return {"Authorization":f"Bearer {token}"}
-
-def oldHeader(filename): #Use this function if you do not need the "bearer" in the auth key (So older APIs without OAuth 2.0)
-    with open(f"{filename}.txt") as rf:
-        token = rf.read() #Tokens for sales platforms
-    return {"Authorization":f"{token}"}
+from datetime import datetime
 
 
 def getSFProdId(instance_url, product, sf_headers):
@@ -99,6 +86,11 @@ def postAPI(orders):
             print(prod_response.json())
             print(f"{key} added")
 
-orders = [{"accName": "John Lewis D2C", "custName": "Lewis Cramb", "orderDate":"08/06/2026", "custEmail":"test@test.test", "custPhone":"0000000000", "shipName":"DX", "expDate":"08/06/2026", "products":{"Buffalo 5 Shelf Metal Cabinet":1},"cost":"450", "custPO":"000000000011111111111"}]
-
-postAPI(orders)
+#Needed format for the orders variable
+#
+#orders = [{"accName": "John Lewis D2C", 
+# "custName": "Lewis Cramb", "orderDate":"08/06/2026", 
+# "custEmail":"test@test.test", "custPhone":"0000000000", 
+# "shipName":"DX", "expDate":"08/06/2026", 
+# "products":{"Buffalo 5 Shelf Metal Cabinet":1},
+# "cost":"450", "custPO":"000000000011111111111"}]

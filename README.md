@@ -8,7 +8,7 @@ Mirakl: 5mins
 VS: 250 per min
 
 
-I cannot test commit 984d24c or commit [current] without the appropriate logins, will need to halt here until I have logins to each service
+I cannot test commit 984d24c or commit 184d741 without the appropriate logins, will need to halt here until I have logins to each service
 I will also need to wait until I have seen the TrueCommerce Wickes platform to see if I can implement TrueCommerce - I've added standardised code just in case // (08/06/2026) think TC runs off of virtual stock? can maybe just use it that way?
 
 # How-To update
@@ -33,6 +33,12 @@ Automatically send a GET request through the REST API at 10am to recieve the dat
 https://api.sandbox.virtualstock.com/restapi/v4/orders/?format=json&status=ORDER_ACK
 https://your-instance.mirakl.net/api/orders 
 
+<ins>08/06/2025</ins>
+
+SalesForce has been successfully POSTed to using sales.py
+Next step is to refactor the code slightly as I misjudged how big the requests would be
+From there I am going to work on VirtualStock, Mirakl, TrueCommerce and then couriers (subject to change)
+The last thing I will do are the invoices
 
 
 # Commit History
@@ -45,4 +51,6 @@ e1c70f3 -  Finished set-up and created a function to create headers for requests
 
 184d741 - Added the link to SalesForce, not tested
 
-[commit num] - I've now testing and perfected the salesforce link, data can now properly be POSTed to SF
+7fd28f5 - I've now testing and perfected the salesforce link, data can now properly be POSTed to SF
+
+[commit num] - Refactoring, cleaner and shorter python scripts and all text files held in a folder /txt/
