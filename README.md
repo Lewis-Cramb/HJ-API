@@ -8,8 +8,8 @@ Mirakl: 5mins
 VS: 250 per min
 
 
-I cannot test commit [curr num] without the appropriate logins, will need to halt here until I have logins to each service
-I will also need to wait until I have seen the TrueCommerce Wickes platform to see if I can implement TrueCommerce - I've added standardised code just in case
+I cannot test commit 984d24c or commit [current] without the appropriate logins, will need to halt here until I have logins to each service
+I will also need to wait until I have seen the TrueCommerce Wickes platform to see if I can implement TrueCommerce - I've added standardised code just in case // (08/06/2026) think TC runs off of virtual stock? can maybe just use it that way?
 
 # How-To update
 
@@ -39,4 +39,6 @@ https://your-instance.mirakl.net/api/orders
 
 e1c70f3 -  Finished set-up and created a function to create headers for requests, testing on VirtualStock and SalesForce
 
-[commit num] - Completed recieving data from VirtualStock and Mirakl bar filtering (Can't solidify anything until I get logins)
+984d24c - Completed recieving data from VirtualStock and Mirakl bar filtering (Can't solidify anything until I get logins)
+
+[commit num] - Added the link to SalesForce, not tested
