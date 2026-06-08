@@ -17,6 +17,8 @@ You always start by adding the token for the header in a file named "[seller]Tok
 Next you need to create the header in sales.py the same way that the others are made by running it through headerGeneration, adding the type if it is for a POST request
 You then use request.GET() or request.POST() to complete API call.
 
+You need to put the comsumer id and consumer secret into to seperate files (sfConsID.txt and sfConsSec.txt) - these are not updated on the repo so that they are hidden but you can find them in the OAuth settings for LC-AUTO-API on salesforce external client app manager
+
 # Plan
 
 <ins>27/05/2026</ins> 
@@ -41,4 +43,6 @@ e1c70f3 -  Finished set-up and created a function to create headers for requests
 
 984d24c - Completed recieving data from VirtualStock and Mirakl bar filtering (Can't solidify anything until I get logins)
 
-[commit num] - Added the link to SalesForce, not tested
+184d741 - Added the link to SalesForce, not tested
+
+[commit num] - I've now testing and perfected the salesforce link, data can now properly be POSTed to SF
