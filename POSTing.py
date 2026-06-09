@@ -1,6 +1,7 @@
 #This file is for the posting of the data
 import requests as rqs
 from datetime import datetime
+from functions import format_date
 
 
 def getSFProdId(instance_url, product, sf_headers):
@@ -23,8 +24,8 @@ def postAPI(orders):
 
     sf_auth_params = {
         "grant_type":"client_credentials",
-        "client_id": open("sfConsID.txt","r").read(),
-        "client_secret": open("sfConsSec.txt","r").read(),
+        "client_id": open("txts/sfConsID.txt","r").read(),
+        "client_secret": open("txts/sfConsSec.txt","r").read(),
     }
 
     #You need to first of all get your access codes
@@ -53,11 +54,11 @@ def postAPI(orders):
             "AccountId":getSFAccName(instance_url, order["accName"], sf_headers),
             "Status":"PO received",
             "Buyer_name__c":order["custName"],
-            "EffectiveDate":datetime.strptime(order["orderDate"], "%d/%m/%Y").strftime("%Y-%m-%d"),
+            "EffectiveDate":format_date(order["orderDate"]),
             "email_address__c":order["custEmail"],
             "phone_num__c":order["custPhone"],
             "Ship_agent__c":order["shipName"],
-            "exp_ship_date__c":datetime.strptime(order["expDate"], "%d/%m/%Y").strftime("%Y-%m-%d"),
+            "exp_ship_date__c":format_date(order["orderDate"]),
             "Type":"D2C",
             "Cust_PO__c":order["custPO"],
             "Shipping_port__c":"Collection",

@@ -48,6 +48,8 @@ Might book a demo for TC api demo, see if i can just get the ability to request 
 
 I need to add error handling!!!
 
+Next up is the delivery courier stuff, Emma to chase JL for me for api credentials. Got a laptop so able
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -66,4 +68,6 @@ ec0a88a - Added the filtering to the GET requests, still can't test them until J
 
 7dac154 - Tested the GET request for Mirakl, works perfectly
 
-[commit num] - Refactored once again, splitting functions - the GET file kept growing
+c3154f1 - Refactored once again, splitting functions - the GET file kept growing
+
+[commit num] - Tested the Mirakl to Salesforce integration directly, works exactly as planned 
