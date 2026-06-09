@@ -45,7 +45,7 @@ def getAPIs():
     filtered_orders = []
 
     if vs_data["results"] != []:
-        for order in vs_data["results"]:
+        for order in vs_data["results"]: #add phone number
             curr = {}
             curr["accName"] = "John Lewis D2C"
             curr["custName"] = order["shipping_address"]["full_name"]

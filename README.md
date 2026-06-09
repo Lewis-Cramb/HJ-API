@@ -45,6 +45,8 @@ The last thing I will do are the invoices
 Had a few thoughts about the automation last night/this morning - might be easier to create an app or program where you click "run" to transfer everything? I'm not sure where would host the automation as it certainly cannot be me - maybe HJ have a spare laptop that they can just keep on?
 Need a new keyboard, 80%? 95%? Needs numpad but not arrow keys - Not important for now
 
+Might book a demo for TC api demo, see if i can just get the ability to request data - I've booked a demo  - dont do anything with TC until finished mirakl and virtual stock, it is the hardest to do
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -59,4 +61,6 @@ e1c70f3 -  Finished set-up and created a function to create headers for requests
 
 9b1760b - Refactoring, cleaner and shorter python scripts and all text files held in a folder /txt/
 
-[commit num] - Added the filtering to the GET requests, still can't test them until JL/VS get back
+ec0a88a - Added the filtering to the GET requests, still can't test them until JL/VS get back
+
+[commit num] - Tested the GET request for Mirakl, works perfectly
