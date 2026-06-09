@@ -33,13 +33,17 @@ Automatically send a GET request through the REST API at 10am to recieve the dat
 https://api.sandbox.virtualstock.com/restapi/v4/orders/?format=json&status=ORDER_ACK
 https://your-instance.mirakl.net/api/orders 
 
-<ins>08/06/2025</ins>
+<ins>08/06/2026</ins>
 
 SalesForce has been successfully POSTed to using sales.py
 Next step is to refactor the code slightly as I misjudged how big the requests would be
 From there I am going to work on VirtualStock, Mirakl, TrueCommerce and then couriers (subject to change)
 The last thing I will do are the invoices
 
+<ins>09/06/2026</ins>
+
+Had a few thoughts about the automation last night/this morning - might be easier to create an app or program where you click "run" to transfer everything? I'm not sure where would host the automation as it certainly cannot be me - maybe HJ have a spare laptop that they can just keep on?
+Need a new keyboard, 80%? 95%? Needs numpad but not arrow keys - Not important for now
 
 # Commit History
 
@@ -53,4 +57,6 @@ e1c70f3 -  Finished set-up and created a function to create headers for requests
 
 7fd28f5 - I've now testing and perfected the salesforce link, data can now properly be POSTed to SF
 
-[commit num] - Refactoring, cleaner and shorter python scripts and all text files held in a folder /txt/
+9b1760b - Refactoring, cleaner and shorter python scripts and all text files held in a folder /txt/
+
+[commit num] - Added the filtering to the GET requests, still can't test them until JL/VS get back
