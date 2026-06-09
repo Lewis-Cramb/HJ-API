@@ -24,6 +24,7 @@ def getVS():
                 curr["custName"] = order["shipping_address"]["full_name"]
                 curr["orderDate"] = order["order_date"][0:order["order_date"].index("T")]
                 curr["custEmail"] = order["shipping_address"]["email"]
+                curr["custPhone"] = order["shipping_address"]["phone"]
                 curr["shipName"] = "TO GET"
                 curr["expDate"] = order["items"]["promised_date"][0:order["items"]["promised_date"].index("T")]
                 curr["products"] = {}

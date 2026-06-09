@@ -3,9 +3,6 @@ import requests as rqs
 from datetime import date as dt
 from functions import oldHeader, startDate
 
-workingDate = dt.today().strftime("%A")
-
-
 def getM():
     #Define the commerce platform header here 
     mkl_headers = oldHeader("mklToken")
@@ -22,10 +19,11 @@ def getM():
     if mkl_data["total_count"] > 0:
         for order in mkl_data["orders"]:
             curr = {}
-            curr["accName"] = "[get from sales force]"
-            curr["custName"] = order["customer"]["firstname"] + order["customer"]["lastname"]
+            curr["accName"] = "B&Q Marketplace"
+            curr["custName"] = f"{order["customer"]["firstname"]}  {order["customer"]["lastname"]}"
             curr["orderDate"] = order["created_date"][0:order["created_date"].index("T")]
             curr["custEmail"] = "" #Customers do not provide emails
+            curr["custPhone"] = "0" + order["customer"]["shipping_address"]["phone"]
             curr["shipName"] = order["shipping_company"]
             curr["expDate"] = order["delivery_date"]["latest"][0:order["delivery_date"]["latest"].index("T")] 
             curr["products"] = {}
