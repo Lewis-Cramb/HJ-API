@@ -1,0 +1,43 @@
+#This file is going to be for reading all of the data
+import requests as rqs
+from datetime import date as dt
+from functions import oldHeader, startDate
+
+workingDate = dt.today().strftime("%A")
+
+
+def getM():
+    #Define the commerce platform header here 
+    mkl_headers = oldHeader("mklToken")
+    mkl_params = {"start_date":startDate(), "end_date":dt.today()} #Get all orders from yesterday
+
+    #Call API using rqs.get() to get the data
+    mkl_resp = rqs.get("https://marketplace.kingfisher.com/api/orders",headers=mkl_headers, params=mkl_params)
+    mkl_data = mkl_resp.json()
+
+    #Finally, filter it and join it all together
+
+    filtered_orders = []
+
+    if mkl_data["total_count"] > 0:
+        for order in mkl_data["orders"]:
+            curr = {}
+            curr["accName"] = "[get from sales force]"
+            curr["custName"] = order["customer"]["firstname"] + order["customer"]["lastname"]
+            curr["orderDate"] = order["created_date"][0:order["created_date"].index("T")]
+            curr["custEmail"] = "" #Customers do not provide emails
+            curr["shipName"] = order["shipping_company"]
+            curr["expDate"] = order["delivery_date"]["latest"][0:order["delivery_date"]["latest"].index("T")] 
+            curr["products"] = {}
+            curr["cost"] = order["total_price"]
+            curr["custPO"] = order["order_id"]
+
+            for product in order["order_lines"]:
+                curr["products"][product["product_title"]] = product["quantity"]
+
+            filtered_orders.append(curr)
+
+        
+    return filtered_orders
+
+

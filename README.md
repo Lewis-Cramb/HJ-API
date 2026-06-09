@@ -13,11 +13,10 @@ I will also need to wait until I have seen the TrueCommerce Wickes platform to s
 
 # How-To update
 
-You always start by adding the token for the header in a file named "[seller]Token.txt"
-Next you need to create the header in sales.py the same way that the others are made by running it through headerGeneration, adding the type if it is for a POST request
-You then use request.GET() or request.POST() to complete API call.
+You always start by adding the token for the header in a file named "[seller]Token.txt" in a folder /txts/.
+Then you need to create a new python script for your call, you can copy and paste what I've written if needs be. Then you need to update it for filtering, storing and calling before inputting the data needed in the header etc.
 
-You need to put the comsumer id and consumer secret into to seperate files (sfConsID.txt and sfConsSec.txt) - these are not updated on the repo so that they are hidden but you can find them in the OAuth settings for LC-AUTO-API on salesforce external client app manager
+You need to put the comsumer id and consumer secret into to seperate files (sfConsID.txt and sfConsSec.txt) also in /txts/ - these are not updated on the repo so that they are hidden but you can find them in the OAuth settings for LC-AUTO-API on salesforce external client app manager
 
 # Plan
 
@@ -47,6 +46,8 @@ Need a new keyboard, 80%? 95%? Needs numpad but not arrow keys - Not important f
 
 Might book a demo for TC api demo, see if i can just get the ability to request data - I've booked a demo  - dont do anything with TC until finished mirakl and virtual stock, it is the hardest to do
 
+I need to add error handling!!!
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -63,4 +64,6 @@ e1c70f3 -  Finished set-up and created a function to create headers for requests
 
 ec0a88a - Added the filtering to the GET requests, still can't test them until JL/VS get back
 
-[commit num] - Tested the GET request for Mirakl, works perfectly
+7dac154 - Tested the GET request for Mirakl, works perfectly
+
+[commit num] - Refactored once again, splitting functions - the GET file kept growing
