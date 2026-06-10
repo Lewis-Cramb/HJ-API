@@ -2,6 +2,8 @@
 import requests as rqs
 from datetime import date as dt
 from functions import oldHeader, startDate
+import GETerrors as errors
+import time
 
 def getM():
     #Define the commerce platform header here 
@@ -10,6 +12,11 @@ def getM():
 
     #Call API using rqs.get() to get the data
     mkl_resp = rqs.get("https://marketplace.kingfisher.com/api/orders",headers=mkl_headers, params=mkl_params)
+
+    if errors.handle(mkl_resp) == "Try again":
+        time.sleep(120)
+        getM()
+
     mkl_data = mkl_resp.json()
 
     #Finally, filter it and join it all together
