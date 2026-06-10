@@ -20,3 +20,12 @@ POST dispatch - https://api.sandbox.virtualstock.com/restapi/v4/orders/ORDER_URI
 
 
 To find - what is ORDER_URl
+
+
+as usual, username and password stored in appropriate txt files in txts/
+
+# commit history
+
+a72dd99 - Setup the files
+
+[current commit] - connected to the vs server using credentials
