@@ -50,6 +50,13 @@ I need to add error handling!!!
 
 Next up is the delivery courier stuff, Emma to chase JL for me for api credentials. Got a laptop so able
 
+<ins> 10/06/2026 </ins>
+
+I am not in today, it is currently 21:22, as I am away on holiday tomorrow
+JL SDO got back with sandbox credentials so I've commited the error handling stuff when it is partially complete, still need to account for 429 and deal with emails properly
+
+The sandbox will be tested and work, I will make a seperate python file to do so - will commit on seperate branch
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -70,4 +77,6 @@ ec0a88a - Added the filtering to the GET requests, still can't test them until J
 
 c3154f1 - Refactored once again, splitting functions - the GET file kept growing
 
-[commit num] - Tested the Mirakl to Salesforce integration directly, works exactly as planned 
+4313527 - Tested the Mirakl to Salesforce integration directly, works exactly as planned 
+
+[commit num] - Added error handling almost fully
