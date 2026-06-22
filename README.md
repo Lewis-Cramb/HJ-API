@@ -57,6 +57,14 @@ JL SDO got back with sandbox credentials so I've commited the error handling stu
 
 The sandbox will be tested and work, I will make a seperate python file to do so - will commit on seperate branch
 
+<ins> 22/06/2026 </ins>
+
+I did VS credential stuff, only took about an hour total
+
+Next up is starting to take a look at the delivery platforms, seeing how to link to them (if possible) - I've contacted Kinetic to see if it is possible, can make a start on DX right now
+
+For DX I can't do much right now as I don't know enough - will circle back to this and make a start on the invoicing side
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -79,4 +87,6 @@ c3154f1 - Refactored once again, splitting functions - the GET file kept growing
 
 4313527 - Tested the Mirakl to Salesforce integration directly, works exactly as planned 
 
-[commit num] - Added error handling almost fully
+c8f54df - Added error handling almost fully
+
+[commit num] - Added VS product names and tidied stuff up

@@ -16,25 +16,24 @@ def getVS():
     #Finally, filter it and join it all together
     filtered_orders = []
 
-    if vs_data["results"] != []:
-        for order in vs_data["results"]: #add phone number
-            if dt.fromisoformat(order["order_date"][0:order["order_date"].index("T")]) < startDate(): 
-                curr = {}
-                curr["accName"] = "John Lewis D2C"
-                curr["custName"] = order["shipping_address"]["full_name"]
-                curr["orderDate"] = order["order_date"][0:order["order_date"].index("T")]
-                curr["custEmail"] = order["shipping_address"]["email"]
-                curr["custPhone"] = order["shipping_address"]["phone"]
-                curr["shipName"] = "TO GET"
-                curr["expDate"] = order["items"]["promised_date"][0:order["items"]["promised_date"].index("T")]
-                curr["products"] = {}
-                curr["cost"] = order["total"]
-                curr["custPO"] = order["end_user_purchase_order_reference"]
+    for order in vs_data["results"]: #add phone number
+        if dt.fromisoformat(order["order_date"][0:order["order_date"].index("T")]) < startDate(): 
+            curr = {}
+            curr["accName"] = "John Lewis D2C"
+            curr["custName"] = order["shipping_address"]["full_name"]
+            curr["orderDate"] = order["order_date"][0:order["order_date"].index("T")]
+            curr["custEmail"] = order["shipping_address"]["email"]
+            curr["custPhone"] = order["shipping_address"]["phone"]
+            curr["shipName"] = "TO GET"
+            curr["expDate"] = order["items"]["promised_date"][:order["items"]["promised_date"].index("T")]
+            curr["products"] = {}
+            curr["cost"] = order["total"]
+            curr["custPO"] = order["end_user_purchase_order_reference"]
 
-                for product in curr["items"]:
-                    curr["products"][product["name"]] = product["quantity"]
+            for product in curr["items"]:
+                curr["products"][product["name"]] = product["quantity"]
 
-                filtered_orders.append(curr)
+            filtered_orders.append(curr)
 
         
     return filtered_orders
