@@ -65,6 +65,13 @@ Next up is starting to take a look at the delivery platforms, seeing how to link
 
 For DX I can't do much right now as I don't know enough - will circle back to this and make a start on the invoicing side
 
+XERO needs an extra subscription for the automation to work, not sure of price yet but will write the implementation code and find price after
+https://developer.xero.com/documentation/guides/oauth2/custom-connections
+
+I am not able to do much this week, I need logins and verifications but people are OOO so I can't get that
+
+Done some digging for deliveries, found a system called ShipStation API that works for DX and for ParcelForce in one, £59 per month
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -91,4 +98,6 @@ c8f54df - Added error handling almost fully
 
 3e9b41e - Added VS product names and tidied stuff up
 
-[commit num] - Finished error handling for the GETs
+c0a9f66 - Finished error handling for the GETs
+
+[commit num] - Added boilerplate Xero integration

@@ -1,4 +1,4 @@
-#This file is for the posting of the data
+#This file is for the posting of the data to salesforce
 import requests as rqs
 from datetime import datetime
 from functions import format_date
