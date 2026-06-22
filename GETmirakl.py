@@ -2,20 +2,20 @@
 import requests as rqs
 from datetime import date as dt
 from functions import oldHeader, startDate
-import GETerrors as errors
-import time
+from GETerrors import handle
 
 def getM():
     #Define the commerce platform header here 
     mkl_headers = oldHeader("mklToken")
-    mkl_params = {"start_date":startDate(), "end_date":dt.today()} #Get all orders from yesterday
+    mkl_params = {"start_date":startDate(), "end_date":dt.today()} #Get all orders since last working day
 
     #Call API using rqs.get() to get the data
     mkl_resp = rqs.get("https://marketplace.kingfisher.com/api/orders",headers=mkl_headers, params=mkl_params)
-
-    if errors.handle(mkl_resp) == "Try again":
-        time.sleep(120)
-        getM()
+    error_resp = handle(mkl_resp) #no need to do anything on success, can't refresh login as its not a token
+    if error_resp == "Failure":
+        return []
+    elif error_resp == "Try again":
+        return getM()
 
     mkl_data = mkl_resp.json()
 

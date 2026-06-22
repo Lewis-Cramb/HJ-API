@@ -69,7 +69,7 @@ For DX I can't do much right now as I don't know enough - will circle back to th
 
 93a2db8 - Set-up the repo
 
-e1c70f3 -  Finished set-up and created a function to create headers for requests, testing on VirtualStock and SalesForce
+e1c70f3 - Finished set-up and created a function to create headers for requests, testing on VirtualStock and SalesForce
 
 984d24c - Completed recieving data from VirtualStock and Mirakl bar filtering (Can't solidify anything until I get logins)
 
@@ -89,4 +89,6 @@ c3154f1 - Refactored once again, splitting functions - the GET file kept growing
 
 c8f54df - Added error handling almost fully
 
-[commit num] - Added VS product names and tidied stuff up
+3e9b41e - Added VS product names and tidied stuff up
+
+[commit num] - Finished error handling for the GETs

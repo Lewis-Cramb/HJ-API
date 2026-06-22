@@ -2,6 +2,8 @@
 import requests as rqs
 from datetime import date as dt
 from functions import headerGeneration, startDate
+from GETerrors import handle
+
 
 def getVS():
     #Create the additional information for the request
@@ -10,6 +12,12 @@ def getVS():
 
     #Call APIs using rqs.get() to get the data
     vs_resp = rqs.get("https://api.sandbox.virtualstock.com/restapi/v4/orders/?format=json",headers=vs_headers, params=vs_params) #Get all acknowledged orders from VirtualStock
+    error_resp = handle(vs_resp) #no need to do anything on success, can't refresh login as its not a token
+    if error_resp == "Failure":
+        return []
+    elif error_resp == "Try again":
+        return getVS()
+
 
     vs_data = vs_resp.json()
 

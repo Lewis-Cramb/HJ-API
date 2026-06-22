@@ -1,5 +1,6 @@
 import emails
-from GETmirakl import getM
+import time
+
 
 def handle(response):
 
@@ -8,8 +9,6 @@ def handle(response):
     
     if response.status_code == 400:
         sendEmail("Invalid data", f"Status code: {response.status_code}\nThe data in today's sweep has contained something invalid to the API. You'll need to manually input the data today, sorry :( )")
-    elif response.status_code == 401:
-        return "Try again"
     elif response.status_code == 403 or response.status_code == 404:
         sendEmail("Can't access", f"Status code: {response.status_code}\nThe api has been denied by the system or the system cannot be found, this needs to be addressed ASAP")
     elif response.status_code == 406:
@@ -17,10 +16,11 @@ def handle(response):
     elif response.status_code == 410:
         sendEmail("Disabled API", f"Status code: {response.status_code}\nThe api connection has been terminated at a system level, contact ASAP")
     elif response.status_code == 429:
-        #refresh
+        print("Sleeping")
+        time.sleep(120)
         return "Try again"
-    
-    return "failure"
+
+    return "Failure"
 
 
 def sendEmail(title, body):
