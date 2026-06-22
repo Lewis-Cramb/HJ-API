@@ -12,21 +12,49 @@ header = {
     "Authorization": f"Basic {credentials}"
 }
 
+def posting(order):
+    orderURL = order["url"]
+    orderURL = orderURL[orderURL.index("orders/")+7:-1]
+
+    header['Content-Type'] = "application/json"
+    items = []
+    for item in order["items"]:
+        temp = {}
+        temp["part_number"] = item["part_number"]
+        temp["line_ref"] = item["line_reference"]
+        temp["quantity"] = item["quantity"]
+        temp["supplier_delivery_date"] = item["promised_date"]
+        temp["fulfillment_route"] = "Direct to Customer"
+        items.append(temp)
+
+    
+    if order["status"] == "ORDER":
+        acknowledge(orderURL, header, items)
+    elif order["status"] == "ORDER_ACK":
+        dispatch(orderURL, header, items)
+
+def acknowledge(orderURL, header, items):
+    for item in items:
+        item["fulfillment_route"] = "Direct to customer"
+    info = js.dumps({"items": items})
+    acknowledgement = rqs.post(f"https://api.sandbox.virtualstock.com/restapi/v4/orders/{orderURL}/acknowledge/?format=json",headers=header,data=info)
+    print(acknowledgement.text)
+
+
+def dispatch(orderURL, header, items):
+    for i,item in enumerate(items):
+        item["supplier_delivery_date"] = item["supplier_delivery_date"][:item["supplier_delivery_date"].index("T")]
+        item["supplier_dispatch_date"] = item["supplier_delivery_date"]
+        item["carrier"] = "dpd"
+        item["tracking_number"] = 12345+i
+    info = js.dumps({"items": items})
+    dispatched = rqs.post(f"https://api.sandbox.virtualstock.com/restapi/v4/orders/{orderURL}/dispatch/?format=json",headers=header,data=info)
+    print(dispatched.text)
+
+
 #get all orders (may not be used)
-response = rqs.get("https://api.sandbox.virtualstock.com/restapi/v4/orders/?format=json",headers=header,params={"status":"ORDER"})
+response = rqs.get("https://api.sandbox.virtualstock.com/restapi/v4/orders/?format=json",headers=header)
 json = response.json()
-y87 = json["results"][0]
-#post an acknowledgement
+for order in json["results"]:
+    posting(order)
 
-header['Content-Type'] = "application/json"
-items = []
-for item in y87["items"]:
-    temp = {}
-    temp["part_number"] = item["part_number"]
-    temp["line_ref"] = item["line_reference"]
-    temp["quantity"] = item["quantity"]
-    items.append(temp)
-
-info = js.dumps(items)
-
-ackY87 = rqs.post("https://api.sandbox.virtualstock.com/restapi/v4/orders/287fe779-a5fb-4434-8903-4b421510056d/acknowledge/?format=json",headers=header,data=info)
