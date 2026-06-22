@@ -11,7 +11,7 @@ def headerGeneration(filename): #This function generates the headers needed for 
         token = rf.read() #Tokens for sales platforms
     return {"Authorization":f"Bearer {token}"}
 
-def vsHeader():
+def vsHeader(): #this function generates the header for virtualstock
     with open("vsUser.txt", "r") as rf:
         username = rf.read().strip()
     with open("vsPass.txt", "r") as rf:
