@@ -55,3 +55,21 @@ miraklToSF = {
     "50 x 50cm Outdoor Cushion, Ocean Stripes Frill Edge Design, Shower-Resistant Square Cushion for Garden & Patio" : "CUSHION - FRILLED EDGE 50x50 - OCEAN BLUE STRIPE",
     "50 x 50cm Outdoor Cushion, Green Tartan Frill Edge Design, Shower-Resistant Square Cushion for Garden & Patio" : "CUSHION - FRILLED EDGE 50x50 - FARMHOUSE TARTAN",
 }
+
+vsToSF = {
+    "683L Galv Storage Box - Grn":"L Premium Metal Storage Box - 683L / Green",
+    "450L Recycled Storage Box":"Heavy Duty Storage Box - 450L / Taupe",
+    "980L Recycled Storage Box":"Heavy Duty Storage Box - 980L / Taupe",
+    "683L Galv Storage Box - Gry":"L Premium Metal Storage Box - 683L / Green",
+    "680L Recycled Storage Box Bk":"Heavy Duty Storage Box - 680L / Black",
+    "980L Recycled Storage Box Bk":"Heavy Duty Storage Box - 980L / Black",
+    "270L Recycled Storage Box":"Heavy Duty Storage Box - 270L / Taupe",
+    "680L Recycled Storage Box":"Heavy Duty Storage Box - 680L / Taupe",
+    "870L Recycled Storage Box":"Heavy Duty Storage Box - 870L / Taupe",
+    "870L Recycled Storage Box Bk":"Heavy Duty Storage Box - 870L / Taupe",
+    "Prem Pop Up Gazebo":"Premium Pop Up Gazebo With Sides",
+    "Lux Hydra Parasol 2":"3m Luxury Hydraulic Parasol with 45kg Base and Cover - Natural",
+    "Lux Hydra Parasol 1":"3m Luxury Hydraulic Parasol with 45kg Base and Cover - Grey",
+    "1056L Galv Storage Box - Gry":"XL Premium Metal Storage Box - 1056L / Grey",
+    "1056L Galv Storage Box - Grn":"XL Premium Metal Storage Box - 1056L / Green",
+}

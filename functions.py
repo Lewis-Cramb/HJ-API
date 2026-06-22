@@ -1,4 +1,5 @@
 from datetime import date as date, timedelta as td, datetime as dt
+import base64
 
 def oldHeader(filename): #Use this function if you do not need the "bearer" in the auth key (So older APIs without OAuth 2.0)
     with open(f"txts/{filename}.txt") as rf:
@@ -9,6 +10,18 @@ def headerGeneration(filename): #This function generates the headers needed for 
     with open(f"{filename}.txt") as rf:
         token = rf.read() #Tokens for sales platforms
     return {"Authorization":f"Bearer {token}"}
+
+def vsHeader():
+    with open("vsUser.txt", "r") as rf:
+        username = rf.read().strip()
+    with open("vsPass.txt", "r") as rf:
+        password = rf.read().strip()
+
+    credentials = base64.b64encode(f"{username}:{password}".encode()).decode()
+    return {"Authorization": f"Basic {credentials}"}
+
+
+      
 
 def startDate(): #This function is used for filtering data to be relevant and un-entered on SF
     if date.today().strftime("%A") == "Monday":
