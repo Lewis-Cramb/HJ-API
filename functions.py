@@ -12,9 +12,9 @@ def headerGeneration(filename): #This function generates the headers needed for 
     return {"Authorization":f"Bearer {token}"}
 
 def vsHeader(): #this function generates the header for virtualstock
-    with open("vsUser.txt", "r") as rf:
+    with open("txts/vsUsername.txt", "r") as rf:
         username = rf.read().strip()
-    with open("vsPass.txt", "r") as rf:
+    with open("txts/vsPassword.txt", "r") as rf:
         password = rf.read().strip()
 
     credentials = base64.b64encode(f"{username}:{password}".encode()).decode()

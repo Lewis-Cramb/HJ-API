@@ -72,6 +72,11 @@ I am not able to do much this week, I need logins and verifications but people a
 
 Done some digging for deliveries, found a system called ShipStation API that works for DX and for ParcelForce in one, £59 per month
 
+<ins> 23/06/2025 </ins>
+
+Got my VS credentials from JLP so spending today testing
+
+Took a minute but got connected, forgot that the http wouldnt need .sanbox - all working now
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -100,4 +105,6 @@ c8f54df - Added error handling almost fully
 
 c0a9f66 - Finished error handling for the GETs
 
-[commit num] - Added boilerplate Xero integration
+4126be4 - Added boilerplate Xero integration
+
+[commit num] - Connected to VirtualStock using credentials
