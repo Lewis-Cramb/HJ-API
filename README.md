@@ -77,6 +77,10 @@ Done some digging for deliveries, found a system called ShipStation API that wor
 Got my VS credentials from JLP so spending today testing
 
 Took a minute but got connected, forgot that the http wouldnt need .sanbox - all working now - - also parsed all of the data correctly, the program can now successfully link virtualstock to salesforce!
+
+I need to use cXML for coupa's invoices, going to make a start on learning how to use cxml in python - i dont have credentials (not too sure how to get tbh) so make boilerplate cxml creation and connection
+
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -109,4 +113,6 @@ c0a9f66 - Finished error handling for the GETs
 
 3a8fd3c - Connected to VirtualStock using credentials
 
-[commit num] - VirtualStock data fully passes through to SalesForce
+e4c1fb9 - VirtualStock data fully passes through to SalesForce
+
+[commit num] - Added boilerplate cxml for integration with coupa

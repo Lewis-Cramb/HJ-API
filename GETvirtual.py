@@ -48,4 +48,4 @@ def getVS():
             filtered_orders.append(curr)
 
         
-    return filtered_orders
+    return filtered_orders, vs_data["results"]
