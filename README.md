@@ -76,7 +76,7 @@ Done some digging for deliveries, found a system called ShipStation API that wor
 
 Got my VS credentials from JLP so spending today testing
 
-Took a minute but got connected, forgot that the http wouldnt need .sanbox - all working now
+Took a minute but got connected, forgot that the http wouldnt need .sanbox - all working now - - also parsed all of the data correctly, the program can now successfully link virtualstock to salesforce!
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -107,4 +107,6 @@ c0a9f66 - Finished error handling for the GETs
 
 4126be4 - Added boilerplate Xero integration
 
-[commit num] - Connected to VirtualStock using credentials
+3a8fd3c - Connected to VirtualStock using credentials
+
+[commit num] - VirtualStock data fully passes through to SalesForce
