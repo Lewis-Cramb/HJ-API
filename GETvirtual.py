@@ -24,8 +24,9 @@ def getVS():
     #Finally, filter it and join it all together
     filtered_orders = []
 
-    for order in vs_data["results"]: #add phone number
-        if dt.fromisoformat(order["order_date"][0:order["order_date"].index("T")]) < startDate(): 
+    for order in vs_data["results"]:
+        order_date = dt.fromisoformat(order["order_date"][0:order["order_date"].index("T")])
+        if order_date >= startDate() and order_date < dt.today(): 
             curr = {}
             price = 0.0
             curr["accName"] = "John Lewis D2C"
@@ -33,7 +34,7 @@ def getVS():
             curr["orderDate"] = order["order_date"][0:order["order_date"].index("T")]
             curr["custEmail"] = order["shipping_address"]["email"]
             curr["custPhone"] = order["shipping_address"]["phone"]
-            curr["shipName"] = "TO GET"
+            curr["shipName"] = None
             curr["expDate"] = order["items"][0]["promised_date"][:order["items"][0]["promised_date"].index("T")]
             curr["products"] = {}#
             for item in order["items"]:
@@ -41,8 +42,8 @@ def getVS():
             curr["cost"] = f"{price}"
             curr["custPO"] = order["end_user_purchase_order_reference"]
 
-            for product in curr["items"]:
-                curr["products"][product["name"]] = product["quantity"]
+            for product in order["items"]:
+                curr["products"][product["description"]] = product["quantity"]
 
             filtered_orders.append(curr)
 

@@ -1,5 +1,6 @@
 from datetime import date as date, timedelta as td, datetime as dt
 import base64
+from productNames import miraklToSF, vsToSF
 
 def oldHeader(filename): #Use this function if you do not need the "bearer" in the auth key (So older APIs without OAuth 2.0)
     with open(f"txts/{filename}.txt") as rf:
@@ -39,9 +40,22 @@ def format_date(raw_date): #this function is used to convert the date into yyyy-
 
 def printOrders(orders): #This function is used to print the orders just to debug them
     for order in orders:
-        print(f"On {order["orderDate"]}, {order["custName"]} ({order["custPO"]}) ordered:")
+        print(f"On {order["orderDate"]} and from {order["accName"]}, {order["custName"]} ({order["custPO"]}) ordered:")
         for product in order["products"]:
             print(f"{order["products"][product]}x {product}")
         print(f"For a total of {order["cost"]}")
         print(f"This is to be delivered by {order["shipName"]} by {order["expDate"]}")
         print("\n")
+
+
+def convertNames(data, source): #this function is used to change the names of products
+    if source == "B&Q":
+        conversion = miraklToSF
+    elif source == "JLP":
+        conversion = vsToSF
+    for order in data:
+        order["products"] = {
+            conversion.get(name, name): qty
+            for name, qty in order["products"].items()
+        }
+    return data

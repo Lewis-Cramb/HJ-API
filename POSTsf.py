@@ -68,8 +68,6 @@ def postAPI(orders):
         }
         response = rqs.post(f"{instance_url}/services/data/v67.0/sobjects/Order/Id",headers=sf_headers,json=payload)
         print("Order created")
-        print(response.json())
-        print()
 
         for key in order["products"]:
             #lastly we need to link the product to the order
@@ -84,7 +82,6 @@ def postAPI(orders):
             }
 
             prod_response = rqs.post(f"{instance_url}/services/data/v67.0/sobjects/OrderItem/Id",headers=sf_headers,json=product_payload)
-            print(prod_response.json())
             print(f"{key} added")
 
 #Needed format for the orders variable
