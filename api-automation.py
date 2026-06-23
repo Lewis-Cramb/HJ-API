@@ -1,11 +1,11 @@
 #This is the main file that is going to be used for GETting, POSTing and everything inbetween
-import GETmirakl as  mir, GETvirtual as vs
-import POSTsf as sf
+import GETmirakl as mir, GETvirtual as vs, POSTsf as sf, cxml as invoice 
 from functions import printOrders as printing, convertNames as conversion
 
 def automate(sources, key):
-    data = sources[key]
-
+    data,raw = sources[key]
+    if key=="JLP":
+        invoice.looped(raw)
     data = conversion(data, key)
 
     printing(data)
