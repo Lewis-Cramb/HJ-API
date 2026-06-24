@@ -72,13 +72,19 @@ I am not able to do much this week, I need logins and verifications but people a
 
 Done some digging for deliveries, found a system called ShipStation API that works for DX and for ParcelForce in one, £59 per month
 
-<ins> 23/06/2025 </ins>
+<ins> 23/06/2026 </ins>
 
 Got my VS credentials from JLP so spending today testing
 
 Took a minute but got connected, forgot that the http wouldnt need .sanbox - all working now - - also parsed all of the data correctly, the program can now successfully link virtualstock to salesforce!
 
 I need to use cXML for coupa's invoices, going to make a start on learning how to use cxml in python - i dont have credentials (not too sure how to get tbh) so make boilerplate cxml creation and connection
+
+<ins> 24/06/2026 </ins>
+
+Looking at automation, seeing how to run the code without needing to press F5
+
+Timezones should be automatically accounted for, no need to fiddle with that - may try to make the automation.py file an exe later down the line but for now it is fine as .py
 
 
 # Commit History
@@ -116,3 +122,5 @@ c0a9f66 - Finished error handling for the GETs
 e4c1fb9 - VirtualStock data fully passes through to SalesForce
 
 [commit num] - Added boilerplate cxml for integration with coupa
+
+[commit num] - Created the scripting for autonomously running the project
