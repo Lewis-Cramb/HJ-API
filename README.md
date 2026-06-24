@@ -86,6 +86,7 @@ Looking at automation, seeing how to run the code without needing to press F5
 
 Timezones should be automatically accounted for, no need to fiddle with that - may try to make the automation.py file an exe later down the line but for now it is fine as .py
 
+Doing more cxml, PayloadID in "<DocumentReference>" is just the Supplier Order Number, date format is ISO - need to get our DUNS, buyer DUNS, and client secret
 
 # Commit History
 
@@ -121,6 +122,8 @@ c0a9f66 - Finished error handling for the GETs
 
 e4c1fb9 - VirtualStock data fully passes through to SalesForce
 
-[commit num] - Added boilerplate cxml for integration with coupa
+57ac2d8 - Added boilerplate cxml for integration with coupa
 
-[commit num] - Created the scripting for autonomously running the project
+df2ae04 - Created the scripting for autonomously running the project
+
+[commit num] - Increased CXML, filled out more data for it - still can't test it

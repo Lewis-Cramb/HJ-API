@@ -36,7 +36,7 @@ def getVS():
             curr["custPhone"] = order["shipping_address"]["phone"]
             curr["shipName"] = None
             curr["expDate"] = order["items"][0]["promised_date"][:order["items"][0]["promised_date"].index("T")]
-            curr["products"] = {}#
+            curr["products"] = {}
             for item in order["items"]:
                 price += float(item["subtotal"])
             curr["cost"] = f"{price}"
