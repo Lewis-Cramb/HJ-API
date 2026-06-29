@@ -2,7 +2,7 @@ from xml.etree.ElementTree import Element, SubElement, tostring
 from datetime import datetime as dt
 import requests as rqs
 
-def buildCxml(order):
+def buildCxml(order, invoice_number):
     # <cxml version=1.0 payloadID=x@haywardjardine.co.uk></cxml>
     cxml = Element('cXML')
     cxml.set('version', '1.0')
@@ -14,7 +14,7 @@ def buildCxml(order):
     from_elem = SubElement(header, 'From')
     from_cred = SubElement(from_elem, 'Credential')
     from_cred.set('domain', 'DUNS')
-    SubElement(from_cred, 'identity').text = '' #HERE - supplierDUNS
+    SubElement(from_cred, 'identity').text = '216612308'
 
     # <header><to_elem><to_cred domain=DUNS><identity>Coupla-DUNS</identity></from_cred></from_elem></header>
     to_elem = SubElement(header, 'To')
@@ -26,7 +26,7 @@ def buildCxml(order):
     sender = SubElement(header, 'Sender')
     sender_cred = SubElement(sender, 'Credential')
     sender_cred.set('domain', 'DUNS')
-    SubElement(sender_cred, 'identity').text = '' #HERE -supplierDUNS
+    SubElement(sender_cred, 'identity').text = '216612308'
     SubElement(sender_cred, 'SharedSecret').text = '' #HERE - shared secret
     SubElement(sender, 'UserAgent').text = 'HaywardJardine-Coupa-CXML' 
 
@@ -36,10 +36,6 @@ def buildCxml(order):
     invoice_detail = SubElement(request, 'InvoiceDetailRequest')
 
     # <InvoiceDetailRequest><InvoiceDetailRequestHeader invoiceID=x purpose=standard operation=new invoiceDate=y></InvoiceDetailRequestHeader>...
-    with open ("txts/invoiceNumber.txt","r") as rf:
-        invoice_number = int(rf.read().strip())+1
-    with open("txts/invoiceNumber.txt","w") as wf:
-        wf.write(f"{invoice_number}")
     inv_header = SubElement(invoice_detail, 'InvoiceDetailRequestHeader')
     inv_header.set('invoiceID', f"{invoice_number}")
     inv_header.set('purpose', 'standard')
@@ -99,8 +95,4 @@ def buildCxml(order):
     # print(response.status_code)
     # print(response.text)
 
-
-def looped(orders):
-    for order in orders["items"]:
-        buildCxml(order)
 

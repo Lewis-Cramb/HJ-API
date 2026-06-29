@@ -88,6 +88,16 @@ Timezones should be automatically accounted for, no need to fiddle with that - m
 
 Doing more cxml, PayloadID in "<DocumentReference>" is just the Supplier Order Number, date format is ISO - need to get our DUNS, buyer DUNS, and client secret
 
+<ins> 29/06/2026 </ins>
+
+Got logins for Xero so going to make a start there - I've emailed JL about the cxml in coupa stuff so will see
+
+Found company duns using a website
+
+Lots of reading today, found an OpenAPI for ParcelForce so may start to implement the courier stuff - need to have someone go over how we use parcelforce though before this
+
+I've done some finetuning, added things such as our DUNS number and the lists for which carrier does what
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -126,4 +136,6 @@ e4c1fb9 - VirtualStock data fully passes through to SalesForce
 
 df2ae04 - Created the scripting for autonomously running the project
 
-[commit num] - Increased CXML, filled out more data for it - still can't test it
+9a83284 - Increased CXML, filled out more data for it - still can't test it
+
+[commit num] - touchups and added the lists for each carrier's products
