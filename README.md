@@ -98,6 +98,19 @@ Lots of reading today, found an OpenAPI for ParcelForce so may start to implemen
 
 I've done some finetuning, added things such as our DUNS number and the lists for which carrier does what
 
+<ins> 30/06/2026 </ins>
+
+Checked SalesForce and found out how the tracking numbers are stored therefore have started to implement it - will need to pitch ShipTheory and Xero custom connection
+
+Adding the template for tracking numbers is a lot more detail than I thought, needing to add stuff for parsing delivery details as well as changing lots how the raw data is passed back into the apiConnections.py
+
+also added test.py to .gitignore just in case I forget to delete it 
+
+
+THE PROGRAM IS LIVE - THE CONNECTIONS FROM VS AND MKL TO SF ARE LIVE AND RUNNING
+
+
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -138,4 +151,6 @@ df2ae04 - Created the scripting for autonomously running the project
 
 9a83284 - Increased CXML, filled out more data for it - still can't test it
 
-[commit num] - touchups and added the lists for each carrier's products
+8aabb8e - touchups and added the lists for each carrier's products
+
+[commit num] - Start of shipping coding AND LIVE CODE
