@@ -1,7 +1,7 @@
 #This is the main file that is going to be used for GETting, POSTing and everything inbetween
-import POSTsf as sf
-from functions import printOrders as printing, convertNames as conversion
-from shippingParsing import shipping as ship
+import POSTs.POSTsf as sf
+from Generalisation.functions import printOrders as printing, convertNames as conversion
+from Couriers.shipping import shipping as ship
 
 
 def transfer(sources, key):
@@ -20,6 +20,7 @@ def transfer(sources, key):
 
     printing(data)
 
+    return
     #sf.postAPI(data)
 
 

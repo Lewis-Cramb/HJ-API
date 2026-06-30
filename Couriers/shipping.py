@@ -1,5 +1,5 @@
-from productCarriers import dx as dxProds, kinetic as knProds
-import POSTparcelforce as pf, POSTkinetic as kn, POSTdx as dx
+from Generalisation.productCarriers import dx as dxProds, kinetic as knProds
+import POSTs.POSTparcelforce as pf, POSTs.POSTkinetic as kn, POSTs.POSTdx as dx
 
 general = ["address_1", "address_2", "post_code", "country", "city", "state"]
 
