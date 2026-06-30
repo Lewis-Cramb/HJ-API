@@ -1,8 +1,8 @@
 #This file is for the posting of the data to salesforce
 import requests as rqs
 from datetime import datetime
-from functions import format_date
-from GETerrors import handle
+from Generalisation.functions import format_date
+from GETs.GETerrors import handle
 
 
 def getSFProdId(instance_url, product, sf_headers):

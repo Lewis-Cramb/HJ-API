@@ -109,6 +109,12 @@ also added test.py to .gitignore just in case I forget to delete it
 
 THE PROGRAM IS LIVE - THE CONNECTIONS FROM VS AND MKL TO SF ARE LIVE AND RUNNING
 
+Just had TrueCommerce call, it may not be worth the cost of the API
+
+Also just changed the time from 1000 to 0900 for orders to be pulled through
+
+going to tidy up the repo, too many random python files
+
 
 
 # Commit History
@@ -153,4 +159,6 @@ df2ae04 - Created the scripting for autonomously running the project
 
 8aabb8e - touchups and added the lists for each carrier's products
 
-[commit num] - Start of shipping coding AND LIVE CODE
+18718cc - Start of shipping coding AND LIVE CODE
+
+[commit num] - Refactored and tidied up again

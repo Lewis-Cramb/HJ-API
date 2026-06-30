@@ -1,8 +1,8 @@
 #This file is going to be for reading all of the data
 import requests as rqs
 from datetime import date as dt
-from functions import vsHeader, startDate
-from GETerrors import handle
+from Generalisation.functions import vsHeader, startDate
+from GETs.GETerrors import handle
 
 
 def getVS():

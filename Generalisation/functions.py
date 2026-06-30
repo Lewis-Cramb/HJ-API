@@ -1,6 +1,6 @@
 from datetime import date as date, timedelta as td, datetime as dt
 import base64
-from productNames import miraklToSF, vsToSF
+from Generalisation.productNames import miraklToSF, vsToSF
 
 def oldHeader(filename): #Use this function if you do not need the "bearer" in the auth key (So older APIs without OAuth 2.0)
     with open(f"txts/{filename}.txt") as rf:
