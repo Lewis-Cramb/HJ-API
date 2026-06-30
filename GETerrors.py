@@ -38,5 +38,4 @@ def sendEmail(title, body):
 
     response = message.send(
         to="rebecca@haywardjardine.co.uk",
-        cc=["emma@haywardjardine.co.uk","alistair@haywardjardine.co.uk"],
         smtp={"host": "smtp.mail.icloud.com","port": 587,"tls": True,"user": "lewiscramb@icloud.com","password": password})

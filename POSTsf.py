@@ -2,6 +2,7 @@
 import requests as rqs
 from datetime import datetime
 from functions import format_date
+from GETerrors import handle
 
 
 def getSFProdId(instance_url, product, sf_headers):
@@ -67,6 +68,11 @@ def postAPI(orders):
             "CurrencyIsoCode":"GBP",
         }
         response = rqs.post(f"{instance_url}/services/data/v67.0/sobjects/Order/Id",headers=sf_headers,json=payload)
+        error_resp = handle(response) #no need to do anything on success, can't refresh login as its not a token
+        if error_resp == "Failure":
+            return []
+        elif error_resp == "Try again":
+            return postAPI()
         print("Order created")
 
         for key in order["products"]:
