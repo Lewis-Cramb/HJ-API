@@ -1,2 +1,2 @@
-txts/
-__pycache__/
+txts/*
+__pycache__/*
