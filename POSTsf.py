@@ -63,7 +63,7 @@ def postAPI(orders):
             "Type":"D2C",
             "Cust_PO__c":order["custPO"],
             "Shipping_port__c":"Collection",
-            "courier_tracking_info__c":"WORKING ON",
+            "courier_tracking_info__c":order["tracking_number"],
             "Pricebook2Id":pricebookID,
             "CurrencyIsoCode":"GBP",
         }

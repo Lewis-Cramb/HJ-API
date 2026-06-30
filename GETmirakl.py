@@ -43,6 +43,6 @@ def getM():
             filtered_orders.append(curr)
 
         
-    return filtered_orders, 0
+    return filtered_orders, mkl_data["orders"]
 
 
