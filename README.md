@@ -115,6 +115,14 @@ Also just changed the time from 1000 to 0900 for orders to be pulled through
 
 going to tidy up the repo, too many random python files
 
+<ins> 01/07/2026 </ins>
+
+program didn't work live - issue is the picklist for the delivery couriers so either fix delivery and roll it out all in one or just set it to dx or smth and let others worry about that
+
+Had my call with ShipTheory, they can't give us exactly what we want but we can manage with it
+
+Typically just got an email response from DX now and they have an api that can be used, committing current changes and will switch branches for dx sandbox creds
+
 
 
 # Commit History
@@ -161,4 +169,6 @@ df2ae04 - Created the scripting for autonomously running the project
 
 18718cc - Start of shipping coding AND LIVE CODE
 
-[commit num] - Refactored and tidied up again
+485da34 - Refactored and tidied up again
+
+[commit num] - Made some more changes just before DX
