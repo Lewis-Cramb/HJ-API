@@ -7,8 +7,8 @@ from Couriers.shipping import shipping as ship
 def transfer(sources, key):
     data,raw = sources[key]
     
-    for i,order in enumerate(raw):
-        data[i]["tracking_number"] = ship(order, key)
+    #for i,order in enumerate(raw):
+        #data[i]["tracking_number"] = ship(order, key)
     '''
     for order in raw
         inv_num = xero(order)    
@@ -20,7 +20,6 @@ def transfer(sources, key):
 
     printing(data)
 
-    return
-    #sf.postAPI(data)
+    return sf.postAPI(data)
 
 
