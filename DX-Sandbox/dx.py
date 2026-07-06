@@ -118,5 +118,5 @@ for number in consignmentNumbers:
     label_data = ET.fromstring(labelResponse.text).findtext("ns:label",namespaces=namespace)
 
     pdf_bytes = base64.b64decode(label_data)
-    with open(f"DX-Sanbox/label-{number}.pdf", "wb") as f:
+    with open(f"DX-Sandbox/label-{number}.pdf", "wb") as f:
         f.write(pdf_bytes)
