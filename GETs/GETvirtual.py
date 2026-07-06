@@ -1,9 +1,10 @@
 #This file is going to be for reading all of the data
 import requests as rqs
 from datetime import date as dt
-from Generalisation.functions import vsHeader, startDate
+import sys
+sys.path.append("../HJ-API")
 from GETs.GETerrors import handle
-
+from functions import vsHeader, startDate
 
 def getVS():
     #Create the additional information for the request

@@ -124,6 +124,17 @@ Had my call with ShipTheory, they can't give us exactly what we want but we can 
 Typically just got an email response from DX now and they have an api that can be used, committing current changes and will switch branches for dx sandbox creds
 
 
+<ins> 06/07/2026 </ins>
+
+Had my call with TC, they cannot help us
+
+completed the DX sandbox credential stuff - I need to get api credentials for the Davis Turner DX despatch too
+
+Creating the generic DX stuff whilst I wait for the actual creds
+Need to ask what the reference is - is it the PO number from SF?
+
+
+
 
 # Commit History
 
@@ -171,4 +182,6 @@ df2ae04 - Created the scripting for autonomously running the project
 
 485da34 - Refactored and tidied up again
 
-[commit num] - Made some more changes just before DX
+3e2330b - Made some more changes just before DX
+
+[commit num] - Boilerplate DX api code

@@ -1,4 +1,4 @@
-from Generalisation.productCarriers import dx as dxProds, kinetic as knProds
+from Lists.productCarriers import dx as dxProds, kinetic as knProds
 import POSTs.POSTparcelforce as pf, POSTs.POSTkinetic as kn, POSTs.POSTdx as dx
 
 general = ["address_1", "address_2", "post_code", "country", "city", "state"]
@@ -9,7 +9,8 @@ vsToGen = {
     "postal_code":"post_code",
     "country":"country",
     "city":"city",
-    "state":"state"
+    "state":"state",
+    "full_name":"customer_name"
 }
 
 mklToGen = {
@@ -33,6 +34,8 @@ def parseShipping(order, channel):
         raw_shipping = order["customer"]["shipping_address"]
         keys, values = [mklToGen[k] if k in mklToGen else k for k in list(raw_shipping.keys())], list(raw_shipping.values())
         shipDetails = dict(map(lambda k,v:(k,v),keys,values))
+        shipDetails["customer_name"] = f"{raw_shipping["firstname"]} + {raw_shipping["lastname"]}"
+        shipDetails["customer_phone"] = raw_shipping["phone"]
     
     return shipDetails
 

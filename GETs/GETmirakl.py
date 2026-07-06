@@ -1,7 +1,9 @@
 #This file is going to be for reading all of the data
 import requests as rqs
 from datetime import date as dt
-from Generalisation.functions import oldHeader, startDate
+import sys
+sys.path.append("../HJ-API")
+from functions import oldHeader, startDate
 from GETs.GETerrors import handle
 
 def getM():
@@ -45,4 +47,5 @@ def getM():
         
     return filtered_orders, mkl_data["orders"]
 
+getM()
 
