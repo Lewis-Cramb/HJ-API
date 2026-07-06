@@ -1,6 +1,7 @@
 from datetime import date as date, timedelta as td, datetime as dt
-import base64
+import base64, emails
 from Lists.productNames import miraklToSF, vsToSF
+from Lists.surchargePostcodes import codes as surCodes
 
 def oldHeader(filename): #Use this function if you do not need the "bearer" in the auth key (So older APIs without OAuth 2.0)
     with open(f"txts/{filename}.txt") as rf:
@@ -59,3 +60,33 @@ def convertNames(data, source): #this function is used to change the names of pr
             for name, qty in order["products"].items()
         }
     return data
+
+
+def sendEmail(title, body):
+
+    fullBody = f"Rebecca, \n {body} \n \n LewisBot \n\n (You can reply to this email, it is my personal and will always work)"
+    fullTitle = f"LewisBot HJ API - {title}"
+
+    password = open("txts/emailPassword.txt","r").read().strip()
+
+    message = emails.html(
+        text=fullBody, 
+        subject=fullTitle, 
+        mail_from=("Lewis", "lewiscramb@icloud.com")
+    )
+
+    message.send(
+        to="lewis@haywardjardine.co.uk",
+        smtp={"host": "smtp.mail.icloud.com","port": 587,"tls": True,"user": "lewiscramb@icloud.com","password": password})
+
+
+def shippingPostcodes(location):
+    post_code = location["shipping_details"]["post_code"]
+    area_code = ""
+    for letter in post_code:
+        if letter.isalpha():
+            area_code += letter
+        else:
+            break
+
+    return area_code in surCodes

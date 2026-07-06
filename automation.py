@@ -1,7 +1,7 @@
 #This script will be the main script ran, it will keep track of the time too
 from datetime import datetime as dt
 from apiConnections import transfer as automate
-from GETs.GETerrors import sendEmail as email
+from functions import sendEmail as email
 import GETs.GETmirakl as mir, GETs.GETvirtual as vs
 
 while True:
@@ -9,10 +9,9 @@ while True:
     current_time = now.strftime("%H:%M:%S")
     current_day = now.strftime("%a")
     sources = {"B&Q":mir.getM(), "JLP":vs.getVS()}
-    try:
-        for index,(key,value) in enumerate(sources.items()):
-            automate(sources, key)
-    except Exception:
-        #email("Crash", "The automation has crashed - data will need to be manually entered")
-        print("Not worked")
+    for index,(key,value) in enumerate(sources.items()):
+        automate(sources, key)
+    # except Exception:
+    #     #email("Crash", "The automation has crashed - data will need to be manually entered")
+    #     print("Not worked")
 

@@ -133,7 +133,10 @@ completed the DX sandbox credential stuff - I need to get api credentials for th
 Creating the generic DX stuff whilst I wait for the actual creds
 Need to ask what the reference is - is it the PO number from SF?
 
+I've just basically refactored the shipping.py file and decided to make a start on filtering the couriers, leading to me starting to plan and design the integration for kinetic as they do not have an api
+lead me to emailing the POs of untracked kinetic orders (i.e orders kinetic ship without a surcharge) so that they can be created manually
 
+I don't think I'm going to make the soft deadline of 20/07/2026 given I'm off next week but I am almost there - all that is left is DX credentials for testing, ParcelForce API docs and creds, then Xero creds and testing (subscription bought) and finally coupa creds and testing
 
 
 # Commit History
@@ -184,4 +187,6 @@ df2ae04 - Created the scripting for autonomously running the project
 
 3e2330b - Made some more changes just before DX
 
-[commit num] - Boilerplate DX api code
+86d1e1d - Boilerplate DX api code
+
+[commit num] - Kinetic emails

@@ -1,7 +1,9 @@
 #This file is for the posting of the data to salesforce
 import requests as rqs
 from datetime import datetime
-from Generalisation.functions import format_date
+import sys
+sys.path.append("../HJ-API")
+from functions import format_date
 from GETs.GETerrors import handle
 
 
