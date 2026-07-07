@@ -159,6 +159,7 @@ Xero GBP Invoice - 60 days terms id is: ff5cbad5-f371-4fd2-a13d-e8ac5e719946
 
 Done everything with xero bar testing and creating the products list
 
+Need a list of names:weights so will do this and the list of names:itemCodes for this commit - prudence told me that the weight is the gross weight rounded up
 
 # Commit History
 
@@ -212,4 +213,6 @@ df2ae04 - Created the scripting for autonomously running the project
 
 87d03c1 - Kinetic emails
 
-[commit num] - Xero almost complete
+4b11465 - Xero almost complete
+
+[commit num] - Lists for weights and codes

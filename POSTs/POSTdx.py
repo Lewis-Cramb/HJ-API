@@ -2,6 +2,7 @@
 import requests as rqs, base64 as b64, xml.etree.ElementTree as xml
 from datetime import datetime as dt
 from Lists.dxPlatform import HJ, DT
+from Lists.weights import weight
 
 
 def tracking(product,order):
@@ -21,11 +22,9 @@ def tracking(product,order):
 
 
     token = rqs.post(f"https://itd.dx-track.com/DespatchManager.API.Service.DM6Lite_Test/DM6LiteService.svc/GetSessionKey", json=details)
-
     xmlNamespace = {"ns": "http://schemas.datacontract.org/2004/07/DespatchManager.API.Service.DM6Lite.Responses"}
 
     session_key = xml.fromstring(token.text).findtext("ns:SessionKey",namespaces=xmlNamespace)
-
     authHead = f"<AuthHeader><SessionKey>{session_key}</SessionKey></AuthHeader>"
 
     headers = {
@@ -33,8 +32,18 @@ def tracking(product,order):
         "Context-type": "text/xml charset=utf-8"
     }
 
-    # Convert date to Unix timestamp (milliseconds)
     manifest_date = int(dt.now().timestamp() * 1000)
+
+    contents = []
+    for product in order["products"].keys():
+        contents.append(
+            {
+                "ContentDescriptionID": 1,
+                "ContentDescription": "CartonKG",
+                "ContentQuantity": order["products"][product], #fill this in
+                "ContentTotalWeight": weight[product]*order["products"][product] #fill this in
+            }
+        )
 
     payload = {
         "DXAccountNumber": f"{details["DXAccountNumber"]}",
@@ -48,12 +57,5 @@ def tracking(product,order):
         "DeliveryPostcode": order["post_code"],
         "DeliveryPhoneNumber": order["customer_phone"],
         "DeliveryContact": order["customer_name"],
-        "Contents": [
-            {
-                "ContentDescriptionID": 1,
-                "ContentDescription": "CartonKG",
-                "ContentQuantity": 0, #fill this in
-                "ContentTotalWeight": 0 #fill this in
-            }
-        ]
+        "Contents": contents
     }

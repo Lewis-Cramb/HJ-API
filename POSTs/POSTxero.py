@@ -52,15 +52,3 @@ def postData(order, source):
     }
 
     rqs.post("https://api.xero.com/api.xro/2.0/Invoices", headers=header, json=invoice)
-
-
-
-
-def getBrandingThemeID():
-    header = {"Authorization" : f"Bearer {postToken()}"}
-    response = rqs.get("https://api.xero.com/api.xro/2.0/BrandingThemes", headers=header)
-    print()
-    print(response.text)
-    print(response.status_code)
-
-getBrandingThemeID()
