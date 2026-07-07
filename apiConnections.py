@@ -8,7 +8,7 @@ from POSTs.POSTxero import postData as xero
 def transfer(sources, key):
     data = sources[key]
     data = conversion(data, key)
-    #leftoverPOs = ship(data, key)
+    leftoverPOs = ship(data, key)
     '''
     for order in raw
         inv_num = xero(order)    

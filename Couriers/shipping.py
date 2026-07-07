@@ -2,7 +2,7 @@ from Lists.productCarriers import dx as dxProds, kinetic as knProds, parcelforce
 import POSTs.POSTparcelforce as pf, POSTs.POSTkinetic as kn, POSTs.POSTdx as dx
 import sys
 sys.path.append("../")
-from functions import shippingPostcodes as surcharge, sendEmail as email
+from functions import shippingPostcodes as surcharge
 
 general = ["address_1", "address_2", "post_code", "country", "city", "state"]
 
@@ -33,37 +33,31 @@ def parseShipping(order, channel):
         raw_shipping = order["shipping_address"]
         keys, values = [vsToGen[k] if k in vsToGen else k for k in list(raw_shipping.keys())], list(raw_shipping.values())
         shipDetails = dict(map(lambda k,v:(k,v),keys,values))
-    elif channel == "B&Q":
+    elif "B&Q" in channel:
         raw_shipping = order["shipping_address"]
         keys, values = [mklToGen[k] if k in mklToGen else k for k in list(raw_shipping.keys())], list(raw_shipping.values())
         shipDetails = dict(map(lambda k,v:(k,v),keys,values))
         shipDetails["customer_name"] = f"{raw_shipping["firstname"]} {raw_shipping["lastname"]}"
         shipDetails["customer_phone"] = raw_shipping["phone"]
     
+    if "," in shipDetails["address_1"]:
+        shipDetails["address_1"] = shipDetails["address_1"][0:shipDetails["address_1"].index(",")]
     return shipDetails
 
 
 def shipping(orders, key):
-    kineticPOs = ""
     for order in orders:
-        ship_details = parseShipping(order, key)
+        order["shipping_address"] = parseShipping(order, key)
         for i,(k,v) in enumerate(order["products"].items()):
-            tracked = True
             if k in dxProds or (k in knProds and surcharge()):
-                num = dx.tracking(k,ship_details)
+                num = dx.tracking(k,order)
             elif k in pfProds:
-                num = pf.tracking(k,ship_details)
+                num = pf.tracking(k,order)
             else:
-                tracked = False
-                kineticPOs += f"{order["custPO"]}\n"
+                num = kn.tracking(k, order)
             
-            if tracked:
-                try:
-                    order["tracking_number"] += f"+ {num}"
-                except Exception:
-                    order["tracking_number"] = f"{num}"
+            try:
+                order["tracking_number"] += f"+ {num}"
+            except Exception:
+                order["tracking_number"] = f"{num}"
     
-    if kineticPOs != "":
-        email(f"{key} / Kinetic", f"Here are the list of POs needing to be manually created on Kinetic for {key}:\n{kineticPOs}")
-
-    print("done")

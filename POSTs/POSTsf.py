@@ -75,7 +75,6 @@ def postAPI(orders):
             return []
         elif error_resp == "Try again":
             return postAPI()
-        print("Order created")
 
         for key in order["products"]:
             #lastly we need to link the product to the order

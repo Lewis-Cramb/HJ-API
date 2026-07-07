@@ -161,6 +161,8 @@ Done everything with xero bar testing and creating the products list
 
 Need a list of names:weights so will do this and the list of names:itemCodes for this commit - prudence told me that the weight is the gross weight rounded up
 
+parsed the rest of the dx info, dx runs fine now - worth nothing that there was no option for 2 day delivery so I've had to opt for 3 day deliveries
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -215,4 +217,6 @@ df2ae04 - Created the scripting for autonomously running the project
 
 4b11465 - Xero almost complete
 
-[commit num] - Lists for weights and codes
+8e17af2 - Lists for weights and codes
+
+[commit num] - DX connected completely
