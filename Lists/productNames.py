@@ -73,3 +73,8 @@ vsToSF = {
     "1056L Galv Storage Box - Gry":"XL Premium Metal Storage Box - 1056L / Grey",
     "1056L Galv Storage Box - Grn":"XL Premium Metal Storage Box - 1056L / Green",
 }
+
+
+sfToXero = {
+    
+}

@@ -138,6 +138,27 @@ lead me to emailing the POs of untracked kinetic orders (i.e orders kinetic ship
 
 I don't think I'm going to make the soft deadline of 20/07/2026 given I'm off next week but I am almost there - all that is left is DX credentials for testing, ParcelForce API docs and creds, then Xero creds and testing (subscription bought) and finally coupa creds and testing
 
+<ins> 07/07/2026 </ins>
+
+Need to make adjustments so that we can use buffalo shelving in the automation too
+
+Making a start on Xero now that the custom connection is set up - need to make a list of names:itemCodes so that it can be pulled easily, dont want to do it rn because its tedious BUT DONT FORGET
+
+just got my dx creds and endpoints, accidentally mistyped the warehouse number for DT so gone back to James about that - hopefully he won't be too mad given that he did technically give me their password
+
+Added __init__.py to every folder to mark it as a package, removes the repeat sys.path.append() call when trying to use functions in function.py
+
+kinetic do have an api after all - more work for me
+
+
+here is the plan:
+
+fix xero -> finalise dx -> write Kinetic API -> find and write parcelforce api -> deal with coupa
+
+Xero GBP Invoice - 60 days terms id is: ff5cbad5-f371-4fd2-a13d-e8ac5e719946
+
+Done everything with xero bar testing and creating the products list
+
 
 # Commit History
 
@@ -189,4 +210,6 @@ df2ae04 - Created the scripting for autonomously running the project
 
 86d1e1d - Boilerplate DX api code
 
-[commit num] - Kinetic emails
+87d03c1 - Kinetic emails
+
+[commit num] - Xero almost complete

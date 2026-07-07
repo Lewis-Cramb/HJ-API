@@ -1,6 +1,6 @@
 from datetime import date as date, timedelta as td, datetime as dt
 import base64, emails
-from Lists.productNames import miraklToSF, vsToSF
+from Lists.productNames import miraklToSF, vsToSF, sfToXero
 from Lists.surchargePostcodes import codes as surCodes
 
 def oldHeader(filename): #Use this function if you do not need the "bearer" in the auth key (So older APIs without OAuth 2.0)
@@ -37,6 +37,11 @@ def format_date(raw_date): #this function is used to convert the date into yyyy-
     except ValueError:
         return dt.strptime(raw_date, "%d-%m-%Y").strftime("%Y-%m-%d")
     
+def xeroDue():
+    today = date.today()
+    due = today + td(days=60)
+    return due.strftime("%Y-%m-%d")
+    
 
 
 def printOrders(orders): #This function is used to print the orders just to debug them
@@ -50,10 +55,12 @@ def printOrders(orders): #This function is used to print the orders just to debu
 
 
 def convertNames(data, source): #this function is used to change the names of products
-    if source == "B&Q":
+    if "B&Q" in source:
         conversion = miraklToSF
     elif source == "JLP":
         conversion = vsToSF
+    elif source == "SF":
+        conversion = sfToXero
     for order in data:
         order["products"] = {
             conversion.get(name, name): qty

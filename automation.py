@@ -8,7 +8,7 @@ while True:
     now = dt.now()
     current_time = now.strftime("%H:%M:%S")
     current_day = now.strftime("%a")
-    sources = {"B&Q":mir.getM(), "JLP":vs.getVS()}
+    sources = {"B&Qhj":mir.getM("HJ"), "B&Qb":mir.getM("Buffalo"), "JLP":vs.getVS()}
     for index,(key,value) in enumerate(sources.items()):
         automate(sources, key)
     # except Exception:

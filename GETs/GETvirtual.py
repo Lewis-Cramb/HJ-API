@@ -51,4 +51,4 @@ def getVS():
             filtered_orders.append(curr)
 
         
-    return filtered_orders, raw_orders
+    return filtered_orders

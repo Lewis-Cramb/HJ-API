@@ -6,9 +6,9 @@ sys.path.append("../HJ-API")
 from functions import oldHeader, startDate
 from GETs.GETerrors import handle
 
-def getM():
+def getM(company):
     #Define the commerce platform header here 
-    mkl_headers = oldHeader("mklToken")
+    mkl_headers = oldHeader(f"{company}Token")
     mkl_params = {"start_date":startDate(), "end_date":dt.today()} #Get all orders since last working day
 
     #Call API using rqs.get() to get the data
@@ -46,7 +46,5 @@ def getM():
             filtered_orders.append(curr)
 
         
-    return filtered_orders, mkl_data["orders"]
-
-getM()
+    return filtered_orders
 
