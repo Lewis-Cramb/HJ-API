@@ -24,12 +24,10 @@ def getVS():
 
     #Finally, filter it and join it all together
     filtered_orders = []
-    raw_orders = []
 
     for order in vs_data["results"]:
         order_date = dt.fromisoformat(order["order_date"][0:order["order_date"].index("T")])
         if order_date >= startDate() and order_date < dt.today(): 
-            raw_orders.append(order)
             curr = {}
             price = 0.0
             curr["accName"] = "John Lewis D2C"

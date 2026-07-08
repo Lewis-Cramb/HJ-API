@@ -163,6 +163,15 @@ Need a list of names:weights so will do this and the list of names:itemCodes for
 
 parsed the rest of the dx info, dx runs fine now - worth nothing that there was no option for 2 day delivery so I've had to opt for 3 day deliveries
 
+
+<ins> 08/07/2026 </ins>
+
+Off to london for 6 days so need to wrap most stuff up the now if hoping to hit soft deadline of the 20th
+
+DX is done, Xero is tested and done now too (check with emma if she needs the invoice number which is found in xml <Invoices><invoice><invoiceNumber>)
+All thats left is Kinetic, ParcelForce and Coupa - Kinetic have given me their docs so that should hopefully make it easier, PF needs some research and coupa is on hold without the creds
+I'll be in 16th and 17th so can wrap everything up then too
+
 # Commit History
 
 93a2db8 - Set-up the repo

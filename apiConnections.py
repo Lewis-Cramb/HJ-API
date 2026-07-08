@@ -3,28 +3,23 @@ import POSTs.POSTsf as sf
 from functions import printOrders as printing, convertNames as conversion
 from Couriers.shipping import shipping as ship
 from POSTs.POSTxero import postData as xero
+from copy import deepcopy as dc
 
 
 def transfer(sources, key):
     data = sources[key]
-    data = conversion(data, key)
-    leftoverPOs = ship(data, key)
-    '''
-    for order in raw
-        inv_num = xero(order)    
-        if key = jlp then
-            coupa(raw, inv_num)
-    '''
+    if data != []:
+        data = conversion(data, key)
 
-    xero(data[0], key)
+        #ship(data, key)
 
-    print()
-    
+        copyData = dc(data)
+        copyData = conversion(copyData, "SF")
+        for order in copyData:
+            xero(order, key)           
 
-    printing(data)
+        printing(data)
 
-    #sf.postAPI(data)
-
-    #return leftoverPOs
+        #sf.postAPI(data)
 
 
