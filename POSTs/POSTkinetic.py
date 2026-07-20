@@ -1,15 +1,21 @@
 #this file will be used to create an order on kinetic and return the tracking number
 import requests as rqs
 from base64 import b64encode as b64
-#from Lists.kineticPlatform import buffaloProducts as knBuff
+from Lists.kineticPlatform import buffaloProducts as knBuff
+from Lists.productNames import sfToKinetic as codes
+
+def payload(product, order, contents):
+    contents.append({
+        "itemCode": codes[product]
+    })
 
 def tracking(product,order):
-    # if product in knBuff:
-    #     username = open("txts/knBuffUsername.txt").read().strip()
-    #     password = open("txts/knBuffPassword.txt").read().strip()
-    # else:
-    username = open("txts/knHjUsername.txt").read().strip()
-    password = open("txts/knHjPassword.txt").read().strip()
+    if product in knBuff:
+        username = open("txts/knBuffUsername.txt").read().strip()
+        password = open("txts/knBuffPassword.txt").read().strip()
+    else:
+        username = open("txts/knHjUsername.txt").read().strip()
+        password = open("txts/knHjPassword.txt").read().strip()
 
     header = {
         "Authorization": f"Basic {b64(f"{username}:{password}".encode()).decode()}",
@@ -21,14 +27,14 @@ def tracking(product,order):
     data = {"header": {
         "orderReference": "123 - TEST_2",
         "shipName": "TEST SHIP NAME",
-        "address1": "ADD 1",
-        "address2": "ADD 2",
-        "city": "CITY",
-        "county": "Berkshire",
+        "address1": order["shipping_address"]["address_1"],
+        "address2": order["shipping_address"]["address_2"],
+        "city": order["shipping_address"]["city"],
+        "county": order["shipping_address"]["state"],
         "country": "GB",
-        "postCode": "EH25 9NY",
+        "postCode": order["shipping_address"]["post_code"],
         "landline": "",
-        "mobile": "07980836189",
+        "mobile": order[""],
         "email": "phil.dickens@baumhaus.co.uk",
         "requestSplitDelivery": "N",
         "deliveryRemarks": "",
@@ -57,6 +63,4 @@ def tracking(product,order):
     print(response.status_code)
 
     print()
-
-tracking("","")
     

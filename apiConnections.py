@@ -11,7 +11,7 @@ def transfer(sources, key):
     if data != []:
         data = conversion(data, key)
 
-        #ship(data, key)
+        ship(data, key)
 
         copyData = dc(data)
         copyData = conversion(copyData, "SF")

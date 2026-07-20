@@ -48,19 +48,24 @@ def parseShipping(order, channel):
 def shipping(orders, key):
     for order in orders:
         order["shipping_address"] = parseShipping(order, key)
-        for i,(k,v) in enumerate(order["products"].items()):
-            if k in dxProds or (k in knProds and surcharge()):
-                num = dx.tracking(k,order)
-                order["shipName"] = "DX"
-            elif k in pfProds:
-                num = pf.tracking(k,order)
-                order["shipName"] = "ParcelForce"
+        dxContents, knContents, pfContents = [],[],[]
+        for i,(productName,v) in enumerate(order["products"].items()):
+            if productName in dxProds or (productName in knProds and surcharge(order["shipping_address"])):
+                dx.payload(productName, order, dxContents)
+            elif productName in pfProds:
+                pf.payload(productName, order, pfContents)
             else:
-                num = kn.tracking(k, order)
-                order["shipName"] = "Kinetic"
-            
-            try:
-                order["tracking_number"] += f"+ {num}"
-            except Exception:
-                order["tracking_number"] = f"{num}"
+                kn.payload(productName, order, knContents)
+
+        num = ""    
+        if dxContents != []:
+            num += f"{dx.tracking(productName, order, dxContents)} "
+        
+        if pfContents != []:
+            num += f"{pf.tracking(productName, order, pfContents)} "
+
+        if knContents != []:
+            num += f"{kn.tracking(productName, order, knContents)} "
+
+        order["tracking_number"] = f"{num}"
     

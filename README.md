@@ -196,6 +196,12 @@ All that's left is to fix DX and start parcelforce
 
 I had to change the customer number in POSTxero.py as they changed on xero
 
+I might need to revert back to the email system for kinetic
+Just been quoted £900-£1800 for API costs? It is developer costs so I may be able to mitigate it through being my own developer
+I'm not going to touch anything with kinetic until I chat to emma and alistair in that case then
+
+DX is fixed, moving on to ParcelForce
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -254,4 +260,6 @@ df2ae04 - Created the scripting for autonomously running the project
 
 d7ed175 - Xero tested and finished
 
-[commit num] - Kinetic started
+21f044e - Kinetic started
+
+[commit num] - DX created and fixed

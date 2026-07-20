@@ -5,8 +5,17 @@ from Lists.dxPlatform import HJ, DT
 from Lists.weights import weight
 from GETs.GETerrors import handle
 
+def payload(product,order, contents):
 
-def tracking(product,order):
+    contents.append({
+        "ContentDescriptionID": 1,
+        "ContentDescription": "CartonKG",
+        "ContentQuantity": order["products"][product],
+        "ContentTotalWeight": weight[product]*order["products"][product]
+    })
+
+
+def tracking(product,order, contents):
     
     if product in HJ:
         details = {
@@ -34,13 +43,6 @@ def tracking(product,order):
 
     manifest_date = int(dt.now().timestamp() * 1000)
 
-    contents = [{
-        "ContentDescriptionID": 1,
-        "ContentDescription": "CartonKG",
-        "ContentQuantity": order["products"][product],
-        "ContentTotalWeight": weight[product]*order["products"][product]
-    }]
-
     if len(order["custPO"]) > 10:
         order["custPO"] = order["custPO"][0:10]
 
@@ -64,7 +66,7 @@ def tracking(product,order):
     if error_resp == "Failure":
         return []
     elif error_resp == "Try again":
-        return tracking()
+        return tracking(product, order, contents)
 
     namespace = {"ns": "http://schemas.datacontract.org/2004/07/DespatchManager.API.Service.DM6Lite.Responses"}
     root = xml.fromstring(response.text)
