@@ -133,3 +133,18 @@ sfToXero = {
     "CUSHION - FRILLED EDGE 50x50 - OCEAN BLUE STRIPE":"OE039",
     "CUSHION - FRILLED EDGE 50x50 - FARMHOUSE TARTAN":"OE037"
 }
+
+sfToKinetic = {
+    "L Premium Metal Storage Box - 683L / Grey": "ZAHHJ850-D",
+    "L Premium Metal Storage Box - 683L / Green":"ZAHHJ865-D",
+    "XL Premium Metal Storage Box - 1056L / Grey":"ZAHHJ851-D",
+    "XL Premium Metal Storage Box - 1056L / Green":"ZAHHJ866-D",
+    "Buffalo Pro Heavy Duty Wire Rack XL1820":"ZAASSC001",
+    "Buffalo 5 Tier Corner MDF Shelf":"ZAASSC002",
+    "Buffalo Pro Heavy Duty Wire Rack L1500":"ZAASSC003",
+    "Buffalo 5 Shelf Metal Cabinet":"ZAASSC004",
+    "Buffalo Heavy Duty Workbench":"ZAASSC005",
+    "Buffalo 5 Tier MDF Shelf - L1500":"ZAASSC006",
+    "Buffalo 5 Tier MDF Shelf - M1200":"ZAASSC007",
+    "Buffalo Metal Storage Unit with wheels":"ZAASSC008"
+}

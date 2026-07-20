@@ -22,7 +22,7 @@ def postToken():
 def postData(order, source):
     header = {"Authorization" : f"Bearer {postToken()}"}
     if source == "JLP":
-        custName = "JLEWIS01"
+        custName = "JLEWIS02"
     elif "B&Q" in source:
         custName = "B&Q001"
 

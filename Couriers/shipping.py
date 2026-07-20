@@ -51,10 +51,13 @@ def shipping(orders, key):
         for i,(k,v) in enumerate(order["products"].items()):
             if k in dxProds or (k in knProds and surcharge()):
                 num = dx.tracking(k,order)
+                order["shipName"] = "DX"
             elif k in pfProds:
                 num = pf.tracking(k,order)
+                order["shipName"] = "ParcelForce"
             else:
                 num = kn.tracking(k, order)
+                order["shipName"] = "Kinetic"
             
             try:
                 order["tracking_number"] += f"+ {num}"

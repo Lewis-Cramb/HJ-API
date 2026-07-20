@@ -172,6 +172,30 @@ DX is done, Xero is tested and done now too (check with emma if she needs the in
 All thats left is Kinetic, ParcelForce and Coupa - Kinetic have given me their docs so that should hopefully make it easier, PF needs some research and coupa is on hold without the creds
 I'll be in 16th and 17th so can wrap everything up then too
 
+Okay a little bit stuck, realising I messsed up with DX
+Need to email in to clarify but the code I wrote meant that the entire order went onto one DX consignemnt, dont think thats the case - what to do if pf is needed with dx? - emailled so im going to deal with kinetic rn
+
+There isn't much I can do whilst wfh (will probs stop doing it asap), made a start on kinetic
+
+<ins> 09/07/2026 </ins>
+
+It's thursday. I'm also currently on the train to london. Shouldn't be working but need to make note to reply to JLP finance with acc number, think I'll be given the duns and the secret
+Need to kill time on this train (trespassers on tracks delayed the train) so may take another look at the kinetic stuff
+Keep getting SSL errors because of bad connection, not going to continue - I'll resume on the 16th when I come into the office
+
+<ins> 20/07/2026 </ins>
+
+Right first day back since London - first things first I've not hit the soft deadline of the 20th but I am close
+
+First order of attention is writing kinetic code and emailling JLP back - scratch that the first thing I am doing is writing down in my notebook to remind myself of it all
+
+Getting a 403 with kinetic for both HJ and Buffalo, emailling Hannah now too
+
+Kinetic is waiting on an email, Coupa is waiting on an email
+All that's left is to fix DX and start parcelforce
+
+I had to change the customer number in POSTxero.py as they changed on xero
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -228,4 +252,6 @@ df2ae04 - Created the scripting for autonomously running the project
 
 8e17af2 - Lists for weights and codes
 
-[commit num] - DX connected completely
+d7ed175 - Xero tested and finished
+
+[commit num] - Kinetic started

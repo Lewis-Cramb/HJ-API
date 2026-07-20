@@ -34,16 +34,12 @@ def tracking(product,order):
 
     manifest_date = int(dt.now().timestamp() * 1000)
 
-    contents = []
-    for product in order["products"].keys():
-        contents.append(
-            {
-                "ContentDescriptionID": 1,
-                "ContentDescription": "CartonKG",
-                "ContentQuantity": order["products"][product],
-                "ContentTotalWeight": weight[product]*order["products"][product]
-            }
-        )
+    contents = [{
+        "ContentDescriptionID": 1,
+        "ContentDescription": "CartonKG",
+        "ContentQuantity": order["products"][product],
+        "ContentTotalWeight": weight[product]*order["products"][product]
+    }]
 
     if len(order["custPO"]) > 10:
         order["custPO"] = order["custPO"][0:10]
@@ -70,7 +66,6 @@ def tracking(product,order):
     elif error_resp == "Try again":
         return tracking()
 
-    print(response.text)
     namespace = {"ns": "http://schemas.datacontract.org/2004/07/DespatchManager.API.Service.DM6Lite.Responses"}
     root = xml.fromstring(response.text)
     trackNums = root.find("ns:TrackingNumbers", namespaces=namespace)
