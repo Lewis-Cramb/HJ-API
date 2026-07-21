@@ -66,7 +66,10 @@ def convertNames(data, source): #this function is used to change the names of pr
             conversion.get(name, name): qty
             for name, qty in order["products"].items()
         }
-        
+    
+    return data
+
+def removeTitles(data):
     for order in data:
         if "Mr " in order["custName"]:
             order["custName"] = order["custName"].partition("Mr ")[2]
@@ -78,10 +81,9 @@ def convertNames(data, source): #this function is used to change the names of pr
             order["custName"] = order["custName"].partition("Dr ")[2]
     return data
 
-
 def sendEmail(title, body):
 
-    fullBody = f"Rebecca, \n {body} \n \n LewisBot \n\n (You can reply to this email, it is my personal and will always work)"
+    fullBody = f"Hi, \n {body} \n \n LewisBot \n\n (You can reply to this email, it is my personal and will always work)"
     fullTitle = f"LewisBot HJ API - {title}"
 
     password = open("txts/emailPassword.txt","r").read().strip()
@@ -93,7 +95,7 @@ def sendEmail(title, body):
     )
 
     message.send(
-        to="lewis@haywardjardine.co.uk",
+        to="help@haywardjardine.co.uk",
         smtp={"host": "smtp.mail.icloud.com","port": 587,"tls": True,"user": "lewiscramb@icloud.com","password": password})
 
 

@@ -1,9 +1,9 @@
 from Lists.productCarriers import dx as dxProds, kinetic as knProds, parcelforce as pfProds
 from Lists.dxPlatform import HJ, DT
-import POSTs.POSTparcelforce as pf, POSTs.POSTkinetic as kn, POSTs.POSTdx as dx
+import POSTs.POSTparcelforce as pf, POSTs.POSTdx as dx
 import sys
 sys.path.append("../")
-from functions import shippingPostcodes as surcharge
+from functions import shippingPostcodes as surcharge, sendEmail as email
 
 general = ["address_1", "address_2", "post_code", "country", "city", "state"]
 
@@ -47,9 +47,10 @@ def parseShipping(order, channel):
 
 
 def shipping(orders, key):
+    knPOs, pfLinks = [],[]
     for order in orders:
         order["shipping_address"] = parseShipping(order, key)
-        dxContentsHJ, dxContentsDT, knContents, pfContents = [],[],[],False
+        dxContentsHJ, dxContentsDT  = [],[]
         for i,(productName,v) in enumerate(order["products"].items()):
             if productName in dxProds or (productName in knProds and surcharge(order["shipping_address"])):
                 if productName in HJ:
@@ -57,23 +58,37 @@ def shipping(orders, key):
                 elif productName in DT:
                     dx.payload(productName, order, dxContentsDT)
             elif productName in pfProds:
-                pfContents = True
+                pfLinks.append(f"{pf.tracking(productName, order)}")
             else:
-                pass
-                #kn.payload(productName, order, knContents)
+                knPOs.append(order["custPO"])
 
-        num, pfLinks = "", []    
-        if dxContentsHJ != []:
-            num += f"{dx.tracking("HJ", order, dxContentsHJ)} "
+        # num = ""
+        # if dxContentsHJ != []:
+        #     num += f"{dx.tracking("HJ", order, dxContentsHJ)} "
 
-        if dxContentsDT != []:
-            num += f"{dx.tracking("DT", order, dxContentsDT)} "    
+        # if dxContentsDT != []:
+        #     num += f"{dx.tracking("DT", order, dxContentsDT)} "    
         
-        if pfContents:
-            pfLinks.append(f"{pf.tracking(productName, order)}")
+        # order["tracking_number"] = f"{num[:-1]}"
 
-        if knContents != []:
-            num += f"{kn.tracking(productName, order, knContents)} "
 
-        order["tracking_number"] = f"{num[:-1]}"
+    send, title, body = False, "Daily update", ""
+
+    if knPOs != []:
+        send = True
+        body += "Here are the POs of orders on SalesForce that need to have orders created in Kinetic for them: \n"
+        for po in knPOs:
+            body += f"{po}\n"
+    
+
+    if pfLinks != []:
+        send = True
+        body += "Below are the links to pay for orders placed on ParcelForce, remember to update SalesForce with the tracking numbers:\n"
+        for link in pfLinks:
+            body += f"{link}\n"
+
+    print(body)
+    return 
+    if send:
+        email(title, body)
     

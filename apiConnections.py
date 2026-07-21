@@ -1,6 +1,6 @@
 #This is the main file that is going to be used for GETting, POSTing and everything inbetween
 import POSTs.POSTsf as sf
-from functions import printOrders as printing, convertNames as conversion
+from functions import printOrders as printing, convertNames as conversion, removeTitles as titles
 from Couriers.shipping import shipping as ship
 from POSTs.POSTxero import postData as xero
 from copy import deepcopy as dc
@@ -19,9 +19,9 @@ def transfer(sources, key):
         #     if order["AccName"] == "John Lewis D2C":
         #         xero(order, key)
 
-
+        data = titles(data)
         printing(data)
-
+        print()
         #sf.postAPI(data)
 
 

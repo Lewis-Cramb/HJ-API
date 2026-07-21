@@ -29,7 +29,7 @@ def getM(company):
         for order in mkl_data["orders"]:
             curr = {}
             curr["accName"] = "B&Q Marketplace"
-            curr["custName"] = f"{order["customer"]["firstname"]}  {order["customer"]["lastname"]}"
+            curr["custName"] = f"{order["customer"]["firstname"]} {order["customer"]["lastname"]}"
             curr["orderDate"] = order["created_date"][0:order["created_date"].index("T")]
             curr["custEmail"] = "" #Customers do not provide emails
             curr["custPhone"] = "0" + order["customer"]["shipping_address"]["phone"]

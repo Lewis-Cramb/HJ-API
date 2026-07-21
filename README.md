@@ -219,6 +219,10 @@ I also realised that the dx orders weren't going to work due the HJ DT split so 
 
 There has also been a change with the invoicing, only JLP orders will be invoiced now as Emma can keep doing the 1st and 15th invoices on Xero
 
+LewisBot needs to email the help email with the Kinetic POs and the links to the PF payment
+
+Right I think that the automation is now ready to run live, I'm going to commit and I'll figure out how to deal with any errors tomorrow
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -281,4 +285,6 @@ d7ed175 - Xero tested and finished
 
 5778ea9 - DX created and fixed
 
-[commit num] - ParcelForce added and sandboxed
+614f64e - ParcelForce added and sandboxed
+
+[commit num] - Kinetic email added, ready now for live testing

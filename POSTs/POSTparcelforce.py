@@ -9,10 +9,7 @@ def getToken(client_id, client_secret):
         "client_secret": client_secret
     }
     
-    token = rqs.post("https://www.parcel2go.com/auth/connect/token", data=payload)
-    print(token.status_code)
-    print(token.json())
-    
+    token = rqs.post("https://www.parcel2go.com/auth/connect/token", data=payload)    
     return token.json()["access_token"]
 
 def tracking(product,order):
@@ -23,6 +20,12 @@ def tracking(product,order):
         "Authorization": f"Bearer {getToken(clientID,clientSec)}",
         "Content-Type": "application/json"
     }
+    if " " in order["custName"]:
+        first = order["custName"].partition(" ")[0],
+        last =  order["custName"].partition(" ")[2]
+    else:
+        first = "Mx"
+        last = order["custName"]
 
     parcel = {
         "Height" : 12,
@@ -71,8 +74,8 @@ def tracking(product,order):
         }],
         "CustomerDetails" : {
             "Email" : order["custEmail"],
-            "Forename" : order["custName"].partition(" ")[0],
-            "Surname" : order["custName"].partition(" ")[2]
+            "Forename" : first,
+            "Surname" : last
         }
     }
 
