@@ -202,6 +202,23 @@ I'm not going to touch anything with kinetic until I chat to emma and alistair i
 
 DX is fixed, moving on to ParcelForce
 
+Rough timeline is have all delivery stuff wrapped up by wednesday 22nd so that I can launch the software live properly on monday 27th and debug
+
+kinetic is becoming the email system
+coupa have gotten back to me for details
+
+will spend rest of today finishing parcelforce, tomorrow will be for coupa and kinetic emails
+
+I keep getting a 400 with ItemValue but it's just not working at all, anything that isn't a proper header is ignored and gives the ItemValue error but when I use EstimatedValue it gives me a different error about the service being unavailable, will test this tomorrow
+
+
+<ins> 21/07/2026 </ins>
+
+Had to use my own data for the pf as there were no pf orders, all works fine though
+I also realised that the dx orders weren't going to work due the HJ DT split so I fixed that too
+
+There has also been a change with the invoicing, only JLP orders will be invoiced now as Emma can keep doing the 1st and 15th invoices on Xero
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -262,4 +279,6 @@ d7ed175 - Xero tested and finished
 
 21f044e - Kinetic started
 
-[commit num] - DX created and fixed
+5778ea9 - DX created and fixed
+
+[commit num] - ParcelForce added and sandboxed

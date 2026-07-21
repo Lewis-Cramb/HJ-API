@@ -13,10 +13,12 @@ def transfer(sources, key):
 
         ship(data, key)
 
-        copyData = dc(data)
-        copyData = conversion(copyData, "SF")
-        for order in copyData:
-            xero(order, key)           
+        # copyData = dc(data)
+        # copyData = conversion(copyData, "SF")
+        # for order in copyData:
+        #     if order["AccName"] == "John Lewis D2C":
+        #         xero(order, key)
+
 
         printing(data)
 

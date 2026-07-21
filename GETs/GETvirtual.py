@@ -42,6 +42,7 @@ def getVS():
                 price += float(item["subtotal"])
             curr["cost"] = f"{price}"
             curr["custPO"] = order["end_user_purchase_order_reference"]
+            curr["shipping_address"] = order["shipping_address"]
 
             for product in order["items"]:
                 curr["products"][product["description"]] = product["quantity"]

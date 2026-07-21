@@ -66,6 +66,16 @@ def convertNames(data, source): #this function is used to change the names of pr
             conversion.get(name, name): qty
             for name, qty in order["products"].items()
         }
+        
+    for order in data:
+        if "Mr " in order["custName"]:
+            order["custName"] = order["custName"].partition("Mr ")[2]
+        elif "Mrs " in order["custName"]:
+            order["custName"] = order["custName"].partition("Mrs ")[2]
+        elif "Ms " in order["custName"]:
+            order["custName"] = order["custName"].partition("Ms ")[2]
+        elif "Dr " in order["custName"]:
+            order["custName"] = order["custName"].partition("Dr ")[2]
     return data
 
 

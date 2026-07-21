@@ -1,4 +1,5 @@
 from Lists.productCarriers import dx as dxProds, kinetic as knProds, parcelforce as pfProds
+from Lists.dxPlatform import HJ, DT
 import POSTs.POSTparcelforce as pf, POSTs.POSTkinetic as kn, POSTs.POSTdx as dx
 import sys
 sys.path.append("../")
@@ -48,24 +49,31 @@ def parseShipping(order, channel):
 def shipping(orders, key):
     for order in orders:
         order["shipping_address"] = parseShipping(order, key)
-        dxContents, knContents, pfContents = [],[],[]
+        dxContentsHJ, dxContentsDT, knContents, pfContents = [],[],[],False
         for i,(productName,v) in enumerate(order["products"].items()):
             if productName in dxProds or (productName in knProds and surcharge(order["shipping_address"])):
-                dx.payload(productName, order, dxContents)
+                if productName in HJ:
+                    dx.payload(productName, order, dxContentsHJ)
+                elif productName in DT:
+                    dx.payload(productName, order, dxContentsDT)
             elif productName in pfProds:
-                pf.payload(productName, order, pfContents)
+                pfContents = True
             else:
-                kn.payload(productName, order, knContents)
+                pass
+                #kn.payload(productName, order, knContents)
 
-        num = ""    
-        if dxContents != []:
-            num += f"{dx.tracking(productName, order, dxContents)} "
+        num, pfLinks = "", []    
+        if dxContentsHJ != []:
+            num += f"{dx.tracking("HJ", order, dxContentsHJ)} "
+
+        if dxContentsDT != []:
+            num += f"{dx.tracking("DT", order, dxContentsDT)} "    
         
-        if pfContents != []:
-            num += f"{pf.tracking(productName, order, pfContents)} "
+        if pfContents:
+            pfLinks.append(f"{pf.tracking(productName, order)}")
 
         if knContents != []:
             num += f"{kn.tracking(productName, order, knContents)} "
 
-        order["tracking_number"] = f"{num}"
+        order["tracking_number"] = f"{num[:-1]}"
     

@@ -1,7 +1,6 @@
 #this file will be used to create an order on dx and return the tracking number
 import requests as rqs, base64 as b64, xml.etree.ElementTree as xml
 from datetime import datetime as dt
-from Lists.dxPlatform import HJ, DT
 from Lists.weights import weight
 from GETs.GETerrors import handle
 
@@ -15,15 +14,15 @@ def payload(product,order, contents):
     })
 
 
-def tracking(product,order, contents):
+def tracking(location,order, contents):
     
-    if product in HJ:
+    if location == "HJ":
         details = {
             "DXAccountNumber": open("txts/dxHjAccount.txt").read().strip(),
             "OrigServiceCentre":"70",
             "Password":open("txts/dxHjPassword.txt").read().strip()
         }
-    elif product in DT:
+    elif location == "DT":
         details = {
             "DXAccountNumber": open("txts/dxDtAccount.txt").read().strip(),
             "OrigServiceCentre":"70",
@@ -66,7 +65,7 @@ def tracking(product,order, contents):
     if error_resp == "Failure":
         return []
     elif error_resp == "Try again":
-        return tracking(product, order, contents)
+        return tracking(location, order, contents)
 
     namespace = {"ns": "http://schemas.datacontract.org/2004/07/DespatchManager.API.Service.DM6Lite.Responses"}
     root = xml.fromstring(response.text)
