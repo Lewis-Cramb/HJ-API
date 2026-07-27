@@ -223,6 +223,14 @@ LewisBot needs to email the help email with the Kinetic POs and the links to the
 
 Right I think that the automation is now ready to run live, I'm going to commit and I'll figure out how to deal with any errors tomorrow
 
+<ins> 27/07/2026 </ins>
+
+I DID IT THE PROGRAM WORKS LIVE
+
+Couple of errors but spent today debugging, works fine other than buffalo mirakl but can't fix that until Emma is back
+
+I told Alistair I could have this done for 27th, 20th at a push and here we are on the 27th with it working!!
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -287,4 +295,6 @@ d7ed175 - Xero tested and finished
 
 614f64e - ParcelForce added and sandboxed
 
-[commit num] - Kinetic email added, ready now for live testing
+f1cf962 - Kinetic email added, ready now for live testing
+
+[commit num] - Debugged the system, runs fine

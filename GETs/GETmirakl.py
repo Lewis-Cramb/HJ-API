@@ -9,7 +9,7 @@ from GETs.GETerrors import handle
 def getM(company):
     #Define the commerce platform header here 
     mkl_headers = oldHeader(f"{company}Token")
-    mkl_params = {"start_date":startDate(), "end_date":dt.today()} #Get all orders since last working day
+    mkl_params = {"start_date":startDate(), "end_date":dt.today(), "max":100, "offset":0} #Get all orders since last working day
 
     #Call API using rqs.get() to get the data
     mkl_resp = rqs.get("https://marketplace.kingfisher.com/api/orders",headers=mkl_headers, params=mkl_params)

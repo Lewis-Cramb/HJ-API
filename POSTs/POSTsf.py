@@ -11,7 +11,6 @@ def getSFProdId(instance_url, product, sf_headers):
     query = f"SELECT Id, Pricebook2Id FROM PricebookEntry WHERE Product2.Name = '{product}' AND IsActive = true"
     prod_params = {"q":query}
     rqst = rqs.get(f"{instance_url}/services/data/v67.0/query",headers=sf_headers,params=prod_params)
-    print(rqst.json())
     return rqst.json()["records"][0]["Id"], rqst.json()["records"][0]["Pricebook2Id"]
 
 def getSFAccName(instance_url, account, sf_headers):
@@ -37,12 +36,6 @@ def postAPI(orders):
     access_token = auth_response.json().get("access_token")
     instance_url = auth_response.json().get("instance_url")
 
-    print(access_token)
-    print(instance_url)
-
-    print(auth_response.json())
-    print()
-
     #Define the sales data platform header here (i.e SalesForce)
     sf_headers = {"Authorization": f"Bearer {access_token}"}
     sf_headers["Content-Type"] = "application/json" #You are making a POST request (giving data) therefore you need to define what format the given data is in  
@@ -52,6 +45,13 @@ def postAPI(orders):
     for order in orders:
         placeholderOrder = list(order["products"].keys())[0]
         _,pricebookID = getSFProdId(instance_url, placeholderOrder, sf_headers) 
+        
+        try:
+            trackNum = order["tracking_number"]
+        except:
+            trackNum = ""
+        if "0001" in trackNum:
+            trackNum = trackNum[0:trackNum.index("0001")]
 
         payload = {
             "AccountId":getSFAccName(instance_url, order["accName"], sf_headers),
@@ -65,7 +65,12 @@ def postAPI(orders):
             "Type":"D2C",
             "Cust_PO__c":order["custPO"],
             "Shipping_port__c":"Collection",
-            "courier_tracking_info__c":order["tracking_number"],
+            "courier_tracking_info__c":trackNum,
+            "ShippingStreet": order["shipping_address"]["address_1"],
+            "ShippingCity": order["shipping_address"]["city"],
+            "ShippingState": order["shipping_address"]["state"],
+            "ShippingPostalCode": order["shipping_address"]["post_code"],
+            "ShippingCountry": order["shipping_address"]["country"],
             "Pricebook2Id":pricebookID,
             "CurrencyIsoCode":"GBP",
         }
@@ -88,8 +93,8 @@ def postAPI(orders):
                 "UnitPrice":order["cost"],
             }
 
-            prod_response = rqs.post(f"{instance_url}/services/data/v67.0/sobjects/OrderItem/Id",headers=sf_headers,json=product_payload)
-            print(f"{key} added")
+            rqs.post(f"{instance_url}/services/data/v67.0/sobjects/OrderItem/Id",headers=sf_headers,json=product_payload)
+
 
 #Needed format for the orders variable
 #

@@ -28,55 +28,61 @@ mklToGen = {
 
 
 
-def parseShipping(order, channel):
-    shipDetails = {}
-    if channel == "JLP":
-        raw_shipping = order["shipping_address"]
-        keys, values = [vsToGen[k] if k in vsToGen else k for k in list(raw_shipping.keys())], list(raw_shipping.values())
-        shipDetails = dict(map(lambda k,v:(k,v),keys,values))
-    elif "B&Q" in channel:
-        raw_shipping = order["shipping_address"]
-        keys, values = [mklToGen[k] if k in mklToGen else k for k in list(raw_shipping.keys())], list(raw_shipping.values())
-        shipDetails = dict(map(lambda k,v:(k,v),keys,values))
-        shipDetails["customer_name"] = f"{raw_shipping["firstname"]} {raw_shipping["lastname"]}"
-        shipDetails["customer_phone"] = raw_shipping["phone"]
-    
-    if "," in shipDetails["address_1"]:
-        shipDetails["address_1"] = shipDetails["address_1"][0:shipDetails["address_1"].index(",")]
-    return shipDetails
+def parseShipping(orders, channel):
+    for order in orders:
+        shipDetails = {}
+        if channel == "JLP":
+            raw_shipping = order["shipping_address"]
+            keys, values = [vsToGen[k] if k in vsToGen else k for k in list(raw_shipping.keys())], list(raw_shipping.values())
+            shipDetails = dict(map(lambda k,v:(k,v),keys,values))
+        elif "B&Q" in channel:
+            raw_shipping = order["shipping_address"]
+            keys, values = [mklToGen[k] if k in mklToGen else k for k in list(raw_shipping.keys())], list(raw_shipping.values())
+            shipDetails = dict(map(lambda k,v:(k,v),keys,values))
+            shipDetails["customer_name"] = f"{raw_shipping["firstname"]} {raw_shipping["lastname"]}"
+            shipDetails["customer_phone"] = raw_shipping["phone"]
+        
+        if "," in shipDetails["address_1"]:
+            shipDetails["address_1"] = shipDetails["address_1"][0:shipDetails["address_1"].index(",")]
+        order["shipping_address"] = shipDetails
 
 
-def shipping(orders, key):
+def shipping(orders):
     knPOs, pfLinks = [],[]
     for order in orders:
-        order["shipping_address"] = parseShipping(order, key)
-        dxContentsHJ, dxContentsDT  = [],[]
-        for i,(productName,v) in enumerate(order["products"].items()):
-            if productName in dxProds or (productName in knProds and surcharge(order["shipping_address"])):
-                if productName in HJ:
-                    dx.payload(productName, order, dxContentsHJ)
-                elif productName in DT:
-                    dx.payload(productName, order, dxContentsDT)
-            elif productName in pfProds:
-                pfLinks.append(f"{pf.tracking(productName, order)}")
-            else:
-                knPOs.append(order["custPO"])
+        try:
+            dxContentsHJ, dxContentsDT  = [],[]
+            for i,(productName,v) in enumerate(order["products"].items()):
+                if productName in dxProds or (productName in knProds and surcharge(order["shipping_address"])):
+                    order["shipName"] = "DX"
+                    if productName in HJ:
+                        dx.payload(productName, order, dxContentsHJ)
+                    elif productName in DT:
+                        dx.payload(productName, order, dxContentsDT)
+                elif productName in pfProds:
+                    order["shipName"] = "Parcel force"
+                    pfLinks.append(f"{pf.tracking(productName, order)}")
+                else:
+                    order["shipName"] = "KINETIC LOGISTICS"
+                    knPOs.append(order["custPO"])
 
-        # num = ""
-        # if dxContentsHJ != []:
-        #     num += f"{dx.tracking("HJ", order, dxContentsHJ)} "
+            num = ""
+            if dxContentsHJ != []:
+                num += f"{dx.tracking("HJ", order, dxContentsHJ)} "
 
-        # if dxContentsDT != []:
-        #     num += f"{dx.tracking("DT", order, dxContentsDT)} "    
-        
-        # order["tracking_number"] = f"{num[:-1]}"
+            if dxContentsDT != []:
+                num += f"{dx.tracking("DT", order, dxContentsDT)} "    
+            
+            order["tracking_number"] = f"{num[:-1]}"
+        except Exception:
+            print(order)
 
 
     send, title, body = False, "Daily update", ""
 
     if knPOs != []:
         send = True
-        body += "Here are the POs of orders on SalesForce that need to have orders created in Kinetic for them: \n"
+        body += f"Here are the POs of orders from {order["accName"]} that need to have orders created in Kinetic for them: \n"
         for po in knPOs:
             body += f"{po}\n"
     
@@ -87,8 +93,8 @@ def shipping(orders, key):
         for link in pfLinks:
             body += f"{link}\n"
 
-    print(body)
-    return 
     if send:
         email(title, body)
+
+    return knPOs, pfLinks
     

@@ -1,27 +1,30 @@
 #This is the main file that is going to be used for GETting, POSTing and everything inbetween
 import POSTs.POSTsf as sf
 from functions import printOrders as printing, convertNames as conversion, removeTitles as titles
-from Couriers.shipping import shipping as ship
+from Couriers.shipping import shipping as ship, parseShipping as parse
 from POSTs.POSTxero import postData as xero
 from copy import deepcopy as dc
 
 
 def transfer(sources, key):
     data = sources[key]
-    if data != []:
+    if data != [] and key != "B&Qb":
         data = conversion(data, key)
 
-        ship(data, key)
+        #shipping
+        parse(data, key)
+        ship(data)
 
-        # copyData = dc(data)
-        # copyData = conversion(copyData, "SF")
-        # for order in copyData:
-        #     if order["AccName"] == "John Lewis D2C":
-        #         xero(order, key)
+        #invoicing    
+        copyData = dc(data)
+        copyData = conversion(copyData, "SF")
+        for order in copyData:
+            if key == "JLP":
+                xero(order, key)
 
+        #salesforce
         data = titles(data)
         printing(data)
-        print()
-        #sf.postAPI(data)
+        sf.postAPI(data)
 
 

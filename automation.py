@@ -9,7 +9,7 @@ while True:
     current_time = now.strftime("%H:%M:%S")
     current_day = now.strftime("%a")
     sources = {"B&Qhj":mir.getM("HJ"), "B&Qb":mir.getM("Buffalo"), "JLP":vs.getVS()}
-    if current_day not in ["Saturday","Sunday"] and current_time == "09:00:00":
+    if current_day not in ["Saturday","Sunday"] and current_time == "09:30:00":
         try:
             for index,(key,value) in enumerate(sources.items()):
                 automate(sources, key)

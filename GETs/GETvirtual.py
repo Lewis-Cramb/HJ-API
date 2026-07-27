@@ -9,7 +9,7 @@ from functions import vsHeader, startDate
 def getVS():
     #Create the additional information for the request
     vs_headers = vsHeader()
-    vs_params = {"status":"ORDER_ACK"}
+    vs_params = {"status":"ORDER_ACK", "limit":100, "offset":0}
 
     #Call APIs using rqs.get() to get the data
     vs_resp = rqs.get("https://api.virtualstock.com/restapi/v4/orders",headers=vs_headers, params=vs_params) #Get all acknowledged orders from VirtualStock
