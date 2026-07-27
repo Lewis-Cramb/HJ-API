@@ -21,7 +21,7 @@ def tracking(product,order):
         "Content-Type": "application/json"
     }
     if " " in order["custName"]:
-        first = order["custName"].partition(" ")[0],
+        first = order["custName"].partition(" ")[0]
         last =  order["custName"].partition(" ")[2]
     else:
         first = "Mx"

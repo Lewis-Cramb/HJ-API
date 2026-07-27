@@ -77,24 +77,5 @@ def shipping(orders):
         except Exception:
             print(order)
 
-
-    send, title, body = False, "Daily update", ""
-
-    if knPOs != []:
-        send = True
-        body += f"Here are the POs of orders from {order["accName"]} that need to have orders created in Kinetic for them: \n"
-        for po in knPOs:
-            body += f"{po}\n"
-    
-
-    if pfLinks != []:
-        send = True
-        body += "Below are the links to pay for orders placed on ParcelForce, remember to update SalesForce with the tracking numbers:\n"
-        for link in pfLinks:
-            body += f"{link}\n"
-
-    if send:
-        email(title, body)
-
     return knPOs, pfLinks
     

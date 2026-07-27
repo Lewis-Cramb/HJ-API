@@ -55,7 +55,7 @@ def tracking(location,order, contents):
         "DeliveryAddress1": order["shipping_address"]["address_1"],
         "DeliveryAddress2": order["shipping_address"]["address_2"],
         "DeliveryPostcode": order["shipping_address"]["post_code"],
-        "DeliveryPhoneNumber": order["shipping_address"]["customer_phone"],
+        "DeliveryPhoneNumber": order["shipping_address"]["phone"],
         "DeliveryContact": order["shipping_address"]["customer_name"],
         "Contents": contents
     }
