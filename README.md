@@ -231,6 +231,10 @@ Couple of errors but spent today debugging, works fine other than buffalo mirakl
 
 I told Alistair I could have this done for 27th, 20th at a push and here we are on the 27th with it working!!
 
+<ins> 28/07/2026 </ins>
+
+Just dealing with automation now as there was an error, using a bat file to run hopefully
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -297,4 +301,6 @@ d7ed175 - Xero tested and finished
 
 f1cf962 - Kinetic email added, ready now for live testing
 
-[commit num] - Debugged the system, runs fine
+3473ca8 - Debugged the system, runs fine
+
+[commit num] - BAT automation
