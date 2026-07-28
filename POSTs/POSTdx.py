@@ -5,11 +5,14 @@ from Lists.weights import weight
 from GETs.GETerrors import handle
 
 def payload(product,order, contents):
-
+    if "680L Heavy Duty" in product:
+        mod = 2
+    else:
+        mod = 1
     contents.append({
         "ContentDescriptionID": 1,
         "ContentDescription": "CartonKG",
-        "ContentQuantity": order["products"][product],
+        "ContentQuantity": order["products"][product]*mod,
         "ContentTotalWeight": weight[product]*order["products"][product]
     })
 
