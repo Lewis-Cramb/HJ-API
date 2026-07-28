@@ -6,27 +6,30 @@ import GETs.GETmirakl as mir, GETs.GETvirtual as vs
 
 
 sources = {"B&Qhj":mir.getM("HJ"), "B&Qb":mir.getM("Buffalo"), "JLP":vs.getVS()}
-knPOs, pfLinks = [],[]
-try:
-    for index,(key,value) in enumerate(sources.items()):
-        knPOs, pfLinks = automate(sources, key, knPOs, pfLinks)
+sfPOs, knPOs, pfLinks = [],[],[]
 
-        send, title, body = False, "Daily update", ""
+for index,(key,value) in enumerate(sources.items()):
+    sfPOs, knPOs, pfLinks = automate(sources, key, sfPOs, knPOs, pfLinks)
 
-        if knPOs != []:
-            send = True
-            body += f"Here are the POs of orders that need to have orders created in Kinetic for them: \n"
-            for po in knPOs:
-                body += f"{po}\n"
-        if pfLinks != []:
-            send = True
-            body += "Below are the links to pay for orders placed on ParcelForce, remember to update SalesForce with the tracking numbers:\n"
-            for link in pfLinks:
-                body += f"{link}\n"
+    send, title, body = False, "Daily update", ""
 
-        if send:
-            email(title, body)
-except Exception:
-    email("Crash", "The automation has crashed - data will need to be manually entered")
-    print("Not worked")
+    if sfPOs != []:
+        send = True
+        body += f"Here are the POs of orders that do not have products in the pricebook (e.g outdoor edit cushions) so need to be made on SalesForce:\n"
+        for po in sfPOs:
+            body += f"{po}\n"
+    if knPOs != []:
+        send = True
+        body += f"Here are the POs of orders that need to have orders created in Kinetic for them: \n"
+        for po in knPOs:
+            body += f"{po}\n"
+    if pfLinks != []:
+        send = True
+        body += "Below are the links to pay for orders placed on ParcelForce, remember to update SalesForce with the tracking numbers:\n"
+        for link in pfLinks:
+            body += f"{link}\n"
+
+    if send:
+        email(title, body)
+
 

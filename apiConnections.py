@@ -6,14 +6,16 @@ from POSTs.POSTxero import postData as xero
 from copy import deepcopy as dc
 
 
-def transfer(sources, key):
+def transfer(sources, key, sfPOs, knPOs, pfLinks):
     data = sources[key]
     if data != [] and key != "B&Qb":
         data = conversion(data, key)
 
         #shipping
         parse(data, key)
-        ship(data)
+        kn, pf = ship(data)
+        knPOs += kn
+        pfLinks += pf
 
         #invoicing    
         copyData = dc(data)
@@ -25,6 +27,9 @@ def transfer(sources, key):
         #salesforce
         data = titles(data)
         printing(data)
-        sf.postAPI(data)
+        POs = sf.postAPI(data)
+        sfPOs += POs
+
+    return sfPOs, knPOs, pfLinks
 
 

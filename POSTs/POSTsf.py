@@ -21,7 +21,6 @@ def getSFAccName(instance_url, account, sf_headers):
 
 
 def postAPI(orders):
-
     #The POST request needs to be authenticated
 
     sf_auth_params = {
@@ -42,59 +41,65 @@ def postAPI(orders):
 
     #Next we need to format the JSON to SF's standards and send them to SF by order
 
+    failed = []
+
     for order in orders:
-        placeholderOrder = list(order["products"].keys())[0]
-        _,pricebookID = getSFProdId(instance_url, placeholderOrder, sf_headers) 
-        
         try:
-            trackNum = order["tracking_number"]
-        except:
-            trackNum = ""
-        if "0001" in trackNum:
-            trackNum = trackNum[0:trackNum.index("0001")]
-
-        payload = {
-            "AccountId":getSFAccName(instance_url, order["accName"], sf_headers),
-            "Status":"PO received",
-            "Buyer_name__c":order["custName"],
-            "EffectiveDate":format_date(order["orderDate"]),
-            "email_address__c":order["custEmail"],
-            "phone_num__c":order["custPhone"],
-            "Ship_agent__c":order["shipName"],
-            "exp_ship_date__c":format_date(order["orderDate"]),
-            "Type":"D2C",
-            "Cust_PO__c":order["custPO"],
-            "Shipping_port__c":"Collection",
-            "courier_tracking_info__c":trackNum,
-            "ShippingStreet": order["shipping_address"]["address_1"],
-            "ShippingCity": order["shipping_address"]["city"],
-            "ShippingState": order["shipping_address"]["state"],
-            "ShippingPostalCode": order["shipping_address"]["post_code"],
-            "ShippingCountry": order["shipping_address"]["country"],
-            "Pricebook2Id":pricebookID,
-            "CurrencyIsoCode":"GBP",
-        }
-        response = rqs.post(f"{instance_url}/services/data/v67.0/sobjects/Order/Id",headers=sf_headers,json=payload)
-        error_resp = handle(response) #no need to do anything on success, can't refresh login as its not a token
-        if error_resp == "Failure":
-            return []
-        elif error_resp == "Try again":
-            return postAPI()
-
-        for key in order["products"]:
-            #lastly we need to link the product to the order
-
-            prod_id,_ = getSFProdId(instance_url,key, sf_headers)
+            placeholderOrder = list(order["products"].keys())[0]
+            _,pricebookID = getSFProdId(instance_url, placeholderOrder, sf_headers) 
             
-            product_payload = {
-                "OrderID": response.json().get("id"),
-                "PricebookEntryID":prod_id,
-                "Quantity":order["products"][key],
-                "UnitPrice":order["cost"],
+            try:
+                trackNum = order["tracking_number"]
+            except:
+                trackNum = ""
+            if "0001" in trackNum:
+                trackNum = trackNum[0:trackNum.index("0001")]
+
+            payload = {
+                "AccountId":getSFAccName(instance_url, order["accName"], sf_headers),
+                "Status":"PO received",
+                "Buyer_name__c":order["custName"],
+                "EffectiveDate":format_date(order["orderDate"]),
+                "email_address__c":order["custEmail"],
+                "phone_num__c":order["custPhone"],
+                "Ship_agent__c":order["shipName"],
+                "exp_ship_date__c":format_date(order["orderDate"]),
+                "Type":"D2C",
+                "Cust_PO__c":order["custPO"],
+                "Shipping_port__c":"Collection",
+                "courier_tracking_info__c":trackNum,
+                "ShippingStreet": order["shipping_address"]["address_1"],
+                "ShippingCity": order["shipping_address"]["city"],
+                "ShippingState": order["shipping_address"]["state"],
+                "ShippingPostalCode": order["shipping_address"]["post_code"],
+                "ShippingCountry": order["shipping_address"]["country"],
+                "Pricebook2Id":pricebookID,
+                "CurrencyIsoCode":"GBP",
             }
+            response = rqs.post(f"{instance_url}/services/data/v67.0/sobjects/Order/Id",headers=sf_headers,json=payload)
+            error_resp = handle(response) #no need to do anything on success, can't refresh login as its not a token
+            if error_resp == "Failure":
+                failed.append(order["custPO"])
+            elif error_resp == "Try again":
+                return postAPI(orders)
 
-            rqs.post(f"{instance_url}/services/data/v67.0/sobjects/OrderItem/Id",headers=sf_headers,json=product_payload)
+            for key in order["products"]:
+                #lastly we need to link the product to the order
 
+                prod_id,_ = getSFProdId(instance_url,key, sf_headers)
+                
+                product_payload = {
+                    "OrderID": response.json().get("id"),
+                    "PricebookEntryID":prod_id,
+                    "Quantity":order["products"][key],
+                    "UnitPrice":order["cost"],
+                }
+
+                rqs.post(f"{instance_url}/services/data/v67.0/sobjects/OrderItem/Id",headers=sf_headers,json=product_payload)
+        except Exception:
+            failed.append(order["custPO"])
+
+    return failed
 
 #Needed format for the orders variable
 #

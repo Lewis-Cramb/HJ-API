@@ -9,7 +9,8 @@ def handle(response):
         return "success"
     
     if response.status_code == 400:
-        email("Invalid data", f"Status code: {response.status_code}\nThe data in today's sweep has contained something invalid to the API. You'll need to manually input the data today, sorry :( )")
+        #handled in other email
+        pass
     elif response.status_code == 403 or response.status_code == 404:
         email("Can't access", f"Status code: {response.status_code}\nThe api has been denied by the system or the system cannot be found, this needs to be addressed ASAP")
     elif response.status_code == 406:

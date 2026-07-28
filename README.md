@@ -235,6 +235,8 @@ I told Alistair I could have this done for 27th, 20th at a push and here we are 
 
 Just dealing with automation now as there was an error, using a bat file to run hopefully
 
+Automation crashed, dealing with the python scripts
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -303,4 +305,4 @@ f1cf962 - Kinetic email added, ready now for live testing
 
 3473ca8 - Debugged the system, runs fine
 
-[commit num] - BAT automation
+a5e1550 - BAT automation
