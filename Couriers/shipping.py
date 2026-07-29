@@ -1,4 +1,4 @@
-from Lists.productCarriers import dx as dxProds, kinetic as knProds, parcelforce as pfProds
+from Lists.productCarriers import dx as dxProds, kinetic as knProds
 from Lists.dxPlatform import HJ, DT
 import POSTs.POSTparcelforce as pf, POSTs.POSTdx as dx
 import sys
@@ -43,7 +43,13 @@ def parseShipping(orders, channel):
             shipDetails["customer_phone"] = raw_shipping["phone"]
         
         if "," in shipDetails["address_1"]:
-            shipDetails["address_1"] = shipDetails["address_1"][0:shipDetails["address_1"].index(",")]
+            shipDetails["address_1"] = shipDetails["address_1"].partition(",")[0]
+            shipDetails["address_2"] = shipDetails["address_1"].partition(",")[2]
+        elif " " in shipDetails["address_1"]:
+            shipDetails["address_1"] = shipDetails["address_1"].partition(" ")[0]
+            shipDetails["address_2"] = shipDetails["address_1"].partition(" ")[2]
+
+
         order["shipping_address"] = shipDetails
 
 
@@ -59,12 +65,12 @@ def shipping(orders):
                         dx.payload(productName, order, dxContentsHJ)
                     elif productName in DT:
                         dx.payload(productName, order, dxContentsDT)
-                elif productName in pfProds:
-                    order["shipName"] = "Parcel force"
-                    pfLinks.append(f"{pf.tracking(productName, order)}")
-                else:
+                elif productName in knProds:
                     order["shipName"] = "KINETIC LOGISTICS"
                     knPOs.append(order["custPO"])
+                else:
+                    order["shipName"] = "Parcel force"
+                    pfLinks.append(f"{pf.tracking(productName, order)}")  
 
             num = ""
             if dxContentsHJ != []:

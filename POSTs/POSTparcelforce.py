@@ -1,5 +1,6 @@
 #this file will be used to create an order on parcelforce and return the tracking number
 import requests as rqs
+from Lists.parcelforceItems import Box, Cushion
 
 def getToken(client_id, client_secret):
     payload = {
@@ -27,12 +28,18 @@ def tracking(product,order):
         first = "Mx"
         last = order["custName"]
 
+    if "270L" in product:
+        item = Box()
+    else:
+        item = Cushion()
+
+    parcels = []
     parcel = {
-        "Height" : 12,
-        "Length" : 119,
+        "Height" : item.getHeight(),
+        "Length" : item.getValue(),
         "EstimatedValue" : 10,
-        "Weight" : 9.6,
-        "Width" : 60,
+        "Weight" : item.getWeight(),
+        "Width" : item.getWidth(),
         "DeliveryAddress" : {
             "ContactName" : order["custName"],
             "Email" : order["custEmail"],
@@ -46,19 +53,23 @@ def tracking(product,order):
         "Contents" : [
             {
             "Description" : product,
-            "Quantity" : order["products"][product],
+            "Quantity" : 1,
             "Value" : order["cost"]
             }
         ],
         "ContentsSummary" : product
     }
 
+    for i in range(0, order["products"][product]):
+        parcels.append(parcel)
+
+
     payload = {
         "Items": [{
             "Id" : order["custPO"], 
             "Service" : "parcelforce-express-48",
             "OriginCountry" : "GBR",
-            "Parcels" : [parcel],
+            "Parcels" : parcels,
             "CollectionAddress" : {
                 "ContactName" : order["custName"],
                 "Organisation" : "Hayward Jardine",
