@@ -29,7 +29,7 @@ for index,(key,value) in enumerate(sources.items()):
         for link in pfLinks:
             body += f"{link}\n"
 
-    # if send:
-    #     email(title, body)
+    if send:
+        email(title, body)
 
 

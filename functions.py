@@ -63,8 +63,9 @@ def convertNames(data, source): #this function is used to change the names of pr
         conversion = sfToXero
     for order in data:
         order["products"] = {
-            conversion.get(name, name): qty
+            conversion.get(cleaned_name, cleaned_name): qty
             for name, qty in order["products"].items()
+            for cleaned_name in [name if "#" not in name else name.replace("#", "")]
         }
     
     return data

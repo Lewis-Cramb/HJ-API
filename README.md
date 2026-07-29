@@ -237,6 +237,12 @@ Just dealing with automation now as there was an error, using a bat file to run 
 
 Automation crashed, dealing with the python scripts
 
+<ins> 29/07/2026 </ins>
+
+The program works perfectly, just making some tweaks as I make the videos
+
+980L from JLP had a # at the start? Just gonna parse it out
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -306,3 +312,5 @@ f1cf962 - Kinetic email added, ready now for live testing
 3473ca8 - Debugged the system, runs fine
 
 a5e1550 - BAT automation
+
+[current commit] - Tidying up and parsing

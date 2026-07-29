@@ -81,7 +81,7 @@ def shipping(orders):
             
             order["tracking_number"] = f"{num[:-1]}"
         except Exception:
-            print(order)
+            pass
 
     return knPOs, pfLinks
     

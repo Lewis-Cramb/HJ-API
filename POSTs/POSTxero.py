@@ -21,10 +21,7 @@ def postToken():
 
 def postData(order, source):
     header = {"Authorization" : f"Bearer {postToken()}"}
-    if source == "JLP":
-        custName = "JLEWIS02"
-    elif "B&Q" in source:
-        custName = "B&Q001"
+    custName = "John Lewis Partnership GBP"
 
     lineItems = []
     for product in order["products"].keys():
