@@ -23,7 +23,7 @@ def getVS():
     vs_data = vs_resp.json()
 
     #Finally, filter it and join it all together
-    filtered_orders = []
+    filtered_orders, line_part_url = [], []
 
     for order in vs_data["results"]:
         order_date = dt.fromisoformat(order["order_date"][0:order["order_date"].index("T")])
@@ -43,11 +43,14 @@ def getVS():
             curr["cost"] = f"{price}"
             curr["custPO"] = order["end_user_purchase_order_reference"]
             curr["shipping_address"] = order["shipping_address"]
+            orderURL = order["url"]
+            orderURL = orderURL[orderURL.index("orders/")+7:-1]
 
             for product in order["items"]:
                 curr["products"][product["description"]] = product["quantity"]
+                line_part_url.append((product["part_number"],product["line_reference"],order[""]))
 
             filtered_orders.append(curr)
 
         
-    return filtered_orders
+    return filtered_orders, line_part_url

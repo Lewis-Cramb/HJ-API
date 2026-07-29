@@ -7,13 +7,13 @@ from copy import deepcopy as dc
 
 
 def transfer(sources, key, sfPOs, knPOs, pfLinks):
-    data = sources[key]
-    if data != [] and key != "B&Qb":
+    data, line_part = sources[key]
+    if data != [] and key == "JLP":
         data = conversion(data, key)
 
         #shipping
         parse(data, key)
-        kn, pf = ship(data)
+        kn, pf = ship(data, key, line_part)
         knPOs += kn
         pfLinks += pf
 

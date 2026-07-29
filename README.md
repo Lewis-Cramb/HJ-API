@@ -247,6 +247,10 @@ Rebecca has asked for it to update VS and Mkl with the tracking numbers so movin
 
 I can't test either until monday when the program runs so i'm just going to add them for now
 
+Okay so the virtual stock dispatching is a POST not a PUT request, I'm going to put it into PUTs for now but I may refactor everything so that it looks nicer and things fit better
+
+I'm not sure that will work as I cant test and I've had to jankily add a tuple to pass the info needed to dispatch an order - not going to pull on automation laptop until monday
+
 # Commit History
 
 93a2db8 - Set-up the repo

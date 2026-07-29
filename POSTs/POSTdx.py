@@ -5,7 +5,7 @@ from Lists.weights import weight
 from GETs.GETerrors import handle
 
 def payload(product,order, contents):
-    if "680L Heavy Duty" in product:
+    if "680L" in product:
         mod = 2
     else:
         mod = 1
