@@ -1,8 +1,7 @@
 import requests as rqs
-import sys, json
+import json
 from datetime import date as dt
-sys.path.append("../HJ-API")
-from functions import vsHeader
+from general.functions import vsHeader
 
 def updateTracking(order, line_part_url):
     header = vsHeader()
@@ -29,6 +28,7 @@ def updateTracking(order, line_part_url):
         items.append(temp)
         i += 1
 
-    rqs.post(f"https://api.sandbox.virtualstock.com/restapi/v4/orders/{line_part_url[0][2]}/dispatch/?format=json")
+    data = json.dump({"items":items})
+    rqs.post(f"https://api.sandbox.virtualstock.com/restapi/v4/orders/{line_part_url[0][2]}/dispatch/?format=json", data=data, headers=header)
 
         

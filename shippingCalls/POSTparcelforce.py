@@ -1,6 +1,6 @@
 #this file will be used to create an order on parcelforce and return the tracking number
 import requests as rqs
-from Lists.parcelforceItems import Box, Cushion
+from general.parcelforceItems import Box, Cushion
 
 def getToken(client_id, client_secret):
     payload = {

@@ -1,7 +1,7 @@
 from datetime import date as date, timedelta as td, datetime as dt
 import base64, emails
-from Lists.productNames import miraklToSF, vsToSF, sfToXero
-from Lists.surchargePostcodes import codes as surCodes
+from productNames import miraklToSF, vsToSF, sfToXero
+from surchargePostcodes import codes as surCodes
 
 def oldHeader(filename): #Use this function if you do not need the "bearer" in the auth key (So older APIs without OAuth 2.0)
     with open(f"txts/{filename}.txt") as rf:

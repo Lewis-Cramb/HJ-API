@@ -1,10 +1,8 @@
 #This file is going to be for reading all of the data
 import requests as rqs
 from datetime import date as dt
-import sys
-sys.path.append("../HJ-API")
-from functions import oldHeader, startDate
-from GETs.GETerrors import handle
+from general.functions import oldHeader, startDate
+from general.GETerrors import handle
 
 def getM(company):
     #Define the commerce platform header here 

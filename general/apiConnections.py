@@ -1,8 +1,8 @@
 #This is the main file that is going to be used for GETting, POSTing and everything inbetween
-import POSTs.POSTsf as sf
-from functions import printOrders as printing, convertNames as conversion, removeTitles as titles
-from Couriers.shipping import shipping as ship, parseShipping as parse
-from POSTs.POSTxero import postData as xero
+import dataPOST.POSTsf as sf
+from general.functions import printOrders as printing, convertNames as conversion, removeTitles as titles
+from shippingCalls.shipping import shipping as ship, parseShipping as parse
+from invoicing.POSTxero import postData as xero
 from copy import deepcopy as dc
 
 

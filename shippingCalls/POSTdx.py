@@ -1,8 +1,8 @@
 #this file will be used to create an order on dx and return the tracking number
-import requests as rqs, base64 as b64, xml.etree.ElementTree as xml
+import requests as rqs, xml.etree.ElementTree as xml
 from datetime import datetime as dt
-from Lists.weights import weight
-from GETs.GETerrors import handle
+from general.weights import weight
+from general.GETerrors import handle
 
 def payload(product,order, contents):
     if "680L" in product:

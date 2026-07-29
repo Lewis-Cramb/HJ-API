@@ -1,10 +1,7 @@
-from Lists.productCarriers import dx as dxProds, kinetic as knProds
-from Lists.dxPlatform import HJ, DT
-import POSTs.POSTparcelforce as pf, POSTs.POSTdx as dx
-import PUTs.PUTvs as trackVS, PUTs.PUTmkl as trackMkl
-import sys
-sys.path.append("../")
-from functions import shippingPostcodes as surcharge, sendEmail as email
+from general.productCarriers import dx as dxProds, kinetic as knProds
+from general.dxPlatform import HJ, DT
+import POSTparcelforce as pf, POSTdx as dx, PUTvs as trackVS, PUTmkl as trackMkl
+from general.functions import shippingPostcodes as surcharge
 
 general = ["address_1", "address_2", "post_code", "country", "city", "state"]
 

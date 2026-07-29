@@ -1,8 +1,8 @@
 #This script will be the main script ran, it will keep track of the time too
 from datetime import datetime as dt
-from apiConnections import transfer as automate
-from functions import sendEmail as email
-import GETs.GETmirakl as mir, GETs.GETvirtual as vs
+from general.apiConnections import transfer as automate
+from general.functions import sendEmail as email
+import infoGet.GETmirakl as mir, infoGet.GETvirtual as vs
 
 
 sources = {"B&Qhj":mir.getM("HJ"), "B&Qb":mir.getM("Buffalo"), "JLP":vs.getVS()}

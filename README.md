@@ -251,6 +251,8 @@ Okay so the virtual stock dispatching is a POST not a PUT request, I'm going to 
 
 I'm not sure that will work as I cant test and I've had to jankily add a tuple to pass the info needed to dispatch an order - not going to pull on automation laptop until monday
 
+Refactoring now, going to have it all nice and linked together - refactored together and will need to redo the video
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -323,4 +325,8 @@ a5e1550 - BAT automation
 
 99a5c33 - Tidying up and parsing
 
-[commit num] - Created the PUT request for Mirakl tracking numbers (untested)
+cab2ff1 - Created the PUT request for Mirakl tracking numbers (untested)
+
+91c8f0d - Created the POST request for VS with tracking (not tested)
+
+[commit num] - Refactoring the codebase again

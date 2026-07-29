@@ -1,10 +1,7 @@
 #This file is for the posting of the data to salesforce
 import requests as rqs
-from datetime import datetime
-import sys
-sys.path.append("../HJ-API")
-from functions import format_date
-from GETs.GETerrors import handle
+from general.functions import format_date
+from general.GETerrors import handle
 
 
 def getSFProdId(instance_url, product, sf_headers):

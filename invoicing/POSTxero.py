@@ -2,9 +2,7 @@
 import requests as rqs
 from base64 import b64encode as b64
 import xml.etree.ElementTree as ET
-import sys
-sys.path.append("../HJ-API")
-from functions import convertNames as conversion, format_date as formatting, xeroDue as dd
+from general.functions import xeroDue as dd
 
 def postToken():
     clientID = open("txts/xeroID.txt","r").read().strip()

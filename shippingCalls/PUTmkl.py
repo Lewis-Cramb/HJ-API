@@ -1,8 +1,6 @@
 import requests as rqs
-from GETs.GETerrors import handle
-import sys
-sys.path.append("../HJ-api")
-from functions import oldHeader
+from general.GETerrors import handle
+from general.functions import oldHeader
 
 def updateTracking(order, company):
     header = oldHeader(f"{company}Token")

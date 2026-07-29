@@ -1,7 +1,5 @@
 import time
-import sys
-sys.path.append("../HJ-API")
-from functions import sendEmail as email
+from general.functions import sendEmail as email
 
 def handle(response):
 
