@@ -313,4 +313,4 @@ f1cf962 - Kinetic email added, ready now for live testing
 
 a5e1550 - BAT automation
 
-[current commit] - Tidying up and parsing
+99a5c33 - Tidying up and parsing

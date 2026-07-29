@@ -54,7 +54,6 @@ miraklToSF = {
     "The Mushroom Light - Orange Edition" : "THE MUSHROOM - ORANGE",
     "50 x 50cm Outdoor Cushion, Ocean Stripes Frill Edge Design, Shower-Resistant Square Cushion for Garden & Patio" : "CUSHION - FRILLED EDGE 50x50 - OCEAN BLUE STRIPE",
     "50 x 50cm Outdoor Cushion, Green Tartan Frill Edge Design, Shower-Resistant Square Cushion for Garden & Patio" : "CUSHION - FRILLED EDGE 50x50 - FARMHOUSE TARTAN",
-    "Mirakl Name":"SalesForce name",
 }
 
 vsToSF = {
@@ -73,7 +72,6 @@ vsToSF = {
     "Lux Hydra Parasol 1":"3m Luxury Hydraulic Parasol with 45kg Base and Cover - Grey",
     "1056L Galv Storage Box - Gry":"XL Premium Metal Storage Box - 1056L / Grey",
     "1056L Galv Storage Box - Grn":"XL Premium Metal Storage Box - 1056L / Green",
-    "VirtualStock name":"SalesForce name",
 }
 
 
@@ -134,5 +132,4 @@ sfToXero = {
     "THE MUSHROOM - ORANGE":"OE008",
     "CUSHION - FRILLED EDGE 50x50 - OCEAN BLUE STRIPE":"OE039",
     "CUSHION - FRILLED EDGE 50x50 - FARMHOUSE TARTAN":"OE037",
-    "SalesForce name":"TEST001",
 }
