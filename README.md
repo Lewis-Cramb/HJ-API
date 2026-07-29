@@ -243,6 +243,10 @@ The program works perfectly, just making some tweaks as I make the videos
 
 980L from JLP had a # at the start? Just gonna parse it out
 
+Rebecca has asked for it to update VS and Mkl with the tracking numbers so moving on to that now, will be using a PUT request for both
+
+I can't test either until monday when the program runs so i'm just going to add them for now
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -314,3 +318,5 @@ f1cf962 - Kinetic email added, ready now for live testing
 a5e1550 - BAT automation
 
 99a5c33 - Tidying up and parsing
+
+[commit num] - Created the PUT request for Mirakl tracking numbers (untested)

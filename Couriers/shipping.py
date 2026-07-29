@@ -1,6 +1,7 @@
 from Lists.productCarriers import dx as dxProds, kinetic as knProds
 from Lists.dxPlatform import HJ, DT
 import POSTs.POSTparcelforce as pf, POSTs.POSTdx as dx
+import PUTs.PUTvs as trackVS, PUTs.PUTmkl as trackMkl
 import sys
 sys.path.append("../")
 from functions import shippingPostcodes as surcharge, sendEmail as email
@@ -52,8 +53,17 @@ def parseShipping(orders, channel):
 
         order["shipping_address"] = shipDetails
 
+def updateTrackingInfo(orders, company):
+    for order in orders:
+        if " " in order["tracking_number"]:
+            order["tracking_number"] = order["tracking_number"].partition(" ")[0]
 
-def shipping(orders):
+        if order["accName"] == "John Lewis D2C":
+            trackVS.updateTracking(order)
+        elif order["accName"] == "B&Q Marketplace":
+            trackMkl.updateTracking(order, company)
+
+def shipping(orders, company):
     knPOs, pfLinks = [],[]
     for order in orders:
         try:
@@ -80,6 +90,8 @@ def shipping(orders):
                 num += f"{dx.tracking("DT", order, dxContentsDT)} "    
             
             order["tracking_number"] = f"{num[:-1]}"
+
+            updateTrackingInfo(orders, company)
         except Exception:
             pass
 

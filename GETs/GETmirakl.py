@@ -28,6 +28,7 @@ def getM(company):
     if mkl_data["total_count"] > 0:
         for order in mkl_data["orders"]:
             curr = {}
+            curr["orderId"] = order["order_id"]
             curr["accName"] = "B&Q Marketplace"
             curr["custName"] = f"{order["customer"]["firstname"]} {order["customer"]["lastname"]}"
             curr["orderDate"] = order["created_date"][0:order["created_date"].index("T")]
