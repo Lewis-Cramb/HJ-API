@@ -41,12 +41,12 @@ def getVS():
             curr["cost"] = f"{price}"
             curr["custPO"] = order["end_user_purchase_order_reference"]
             curr["shipping_address"] = order["shipping_address"]
-            orderURL = order["url"]
-            orderURL = orderURL[orderURL.index("orders/")+7:-1]
+            curr["promised_date"] = order["items"][0]["promised_date"]
 
             for product in order["items"]:
                 curr["products"][product["description"]] = product["quantity"]
-                line_part_url.append((product["part_number"],product["line_reference"],order[""]))
+                url = order["url"]
+                line_part_url.append((product["part_number"],product["line_reference"],url[url.index("orders/")+7:-1]))
 
             filtered_orders.append(curr)
 

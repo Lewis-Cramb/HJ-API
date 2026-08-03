@@ -45,5 +45,5 @@ def getM(company):
             filtered_orders.append(curr)
 
         
-    return filtered_orders
+    return [filtered_orders,""]
 

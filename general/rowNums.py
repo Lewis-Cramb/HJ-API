@@ -1,0 +1,17 @@
+rows = {
+    "Heavy Duty Storage Box - 270L / Taupe":(21,40),
+    "Heavy Duty Storage Box - 450L / Taupe":(22,41),
+    "Heavy Duty Storage Box - 680L / Black":(23,42),
+    "Heavy Duty Storage Box - 680L / Taupe":(24,43),
+    "Heavy Duty Storage Box - 870L / Black":(25,44),
+    "Heavy Duty Storage Box - 870L / Taupe":(26,45),
+    "Heavy Duty Storage Box - 980L / Black":(27,46),
+    "Heavy Duty Storage Box - 980L / Taupe":(28,47),
+    "L Premium Metal Storage Box - 683L / Green":(29,48),
+    "L Premium Metal Storage Box - 683L / Grey":(30,49),
+    "XL Premium Metal Storage Box - 1056L / Green":(31,50),
+    "XL Premium Metal Storage Box - 1056L / Grey":(32,51),
+    "3m Luxury Hydraulic Parasol with 45kg Base and Cover - Grey":(33,52),
+    "3m Luxury Hydraulic Parasol with 45kg Base and Cover - Natural":(34,53),
+    "Premium Pop Up Gazebo With Sides":(35,54),
+}

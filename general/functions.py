@@ -1,7 +1,7 @@
 from datetime import date as date, timedelta as td, datetime as dt
 import base64, emails
-from productNames import miraklToSF, vsToSF, sfToXero
-from surchargePostcodes import codes as surCodes
+from general.productNames import miraklToSF, vsToSF, sfToXero
+from general.surchargePostcodes import codes as surCodes
 
 def oldHeader(filename): #Use this function if you do not need the "bearer" in the auth key (So older APIs without OAuth 2.0)
     with open(f"txts/{filename}.txt") as rf:
@@ -96,12 +96,12 @@ def sendEmail(title, body):
     )
 
     message.send(
-        to="help@haywardjardine.co.uk",
+        to="lewis@haywardjardine.co.uk",
         smtp={"host": "smtp.mail.icloud.com","port": 587,"tls": True,"user": "lewiscramb@icloud.com","password": password})
 
 
 def shippingPostcodes(location):
-    post_code = location["shipping_details"]["post_code"]
+    post_code = location["post_code"]
     area_code = ""
     for letter in post_code:
         if letter.isalpha():

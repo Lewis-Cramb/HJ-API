@@ -253,6 +253,25 @@ I'm not sure that will work as I cant test and I've had to jankily add a tuple t
 
 Refactoring now, going to have it all nice and linked together - refactored together and will need to redo the video
 
+
+I've got my new list of tasks - I need to update and email the sales report from the past week, generate the runtime for products and notify when a product is low
+
+
+<ins> 03/08/2026 </ins>
+
+
+Lots will be updated this commit, fixed issues with the automation so it should now send PF links on the email and I also made sure that the program only runs mon-fri by edting the batch file
+
+This commit is also used for testing the tracking numbers going back into the respective purchase platforms (vs and mkl) AND finally is the start of the new list of tasks by creating a getting the quantities of products and appending to an excel file
+
+I'm not going to commit this until all of this is done, I'll figure out what to call the commit later
+
+Okay the VS side of things is going weird so im going to do the xlsx stuff and then commit and move back to vs tracking numbers
+
+I think I fixed the VS problem (i was pointing at the sandbox url) and the tracker, though its pulling strange numbers
+
+It's close to EoD so going to commit now, 90% of the way done with the excel stuff I just keep pulling random numbers that aren't at all what the sales represent as if it just skips some of them
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -329,4 +348,6 @@ cab2ff1 - Created the PUT request for Mirakl tracking numbers (untested)
 
 91c8f0d - Created the POST request for VS with tracking (not tested)
 
-[commit num] - Refactoring the codebase again
+4dc62c6 - Refactoring the codebase again
+
+[commit num] - Bug fixed the live production, added the callbacks to VS/Mkl and started the excel writing

@@ -6,28 +6,29 @@ import infoGet.GETmirakl as mir, infoGet.GETvirtual as vs
 
 
 sources = {"B&Qhj":mir.getM("HJ"), "B&Qb":mir.getM("Buffalo"), "JLP":vs.getVS()}
+current_day = dt.now().strftime("%A")
 sfPOs, knPOs, pfLinks = [],[],[]
+if current_day not in ["Saturday", "Sunday"]:
+    for index,(key,value) in enumerate(sources.items()):
+        sfPOs, knPOs, pfLinks = automate(sources, key, sfPOs, knPOs, pfLinks)
 
-for index,(key,value) in enumerate(sources.items()):
-    sfPOs, knPOs, pfLinks = automate(sources, key, sfPOs, knPOs, pfLinks)
+        send, title, body = False, "Daily update", ""
 
-    send, title, body = False, "Daily update", ""
-
-    if sfPOs != []:
-        send = True
-        body += f"Here are the POs of orders that do not have products in the pricebook (e.g outdoor edit cushions) so need to be made on SalesForce:\n"
-        for po in sfPOs:
-            body += f"{po}\n"
-    if knPOs != []:
-        send = True
-        body += f"Here are the POs of orders that need to have orders created in Kinetic for them: \n"
-        for po in knPOs:
-            body += f"{po}\n"
-    if pfLinks != []:
-        send = True
-        body += "Below are the links to pay for orders placed on ParcelForce, remember to update SalesForce with the tracking numbers:\n"
-        for link in pfLinks:
-            body += f"{link}\n"
+        if sfPOs != []:
+            send = True
+            body += f"Here are the POs of orders that do not have products in the pricebook (e.g outdoor edit cushions) so need to be made on SalesForce:\n"
+            for po in sfPOs:
+                body += f"{po}\n"
+        if knPOs != []:
+            send = True
+            body += f"Here are the POs of orders that need to have orders created in Kinetic for them: \n"
+            for po in knPOs:
+                body += f"{po}\n"
+        if pfLinks != []:
+            send = True
+            body += "Below are the links to pay for orders placed on ParcelForce, remember to update SalesForce with the tracking numbers:\n"
+            for link in pfLinks:
+                body += f"{link}\n"
 
     if send:
         email(title, body)

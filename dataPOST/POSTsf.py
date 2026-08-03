@@ -16,10 +16,7 @@ def getSFAccName(instance_url, account, sf_headers):
     rqst = rqs.get(f"{instance_url}/services/data/v67.0/query", headers=sf_headers, params=acc_params)
     return rqst.json()["records"][0]["Id"]
 
-
-def postAPI(orders):
-    #The POST request needs to be authenticated
-
+def getAuthToken():
     sf_auth_params = {
         "grant_type":"client_credentials",
         "client_id": open("txts/sfConsID.txt","r").read(),
@@ -28,9 +25,17 @@ def postAPI(orders):
 
     #You need to first of all get your access codes
     auth_response = rqs.post("https://haywardjardine.my.salesforce.com/services/oauth2/token",params=sf_auth_params)
-
     access_token = auth_response.json().get("access_token")
     instance_url = auth_response.json().get("instance_url")
+
+    return access_token, instance_url
+
+
+
+def postAPI(orders):
+    #The POST request needs to be authenticated
+
+    access_token, instance_url = getAuthToken()
 
     #Define the sales data platform header here (i.e SalesForce)
     sf_headers = {"Authorization": f"Bearer {access_token}"}

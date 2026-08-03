@@ -1,6 +1,6 @@
 from general.productCarriers import dx as dxProds, kinetic as knProds
 from general.dxPlatform import HJ, DT
-import POSTparcelforce as pf, POSTdx as dx, PUTvs as trackVS, PUTmkl as trackMkl
+import shippingCalls.POSTparcelforce as pf, shippingCalls.POSTdx as dx, shippingCalls.PUTvs as trackVS, shippingCalls.PUTmkl as trackMkl
 from general.functions import shippingPostcodes as surcharge
 
 general = ["address_1", "address_2", "post_code", "country", "city", "state"]
@@ -41,46 +41,49 @@ def parseShipping(orders, channel):
             shipDetails["customer_phone"] = raw_shipping["phone"]
         
         if "," in shipDetails["address_1"]:
-            shipDetails["address_1"] = shipDetails["address_1"].partition(",")[0]
-            shipDetails["address_2"] = shipDetails["address_1"].partition(",")[2]
+            address = shipDetails["address_1"]
+            shipDetails["address_1"] = address.partition(",")[0]
+            shipDetails["address_2"] = address.partition(",")[2]
         elif " " in shipDetails["address_1"]:
-            shipDetails["address_1"] = shipDetails["address_1"].partition(" ")[0]
-            shipDetails["address_2"] = shipDetails["address_1"].partition(" ")[2]
+            address = shipDetails["address_1"]
+            shipDetails["address_1"] = address.partition(" ")[0]
+            shipDetails["address_2"] = address.partition(" ")[2]
 
 
         order["shipping_address"] = shipDetails
 
-def updateTrackingInfo(orders, key, line_part_url):
-    for order in orders:
-        if " " in order["tracking_number"]:
-            order["tracking_number"] = order["tracking_number"].partition(" ")[0]
+def updateTrackingInfo(order, key, line_part_url):
+    if " " in order["tracking_number"]:
+        order["tracking_number"] = order["tracking_number"].partition(" ")[0]
 
-        if order["accName"] == "John Lewis D2C":
-            trackVS.updateTracking(order, line_part_url)
-        elif order["accName"] == "B&Q Marketplace":
-            if key == "B&Qb":
-                trackMkl.updateTracking(order, "Buffalo")
-            elif key == "B&Qhj":
-                trackMkl.updateTracking(order, "HJ")
+    if order["accName"] == "John Lewis D2C":
+        trackVS.updateTracking(order, line_part_url)
+    elif order["accName"] == "B&Q Marketplace":
+        if key == "B&Qb":
+            trackMkl.updateTracking(order, "Buffalo")
+        elif key == "B&Qhj":
+            trackMkl.updateTracking(order, "HJ")
 
 def shipping(orders, key, line_part_url):
     knPOs, pfLinks = [],[]
     for order in orders:
-        try:
             dxContentsHJ, dxContentsDT  = [],[]
             for i,(productName,v) in enumerate(order["products"].items()):
                 if productName in dxProds or (productName in knProds and surcharge(order["shipping_address"])):
                     order["shipName"] = "DX"
+                    order["tracking_number"] = "1234567-TEST"
                     if productName in HJ:
-                        dx.payload(productName, order, dxContentsHJ)
+                        pass
+                        #dx.payload(productName, order, dxContentsHJ)
                     elif productName in DT:
-                        dx.payload(productName, order, dxContentsDT)
+                        pass
+                        #dx.payload(productName, order, dxContentsDT)
                 elif productName in knProds:
                     order["shipName"] = "KINETIC LOGISTICS"
                     knPOs.append(order["custPO"])
                 else:
                     order["shipName"] = "Parcel force"
-                    pfLinks.append(f"{pf.tracking(productName, order)}")  
+                    #pfLinks.append(f"{pf.tracking(productName, order)}")  
 
             num = ""
             if dxContentsHJ != []:
@@ -89,11 +92,13 @@ def shipping(orders, key, line_part_url):
             if dxContentsDT != []:
                 num += f"{dx.tracking("DT", order, dxContentsDT)} "    
             
-            order["tracking_number"] = f"{num[:-1]}"
+            #order["tracking_number"] = f"{num[:-1]}"
 
-            updateTrackingInfo(orders, key, line_part_url)
-        except Exception:
-            pass
+            
+    dxOrders = [order for order in orders if order["shipName"]=="DX"]
+    for dxOrder in dxOrders:
+        updateTrackingInfo(dxOrder, key, line_part_url)
+
 
     return knPOs, pfLinks
     

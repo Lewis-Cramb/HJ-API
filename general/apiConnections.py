@@ -17,18 +17,18 @@ def transfer(sources, key, sfPOs, knPOs, pfLinks):
         knPOs += kn
         pfLinks += pf
 
-        #invoicing    
-        copyData = dc(data)
-        copyData = conversion(copyData, "SF")
-        for order in copyData:
-            if key == "JLP":
-                xero(order, key)
+        # #invoicing    
+        # copyData = dc(data)
+        # copyData = conversion(copyData, "SF")
+        # for order in copyData:
+        #     if key == "JLP":
+        #         xero(order, key)
 
-        #salesforce
-        data = titles(data)
-        printing(data)
-        POs = sf.postAPI(data)
-        sfPOs += POs
+        # #salesforce
+        # data = titles(data)
+        # printing(data)
+        # POs = sf.postAPI(data)
+        # sfPOs += POs
 
     return sfPOs, knPOs, pfLinks
 

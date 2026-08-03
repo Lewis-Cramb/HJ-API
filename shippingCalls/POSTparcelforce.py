@@ -36,16 +36,16 @@ def tracking(product,order):
     parcels = []
     parcel = {
         "Height" : item.getHeight(),
-        "Length" : item.getValue(),
+        "Length" : item.getLength(),
         "EstimatedValue" : 10,
         "Weight" : item.getWeight(),
         "Width" : item.getWidth(),
         "DeliveryAddress" : {
             "ContactName" : order["custName"],
-            "Email" : order["custEmail"],
+            "Email" : "help@haywardjardine.co.uk",
             "Phone" : order["custPhone"],
-            "Property" : order["shipping_address"]["address_1"].partition(" ")[0],
-            "Street" : order["shipping_address"]["address_1"].partition(" ")[2],
+            "Property" : order["shipping_address"]["address_1"],
+            "Street" : order["shipping_address"]["address_2"],
             "Town" : order["shipping_address"]["city"],
             "Postcode" : order["shipping_address"]["post_code"],
             "CountryIsoCode" : "GBR",
@@ -63,10 +63,23 @@ def tracking(product,order):
     for i in range(0, order["products"][product]):
         parcels.append(parcel)
 
+    itemID = order["custPO"].replace("-","")
+    remaining = 32-len(itemID)
+    for j in range (0,remaining):
+        itemID += "0"
+    num, cur, id = 0,0, ""
+    for char in itemID:
+        id += char
+        cur += 1
+        if (num == 0 and cur == 8) or (cur==4 and (num==1 or num==2 or num==3)):
+            id += "-"
+            num += 1
+            cur = 0
+
 
     payload = {
         "Items": [{
-            "Id" : order["custPO"], 
+            "Id" : id, 
             "Service" : "parcelforce-express-48",
             "OriginCountry" : "GBR",
             "Parcels" : parcels,
@@ -84,7 +97,7 @@ def tracking(product,order):
             }
         }],
         "CustomerDetails" : {
-            "Email" : order["custEmail"],
+            "Email" : "help@haywardjardine.co.uk",
             "Forename" : first,
             "Surname" : last
         }
