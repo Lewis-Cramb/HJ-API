@@ -71,19 +71,16 @@ def shipping(orders, key, line_part_url):
             for i,(productName,v) in enumerate(order["products"].items()):
                 if productName in dxProds or (productName in knProds and surcharge(order["shipping_address"])):
                     order["shipName"] = "DX"
-                    order["tracking_number"] = "1234567-TEST"
                     if productName in HJ:
-                        pass
-                        #dx.payload(productName, order, dxContentsHJ)
+                        dx.payload(productName, order, dxContentsHJ)
                     elif productName in DT:
-                        pass
-                        #dx.payload(productName, order, dxContentsDT)
+                        dx.payload(productName, order, dxContentsDT)
                 elif productName in knProds:
                     order["shipName"] = "KINETIC LOGISTICS"
                     knPOs.append(order["custPO"])
                 else:
                     order["shipName"] = "Parcel force"
-                    #pfLinks.append(f"{pf.tracking(productName, order)}")  
+                    pfLinks.append(f"{pf.tracking(productName, order)}")  
 
             num = ""
             if dxContentsHJ != []:
@@ -92,7 +89,7 @@ def shipping(orders, key, line_part_url):
             if dxContentsDT != []:
                 num += f"{dx.tracking("DT", order, dxContentsDT)} "    
             
-            #order["tracking_number"] = f"{num[:-1]}"
+            order["tracking_number"] = f"{num[:-1]}"
 
             
     dxOrders = [order for order in orders if order["shipName"]=="DX"]
