@@ -33,3 +33,21 @@ base = {
     "3m Luxury Hydraulic Parasol with 45kg Base and Cover - Natural":0,
     "Premium Pop Up Gazebo With Sides":0,
 }
+
+reorderList = [
+    "Heavy Duty Storage Box - 270L / Taupe",
+    "Heavy Duty Storage Box - 450L / Taupe",
+    "Heavy Duty Storage Box - 680L / Black",
+    "Heavy Duty Storage Box - 680L / Taupe",
+    "Heavy Duty Storage Box - 870L / Black",
+    "Heavy Duty Storage Box - 870L / Taupe",
+    "Heavy Duty Storage Box - 980L / Black",
+    "Heavy Duty Storage Box - 980L / Taupe",
+    "L Premium Metal Storage Box - 683L / Green",
+    "L Premium Metal Storage Box - 683L / Grey",
+    "XL Premium Metal Storage Box - 1056L / Green",
+    "XL Premium Metal Storage Box - 1056L / Grey",
+    "3m Luxury Hydraulic Parasol with 45kg Base and Cover - Grey",
+    "3m Luxury Hydraulic Parasol with 45kg Base and Cover - Natural",
+    "Premium Pop Up Gazebo With Sides",
+]

@@ -82,7 +82,7 @@ def removeTitles(data):
             order["custName"] = order["custName"].partition("Dr ")[2]
     return data
 
-def sendEmail(title, body, to, report=False):
+def sendEmail(title, body, to="help@haywardjardine.co.uk", report=False):
 
     fullBody = f"Hi, \n {body} \n \n LewisBot \n\n (You can reply to this email, it is my personal and will always work)"
     fullTitle = f"LewisBot HJ API - {title}"
@@ -99,6 +99,10 @@ def sendEmail(title, body, to, report=False):
         message.attach(
             filename="SalesReport.xlsx",
             data=open("excel/SalesReport.xlsx","rb")
+        )
+        message.attach(
+            filename="StockLevels.xlsx",
+            data=open("excel/StockLevels.xlsx","rb")
         )
 
     message.send(
@@ -117,7 +121,7 @@ def shippingPostcodes(location):
 
     return area_code in surCodes
 
-def format_date(date):
+def date_format(date):
     day = date.day
     month = date.strftime("%B")
     
@@ -141,8 +145,8 @@ def week_range():
     start_date = today - td(days=today.weekday())
     end_date = start_date + td(days=6)
     
-    start_formatted = format_date(start_date)
-    end_formatted = format_date(end_date)
+    start_formatted = date_format(start_date)
+    end_formatted = date_format(end_date)
     
     if start_date.month == end_date.month:
         return f"{start_date.day}{get_suffix(start_date.day)}-{end_date.day}{get_suffix(end_date.day)} {start_date.strftime('%b')}"

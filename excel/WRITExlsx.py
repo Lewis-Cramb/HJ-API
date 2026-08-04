@@ -3,7 +3,7 @@ import sys
 sys.path.append("../HJ-API")
 from general.xlsxRows import rows
 from general.functions import week_range, sendEmail as email
-import excel.GETquantities as quant
+import excel.GETquantities as quant, excel.WRITEstock as stock
 
 def update():
     jlpQuant, bqQuant = quant.pullSF()
@@ -28,6 +28,11 @@ def update():
 
     workbook.save("excel/SalesReport.xlsx")
 
-    email("Sales report", "See the attached sales report", "lewis@haywardjardine.co.uk",True)
+    totalQuant = jlpQuant.copy()
+    for key, value in bqQuant.items():
+        totalQuant[key] = totalQuant.get(key, 0) + value
+    stock.reorder(totalQuant)
+
+    email("Sales report", "See the attached sales report", "rebecca@haywardjardine.co.uk",True)
 
 update()

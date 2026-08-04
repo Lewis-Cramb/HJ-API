@@ -282,6 +282,8 @@ Figured out the issue with the GETquantities.py, I was using the created date an
 
 Got it to send an email out too on mondays with the sales report so that will work too
 
+For the Stock levels stuff I've taken the xlsx formula thingy from claude that alistair wanted and then im just going to shift each week back and add the current weeks info into week 1
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -362,4 +364,6 @@ cab2ff1 - Created the PUT request for Mirakl tracking numbers (untested)
 
 b066d49 - Bug fixed the live production, added the callbacks to VS/Mkl and started the excel writing
 
-[commit num] - Added the sales report info, creating and emailing
+ab2f9db - Added the sales report info, creating and emailing
+
+[commit num] - Added the StockLevels creation
