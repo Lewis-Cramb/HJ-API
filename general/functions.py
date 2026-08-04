@@ -82,7 +82,7 @@ def removeTitles(data):
             order["custName"] = order["custName"].partition("Dr ")[2]
     return data
 
-def sendEmail(title, body):
+def sendEmail(title, body, to, report=False):
 
     fullBody = f"Hi, \n {body} \n \n LewisBot \n\n (You can reply to this email, it is my personal and will always work)"
     fullTitle = f"LewisBot HJ API - {title}"
@@ -95,8 +95,14 @@ def sendEmail(title, body):
         mail_from=("Lewis", "lewiscramb@icloud.com")
     )
 
+    if report:
+        message.attach(
+            filename="SalesReport.xlsx",
+            data=open("excel/SalesReport.xlsx","rb")
+        )
+
     message.send(
-        to="lewis@haywardjardine.co.uk",
+        to=to,
         smtp={"host": "smtp.mail.icloud.com","port": 587,"tls": True,"user": "lewiscramb@icloud.com","password": password})
 
 
@@ -110,3 +116,35 @@ def shippingPostcodes(location):
             break
 
     return area_code in surCodes
+
+def format_date(date):
+    day = date.day
+    month = date.strftime("%B")
+    
+    suffix = get_suffix(day)
+    
+    return f"{day}{suffix} {month}"
+
+def get_suffix(day):
+    if day in [1, 21, 31]:
+        return "st"
+    elif day in [2, 22]:
+        return "nd"
+    elif day in [3, 23]:
+        return "rd"
+    else:
+        return "th"
+
+def week_range():
+    today = dt.now().date()
+
+    start_date = today - td(days=today.weekday())
+    end_date = start_date + td(days=6)
+    
+    start_formatted = format_date(start_date)
+    end_formatted = format_date(end_date)
+    
+    if start_date.month == end_date.month:
+        return f"{start_date.day}{get_suffix(start_date.day)}-{end_date.day}{get_suffix(end_date.day)} {start_date.strftime('%b')}"
+    else:
+        return f"{start_formatted} - {end_formatted}"

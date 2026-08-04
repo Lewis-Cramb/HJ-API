@@ -8,7 +8,7 @@ from copy import deepcopy as dc
 
 def transfer(sources, key, sfPOs, knPOs, pfLinks):
     data, line_part = sources[key]
-    if data != [] and key == "JLP":
+    if data != [] and key == "B&Qhj":
         data = conversion(data, key)
 
         #shipping

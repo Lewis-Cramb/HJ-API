@@ -3,6 +3,7 @@ from datetime import datetime as dt
 from general.apiConnections import transfer as automate
 from general.functions import sendEmail as email
 import infoGet.GETmirakl as mir, infoGet.GETvirtual as vs
+from excel.WRITExlsx import update as report
 
 
 sources = {"B&Qhj":mir.getM("HJ"), "B&Qb":mir.getM("Buffalo"), "JLP":vs.getVS()}
@@ -31,6 +32,10 @@ if current_day not in ["Saturday", "Sunday"]:
                 body += f"{link}\n"
 
     if send:
-        email(title, body)
+        email(title, body, "help@haywardjardine.co.uk")
+
+
+if current_day == "Monday":
+    report()
 
 

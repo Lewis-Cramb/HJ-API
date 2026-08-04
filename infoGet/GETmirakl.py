@@ -25,24 +25,25 @@ def getM(company):
 
     if mkl_data["total_count"] > 0:
         for order in mkl_data["orders"]:
-            curr = {}
-            curr["orderId"] = order["order_id"]
-            curr["accName"] = "B&Q Marketplace"
-            curr["custName"] = f"{order["customer"]["firstname"]} {order["customer"]["lastname"]}"
-            curr["orderDate"] = order["created_date"][0:order["created_date"].index("T")]
-            curr["custEmail"] = "" #Customers do not provide emails
-            curr["custPhone"] = "0" + order["customer"]["shipping_address"]["phone"]
-            curr["shipName"] = order["shipping_company"]
-            curr["expDate"] = order["delivery_date"]["latest"][0:order["delivery_date"]["latest"].index("T")] 
-            curr["products"] = {}
-            curr["cost"] = order["total_price"]
-            curr["custPO"] = order["order_id"]
-            curr["shipping_address"] = order["customer"]["shipping_address"]
+            if order["order_lines"][0]["quantity"] > 0:
+                curr = {}
+                curr["orderId"] = order["order_id"]
+                curr["accName"] = "B&Q Marketplace"
+                curr["custName"] = f"{order["customer"]["firstname"]} {order["customer"]["lastname"]}"
+                curr["orderDate"] = order["created_date"][0:order["created_date"].index("T")]
+                curr["custEmail"] = "" #Customers do not provide emails
+                curr["custPhone"] = "0" + order["customer"]["shipping_address"]["phone"]
+                curr["shipName"] = order["shipping_company"]
+                curr["expDate"] = order["delivery_date"]["latest"][0:order["delivery_date"]["latest"].index("T")] 
+                curr["products"] = {}
+                curr["cost"] = order["total_price"]
+                curr["custPO"] = order["order_id"]
+                curr["shipping_address"] = order["customer"]["shipping_address"]
 
-            for product in order["order_lines"]:
-                curr["products"][product["product_title"]] = product["quantity"]
+                for product in order["order_lines"]:
+                    curr["products"][product["product_title"]] = product["quantity"]
 
-            filtered_orders.append(curr)
+                filtered_orders.append(curr)
 
         
     return [filtered_orders,""]

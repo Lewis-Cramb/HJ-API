@@ -25,7 +25,7 @@ def getVS():
 
     for order in vs_data["results"]:
         order_date = dt.fromisoformat(order["order_date"][0:order["order_date"].index("T")])
-        if order_date >= startDate() and order_date < dt.today(): 
+        if order_date >= startDate() and order_date < dt.today() and order["items"][0]["quantity"] > 0: 
             curr = {}
             price = 0.0
             curr["accName"] = "John Lewis D2C"

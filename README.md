@@ -272,6 +272,16 @@ I think I fixed the VS problem (i was pointing at the sandbox url) and the track
 
 It's close to EoD so going to commit now, 90% of the way done with the excel stuff I just keep pulling random numbers that aren't at all what the sales represent as if it just skips some of them
 
+<ins> 04/08/2026 </ins>
+
+Common demoninator is that the SF order are all PO-recieved - strangely when I ask for 27/07/2026 - 02/08/2026 i get 26th-30th??
+
+Cancelled orders error (new to me) so had to deal with that and upload to "server"
+
+Figured out the issue with the GETquantities.py, I was using the created date and not the expected date
+
+Got it to send an email out too on mondays with the sales report so that will work too
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -350,4 +360,6 @@ cab2ff1 - Created the PUT request for Mirakl tracking numbers (untested)
 
 4dc62c6 - Refactoring the codebase again
 
-[commit num] - Bug fixed the live production, added the callbacks to VS/Mkl and started the excel writing
+b066d49 - Bug fixed the live production, added the callbacks to VS/Mkl and started the excel writing
+
+[commit num] - Added the sales report info, creating and emailing
