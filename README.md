@@ -284,6 +284,11 @@ Got it to send an email out too on mondays with the sales report so that will wo
 
 For the Stock levels stuff I've taken the xlsx formula thingy from claude that alistair wanted and then im just going to shift each week back and add the current weeks info into week 1
 
+<ins> 07/08/2026 </ins>
+
+Added buffalo to the product list so no need to filter out now, general bug fixes now too
+The program should be fully complete bar coupa now
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -366,4 +371,6 @@ b066d49 - Bug fixed the live production, added the callbacks to VS/Mkl and start
 
 ab2f9db - Added the sales report info, creating and emailing
 
-[commit num] - Added the StockLevels creation
+66922b3 - Added the StockLevels creation
+
+[commit num] - Buffalo added

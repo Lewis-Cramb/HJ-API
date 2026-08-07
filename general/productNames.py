@@ -54,6 +54,10 @@ miraklToSF = {
     "The Mushroom Light - Orange Edition" : "THE MUSHROOM - ORANGE",
     "50 x 50cm Outdoor Cushion, Ocean Stripes Frill Edge Design, Shower-Resistant Square Cushion for Garden & Patio" : "CUSHION - FRILLED EDGE 50x50 - OCEAN BLUE STRIPE",
     "50 x 50cm Outdoor Cushion, Green Tartan Frill Edge Design, Shower-Resistant Square Cushion for Garden & Patio" : "CUSHION - FRILLED EDGE 50x50 - FARMHOUSE TARTAN",
+    "Heavy Duty Garage Shelving Unit, 150cm 4 Tier Wire Shelving Rack, 2400kg Load, Workshop Storage": "Buffalo Pro Heavy Duty Wire Rack L1500",
+    "Heavy Duty Garage Shelving Unit, 182cm 4 Tier Wire Shelving Rack, 2400kg Load, Workshop & Storage Shelves": "Buffalo Pro Heavy Duty Wire Rack XL1820",
+    "Heavy Duty Garage Utility Shelving 5-Tier Corner Storage Unit Galvanised Steel Shelves Shed Workshop, 750kg High Load Capacity": "Buffalo 5 Tier MDF Shelf - M1200",
+    "Heavy Duty Garage Utility Shelving Unit, 5-Tier MDF Storage Shelves With 1000KG Load Capacity, Adjustable, Extra Wide Large, 150cm": "Buffalo 5 Tier MDF Shelf - L1500",
 }
 
 vsToSF = {

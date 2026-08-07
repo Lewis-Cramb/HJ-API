@@ -11,9 +11,7 @@ def postToken():
     header = {"Authorization" : "Basic " + b64(f"{clientID}:{clientSec}".encode()).decode()}
     info = {"grant_type" : "client_credentials", "scope":"accounting.invoices accounting.settings"}
 
-    token = rqs.post("https://identity.xero.com/connect/token",headers=header,data=info)
-    temp = token.json()
-    print()
+    token = rqs.post("https://identity.xero.com/connect/token",headers=header,data=info)    
     return token.json()["access_token"]
 
 

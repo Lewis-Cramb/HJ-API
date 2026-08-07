@@ -39,16 +39,15 @@ def parseShipping(orders, channel):
             shipDetails = dict(map(lambda k,v:(k,v),keys,values))
             shipDetails["customer_name"] = f"{raw_shipping["firstname"]} {raw_shipping["lastname"]}"
             shipDetails["customer_phone"] = raw_shipping["phone"]
+
+        address = shipDetails["address_1"]
         
-        if "," in shipDetails["address_1"]:
-            address = shipDetails["address_1"]
+        if "," in address and any(char.isdigit() for char in address):
             shipDetails["address_1"] = address.partition(",")[0]
             shipDetails["address_2"] = address.partition(",")[2]
-        elif " " in shipDetails["address_1"]:
-            address = shipDetails["address_1"]
+        elif " " in address and any(char.isdigit() for char in address):
             shipDetails["address_1"] = address.partition(" ")[0]
             shipDetails["address_2"] = address.partition(" ")[2]
-
 
         order["shipping_address"] = shipDetails
 
