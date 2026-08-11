@@ -1,7 +1,8 @@
 from datetime import date as date, timedelta as td, datetime as dt
-import base64, emails
+import emails, requests as rqs
 from general.productNames import miraklToSF, vsToSF, sfToXero
 from general.surchargePostcodes import codes as surCodes
+from base64 import b64encode as b64
 
 def oldHeader(filename): #Use this function if you do not need the "bearer" in the auth key (So older APIs without OAuth 2.0)
     with open(f"txts/{filename}.txt") as rf:
@@ -19,10 +20,8 @@ def vsHeader(): #this function generates the header for virtualstock
     with open("txts/vsPassword.txt", "r") as rf:
         password = rf.read().strip()
 
-    credentials = base64.b64encode(f"{username}:{password}".encode()).decode()
+    credentials = b64(f"{username}:{password}".encode()).decode()
     return {"Authorization": f"Basic {credentials}"}
-
-
       
 
 def startDate(): #This function is used for filtering data to be relevant and un-entered on SF
@@ -152,3 +151,26 @@ def week_range():
         return f"{start_date.day}{get_suffix(start_date.day)}-{end_date.day}{get_suffix(end_date.day)} {start_date.strftime('%b')}"
     else:
         return f"{start_formatted} - {end_formatted}"
+
+def xeroToken():
+    clientID = open("txts/xeroID.txt","r").read().strip()
+    clientSec = open("txts/xeroSec.txt","r").read().strip()
+
+    header = {"Authorization" : "Basic " + b64(f"{clientID}:{clientSec}".encode()).decode()}
+    info = {"grant_type" : "client_credentials", "scope":"accounting.invoices accounting.settings"}
+
+    token = rqs.post("https://identity.xero.com/connect/token",headers=header,data=info)    
+    return token.json()["access_token"]
+
+def xeroDate():
+    now = dt.now().strftime("%Y-%m-%d")
+    comps = now.split("-")
+    return f"DateTime({comps[0]}, {comps[1]}, {comps[2]})"
+
+
+def findMax(list):
+    max = list[0]
+    for i in range(1, len(list)):
+        if list[i] > max:
+            max = list[i]
+    return int(max)

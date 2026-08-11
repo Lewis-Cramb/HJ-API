@@ -3,6 +3,7 @@ import requests as rqs
 from base64 import b64encode as b64
 import xml.etree.ElementTree as ET
 from general.functions import xeroDue as dd
+from invoicing.GETxero import invoiceNumber as invNum
 
 def postToken():
     clientID = open("txts/xeroID.txt","r").read().strip()
@@ -15,7 +16,7 @@ def postToken():
     return token.json()["access_token"]
 
 
-def postData(order, source):
+def postData(order):
     header = {"Authorization" : f"Bearer {postToken()}"}
     custName = "John Lewis Partnership GBP"
 
@@ -37,6 +38,7 @@ def postData(order, source):
             },
             "Reference":order["custPO"],
             "DueDate":dd(),
+            "InvoiceNumber":invNum(),
             "LineItems":lineItems,
             "BrandingThemeID": "ff5cbad5-f371-4fd2-a13d-e8ac5e719946",
         }

@@ -293,6 +293,12 @@ The program should be fully complete bar coupa now
 
 Will just be doing wee fixes from now on, only big feature left is coupa therefore not going to update the readme anymore
 
+<ins> 11/08/2026 </ins>
+
+Coupa are getting back to me again - yay!
+
+Emma wants the invoice numbers changed on Xero so doing that now
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -378,3 +384,5 @@ ab2f9db - Added the sales report info, creating and emailing
 66922b3 - Added the StockLevels creation
 
 899487f - Buffalo added
+
+[commit num] - Xero order number changed

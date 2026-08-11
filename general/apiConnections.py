@@ -22,7 +22,7 @@ def transfer(sources, key, sfPOs, knPOs, pfLinks):
         copyData = conversion(copyData, "SF")
         for order in copyData:
             if key == "JLP":
-                xero(order, key)
+                xero(order)
 
         #salesforce
         data = titles(data)
