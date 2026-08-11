@@ -289,6 +289,10 @@ For the Stock levels stuff I've taken the xlsx formula thingy from claude that a
 Added buffalo to the product list so no need to filter out now, general bug fixes now too
 The program should be fully complete bar coupa now
 
+<ins> 10/08/2026 </ins>
+
+Will just be doing wee fixes from now on, only big feature left is coupa therefore not going to update the readme anymore
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -373,4 +377,4 @@ ab2f9db - Added the sales report info, creating and emailing
 
 66922b3 - Added the StockLevels creation
 
-[commit num] - Buffalo added
+899487f - Buffalo added

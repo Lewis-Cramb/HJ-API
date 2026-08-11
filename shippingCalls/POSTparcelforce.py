@@ -102,6 +102,8 @@ def tracking(product,order):
             "Surname" : last
         }
     }
-
-    response = rqs.post("https://www.parcel2go.com/api/orders",json=payload,headers=headers)
-    return response.json()["Links"]["payment"]
+    try:
+        response = rqs.post("https://www.parcel2go.com/api/orders",json=payload,headers=headers)
+        return response.json()["Links"]["payment"]
+    except:
+        print(order["orderId"])
