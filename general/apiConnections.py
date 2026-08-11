@@ -6,7 +6,7 @@ from invoicing.POSTxero import postData as xero
 from copy import deepcopy as dc
 
 
-def transfer(sources, key, sfPOs, knPOs, pfLinks):
+def transfer(sources, key, sfPOs, knPOs, pfPOs):
     data, line_part = sources[key]
     if data != []:
         data = conversion(data, key)
@@ -15,7 +15,7 @@ def transfer(sources, key, sfPOs, knPOs, pfLinks):
         parse(data, key)
         kn, pf = ship(data, key, line_part)
         knPOs += kn
-        pfLinks += pf
+        pfPOs += pf
 
         #invoicing    
         copyData = dc(data)
@@ -30,6 +30,6 @@ def transfer(sources, key, sfPOs, knPOs, pfLinks):
         POs = sf.postAPI(data)
         sfPOs += POs
 
-    return sfPOs, knPOs, pfLinks
+    return sfPOs, knPOs, pfPOs
 
 

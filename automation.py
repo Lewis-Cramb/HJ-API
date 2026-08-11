@@ -8,10 +8,10 @@ from excel.WRITExlsx import update as report
 
 sources = {"B&Qhj":mir.getM("HJ"), "B&Qb":mir.getM("Buffalo"), "JLP":vs.getVS()}
 current_day = dt.now().strftime("%A")
-sfPOs, knPOs, pfLinks = [],[],[]
+sfPOs, knPOs, pfPOs = [],[],[]
 if current_day not in ["Saturday", "Sunday"]:
     for index,(key,value) in enumerate(sources.items()):
-        sfPOs, knPOs, pfLinks = automate(sources, key, sfPOs, knPOs, pfLinks)
+        sfPOs, knPOs, pfPOs = automate(sources, key, sfPOs, knPOs, pfPOs)
 
         send, title, body = False, "Daily update", ""
 
@@ -25,11 +25,11 @@ if current_day not in ["Saturday", "Sunday"]:
             body += f"Here are the POs of orders that need to have orders created in Kinetic for them: \n"
             for po in knPOs:
                 body += f"{po}\n"
-        if pfLinks != []:
+        if pfPOs != []:
             send = True
-            body += "Below are the links to pay for orders placed on ParcelForce, remember to update SalesForce with the tracking numbers:\n"
-            for link in pfLinks:
-                body += f"{link}\n"
+            body += "Below are the POs of orders needing to be created on ParcelForce, remember to update SalesForce with the tracking numbers:\n"
+            for po in pfPOs:
+                body += f"{po}\n"
 
     if send:
         email(title, body, "help@haywardjardine.co.uk")

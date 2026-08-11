@@ -64,7 +64,7 @@ def updateTrackingInfo(order, key, line_part_url):
             trackMkl.updateTracking(order, "HJ")
 
 def shipping(orders, key, line_part_url):
-    knPOs, pfLinks = [],[]
+    knPOs, pfPOs = [],[]
     for order in orders:
             dxContentsHJ, dxContentsDT  = [],[]
             for i,(productName,v) in enumerate(order["products"].items()):
@@ -79,7 +79,7 @@ def shipping(orders, key, line_part_url):
                     knPOs.append(order["custPO"])
                 else:
                     order["shipName"] = "Parcel force"
-                    pfLinks.append(f"{pf.tracking(productName, order)}")  
+                    pfPOs.append(order["custPO"])
 
             num = ""
             if dxContentsHJ != []:
@@ -96,5 +96,5 @@ def shipping(orders, key, line_part_url):
         updateTrackingInfo(dxOrder, key, line_part_url)
 
 
-    return knPOs, pfLinks
+    return knPOs, pfPOs
     
