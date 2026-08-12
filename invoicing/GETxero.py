@@ -5,7 +5,7 @@ from general.functions import xeroToken as token, xeroDate as date, findMax
 
 def invoiceNumber():
     header = {"Authorization":f"Bearer {token()}"}
-    params = {"where":f"Date==DateTime(2026, 07, 31)"}
+    params = {"where":f"Date=={date()}"}
 
     response = rqs.get("https://api.xero.com/api.xro/2.0/Invoices", headers=header, params=params)
     invoiceNumbers = []

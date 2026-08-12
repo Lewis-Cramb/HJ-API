@@ -70,7 +70,7 @@ def postAPI(orders):
                 "Cust_PO__c":order["custPO"],
                 "Shipping_port__c":"Collection",
                 "courier_tracking_info__c":trackNum,
-                "ShippingStreet": order["shipping_address"]["address_1"],
+                "ShippingStreet": f"{order["shipping_address"]["address_1"]} {order["shipping_address"]["address_2"]}",
                 "ShippingCity": order["shipping_address"]["city"],
                 "ShippingState": order["shipping_address"]["state"],
                 "ShippingPostalCode": order["shipping_address"]["post_code"],
