@@ -44,9 +44,11 @@ def parseShipping(orders, channel):
         
         if "," in address and any(char.isdigit() for char in address):
             shipDetails["address_1"] = address.partition(",")[0]
+            shipDetails["address_3"] = shipDetails.get("address_2")
             shipDetails["address_2"] = address.partition(",")[2]
         elif " " in address and any(char.isdigit() for char in address):
             shipDetails["address_1"] = address.partition(" ")[0]
+            shipDetails["address_3"] = shipDetails.get("address_2")
             shipDetails["address_2"] = address.partition(" ")[2]
 
         order["shipping_address"] = shipDetails
