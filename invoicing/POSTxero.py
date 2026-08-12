@@ -36,7 +36,7 @@ def postData(order):
             "Contact":{
                 "Name":custName
             },
-            "Reference":order["custPO"],
+            "Reference":order["reference"],
             "DueDate":dd(),
             "InvoiceNumber":invNum(),
             "LineItems":lineItems,

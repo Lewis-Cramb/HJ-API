@@ -7,7 +7,7 @@ from general.functions import vsHeader, startDate
 def getVS():
     #Create the additional information for the request
     vs_headers = vsHeader()
-    vs_params = {"status":"ORDER_ACK", "limit":100, "offset":0}
+    vs_params = {"status":"ORDER_ACK","limit":100, "offset":0}
 
     #Call APIs using rqs.get() to get the data
     vs_resp = rqs.get("https://api.virtualstock.com/restapi/v4/orders",headers=vs_headers, params=vs_params) #Get all acknowledged orders from VirtualStock
@@ -42,6 +42,7 @@ def getVS():
             curr["custPO"] = order["end_user_purchase_order_reference"]
             curr["shipping_address"] = order["shipping_address"]
             curr["promised_date"] = order["items"][0]["promised_date"]
+            curr["reference"] = order["order_reference"].partition("-")[0]
 
             for product in order["items"]:
                 curr["products"][product["description"]] = product["quantity"]
