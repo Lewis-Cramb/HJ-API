@@ -81,7 +81,7 @@ def removeTitles(data):
             order["custName"] = order["custName"].partition("Dr ")[2]
     return data
 
-def sendEmail(title, body, to="help@haywardjardine.co.uk", report=False, cc=None):
+def sendEmail(title, body, to="help@haywardjardine.co.uk", report=False):
 
     fullBody = f"Hi, \n {body} \n \n LewisBot \n\n (You can reply to this email, it is my personal and will always work)"
     fullTitle = f"LewisBot HJ API - {title}"
@@ -106,7 +106,6 @@ def sendEmail(title, body, to="help@haywardjardine.co.uk", report=False, cc=None
 
     message.send(
         to=to,
-        cc=cc,
         smtp={"host": "smtp.mail.icloud.com","port": 587,"tls": True,"user": "lewiscramb@icloud.com","password": password})
 
 

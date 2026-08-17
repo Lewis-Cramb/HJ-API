@@ -33,6 +33,8 @@ def update():
         totalQuant[key] = totalQuant.get(key, 0) + value
     stock.reorder(totalQuant)
 
-    email("Sales report", "See the attached sales report", "rebecca@haywardjardine.co.uk",True,"alistair@haywardjardine.co.uk")
+    email("Sales report", "See the attached sales report", "rebecca@haywardjardine.co.uk",True)
+    email("Sales report", "See the attached sales report", "alistair@haywardjardine.co.uk",True)
+
 
 update()
