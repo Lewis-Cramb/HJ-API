@@ -61,6 +61,12 @@ def convertNames(data, source): #this function is used to change the names of pr
     elif source == "SF":
         conversion = sfToXero
     for order in data:
+        new_prods = {}
+        for product in order["products"]:
+            if "2x " in product:
+                order["products"][product] = order["products"][product]*2
+            elif "Pack of 4" in product:
+                order["products"][product] = order["products"][product]*4
         order["products"] = {
             conversion.get(cleaned_name, cleaned_name): qty
             for name, qty in order["products"].items()

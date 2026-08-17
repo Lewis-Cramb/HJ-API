@@ -310,6 +310,10 @@ Also A+E talking about cutting out SF and going back down to xlsx so will need t
 
 LewisBot crashed over weekend, something in the invoicing so will deal with that.
 
+List of tasks: Break coupa cxml news to emma, test why vs isn't being marked as shipped, switch from SF to Rebecca's xlsx
+
+First two done, third is tomorrows problem as I want this to run flawlessly for one day at least
+
 
 # Commit History
 

@@ -88,10 +88,16 @@ def shipping(orders, key, line_part_url):
 
             num = ""
             if dxContentsHJ != []:
-                num += f"{dx.tracking("HJ", order, dxContentsHJ)} "
+                num += f"{dx.tracking("HJ", order, dxContentsHJ)}"
+                if "0001" in num:
+                    num = num[0:num.index("0001")]
+                num += " "
 
             if dxContentsDT != []:
-                num += f"{dx.tracking("DT", order, dxContentsDT)} "    
+                num += f"{dx.tracking("DT", order, dxContentsDT)}"    
+                if "0001" in num:
+                    num = num[0:num.index("0001")]
+                num += " "
             
             order["tracking_number"] = f"{num[:-1]}"
 

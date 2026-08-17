@@ -54,8 +54,6 @@ def postAPI(orders):
                 trackNum = order["tracking_number"]
             except:
                 trackNum = ""
-            if "0001" in trackNum:
-                trackNum = trackNum[0:trackNum.index("0001")]
 
             payload = {
                 "AccountId":getSFAccName(instance_url, order["accName"], sf_headers),

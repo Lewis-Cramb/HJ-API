@@ -13,13 +13,18 @@ def updateTracking(order, company):
     else:
         carrier = "Other"
 
-    params = {
+    paramsTrack = {
         "carrier_name":carrier,
         "tracking_number":order["tracking_number"]
     }
 
-    url = f"https://marketplace.kingfisher.com/api/orders/{order["orderId"]}/tracking"
+    paramsShip = {
+        "shop_id":0
+    }
 
-    response = rqs.put(url, json=params, headers=header)
-    print()
+    urlTrack = f"https://marketplace.kingfisher.com/api/orders/{order["orderId"]}/tracking"
+    urlShip = f"https://marketplace.kingfisher.com/api/orders/{order["orderId"]}/ship"
+
+    rqs.put(urlTrack, json=paramsTrack, headers=header)
+    rqs.put(urlShip, header=header, params=paramsShip)
 

@@ -59,6 +59,7 @@ miraklToSF = {
     "Heavy Duty Garage Utility Shelving 5-Tier Corner Storage Unit Galvanised Steel Shelves Shed Workshop, 750kg High Load Capacity": "Buffalo 5 Tier MDF Shelf - M1200",
     "Heavy Duty Garage Utility Shelving Unit, 5-Tier MDF Storage Shelves With 1000KG Load Capacity, Adjustable, Extra Wide Large, 150cm": "Buffalo 5 Tier MDF Shelf - L1500",
     "Pack of 4 Outdoor Cushions, 50 x 50cm , Green Tartan Frill Edge Design, Shower-Resistant Square Cushion for Garden & Patio" :"CUSHION - FRILLED EDGE 50x50 - FARMHOUSE TARTAN",
+    "Large Lockable Parcel Delivery Box with Letter Compartment 36 x 100 x 28cm, Weatherproof Galvanised Steel Parcel Storage Box":"Buffalo PARCEL BOX PENINSULA BLACK",
 }
 
 vsToSF = {

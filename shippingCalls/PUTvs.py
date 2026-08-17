@@ -31,5 +31,4 @@ def updateTracking(order, line_part_url):
     data = json.dumps({"items":items})
     url = f"https://api.virtualstock.com/restapi/v4/orders/{line_part_url[0][2]}/dispatch/?format=json"
     response = rqs.post(url, json=data, headers=header)
-    print()
         
