@@ -163,7 +163,7 @@ def xeroToken():
     return token.json()["access_token"]
 
 def xeroDate():
-    now = dt.now().strftime("%Y-%m-%d")
+    now = (startDate()-td(days=3)).strftime("%Y-%m-%d")
     comps = now.split("-")
     return f"DateTime({comps[0]}, {comps[1]}, {comps[2]})"
 

@@ -299,6 +299,18 @@ Coupa are getting back to me again - yay!
 
 Emma wants the invoice numbers changed on Xero so doing that now
 
+<ins> 12/08/2026 </ins>
+
+back at it
+
+need to use apis to backup our new onedrive/sharepoint setup onto the automation laptop (once the ssd arrives ofc)
+Also A+E talking about cutting out SF and going back down to xlsx so will need to adjust for that if they do
+
+<ins> 17/08/2026 </ins>
+
+LewisBot crashed over weekend, something in the invoicing so will deal with that.
+
+
 # Commit History
 
 93a2db8 - Set-up the repo

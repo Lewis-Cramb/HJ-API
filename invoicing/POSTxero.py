@@ -1,7 +1,6 @@
 #this file is used to post orders to xero for invoices
 import requests as rqs
 from base64 import b64encode as b64
-import xml.etree.ElementTree as ET
 from general.functions import xeroDue as dd
 from invoicing.GETxero import invoiceNumber as invNum
 
