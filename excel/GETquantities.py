@@ -37,5 +37,3 @@ def pullSF():
 
 
     return jlpQuant, bqQuant
-
-

@@ -1,21 +1,23 @@
 #This is the main file that is going to be used for GETting, POSTing and everything inbetween
-import dataPOST.POSTsf as sf
+from dataPOST import POSTsf
 from general.functions import printOrders as printing, convertNames as conversion, removeTitles as titles
 from shippingCalls.shipping import shipping as ship, parseShipping as parse
 from invoicing.POSTxero import postData as xero
 from copy import deepcopy as dc
+import dataPOST.WRITEorders as xlsx
 
 
-def transfer(sources, key, sfPOs, knPOs, pfPOs):
+def transfer(sources, key, knPOs, pfPOs, dxPOs, sfPOs):
     data, line_part = sources[key]
     if data != []:
         data = conversion(data, key)
 
         #shipping
         parse(data, key)
-        kn, pf = ship(data, key, line_part)
+        kn, pf, dx = ship(data, key, line_part)
         knPOs += kn
         pfPOs += pf
+        dxPOs += dx
 
         #invoicing    
         copyData = dc(data)
@@ -27,9 +29,10 @@ def transfer(sources, key, sfPOs, knPOs, pfPOs):
         #salesforce
         data = titles(data)
         printing(data)
-        POs = sf.postAPI(data)
-        sfPOs += POs
+        xlsx.upload(data)
+        sf = POSTsf.postAPI(data)
+        sfPOs += sf
 
-    return sfPOs, knPOs, pfPOs
+    return knPOs, pfPOs, dxPOs, sfPOs
 
 

@@ -26,5 +26,5 @@ def updateTracking(order, company):
     urlShip = f"https://marketplace.kingfisher.com/api/orders/{order["orderId"]}/ship"
 
     rqs.put(urlTrack, json=paramsTrack, headers=header)
-    rqs.put(urlShip, header=header, params=paramsShip)
+    rqs.put(urlShip, headers=header, params=paramsShip)
 

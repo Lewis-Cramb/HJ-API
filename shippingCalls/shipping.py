@@ -69,8 +69,9 @@ def updateTrackingInfo(order, key, line_part_url):
             trackMkl.updateTracking(order, "HJ")
 
 def shipping(orders, key, line_part_url):
-    knPOs, pfPOs = [],[]
+    knPOs, pfPOs, dxPOs = [],[], []
     for order in orders:
+        try:
             dxContentsHJ, dxContentsDT  = [],[]
             for i,(productName,v) in enumerate(order["products"].items()):
                 if productName in dxProds or (productName in knProds and surcharge(order["shipping_address"])):
@@ -102,10 +103,14 @@ def shipping(orders, key, line_part_url):
             order["tracking_number"] = f"{num[:-1]}"
 
             
-    dxOrders = [order for order in orders if order["shipName"]=="DX"]
-    for dxOrder in dxOrders:
-        updateTrackingInfo(dxOrder, key, line_part_url)
+            dxOrders = [order for order in orders if order["shipName"]=="DX"]
+            for dxOrder in dxOrders:
+                updateTrackingInfo(dxOrder, key, line_part_url)
+
+        except Exception:
+            dxPOs.append(order["custPO"])
 
 
-    return knPOs, pfPOs
+
+    return knPOs, pfPOs, dxPOs
     

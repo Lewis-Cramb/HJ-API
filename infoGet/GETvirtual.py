@@ -3,6 +3,7 @@ import requests as rqs
 from datetime import date as dt
 from general.GETerrors import handle
 from general.functions import vsHeader, startDate
+from general.productNames import vsBarToSku as bts
 
 def getVS():
     #Create the additional information for the request
@@ -45,7 +46,8 @@ def getVS():
             curr["reference"] = order["order_reference"].partition("-")[0]
 
             for product in order["items"]:
-                curr["products"][product["description"]] = product["quantity"]
+                sku = bts[product["retailer_sku_reference"]]
+                curr["products"][product["description"]] = (product["quantity"],sku)
                 url = order["url"]
                 line_part_url.append((product["part_number"],product["line_reference"],url[url.index("orders/")+7:-1]))
 

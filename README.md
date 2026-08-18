@@ -314,6 +314,21 @@ List of tasks: Break coupa cxml news to emma, test why vs isn't being marked as 
 
 First two done, third is tomorrows problem as I want this to run flawlessly for one day at least
 
+To Do:
+
+Switch POSTsf to creating an excel spreadsheet, Switch from one drive to sharepoint, create the backup system for the sharepoint
+
+I can start on the xlsx today as long as I don't post/pull it
+
+getting there, vs doesn't have a sku attached but it does have barcodes so will need to throw them in a dict and call it a day
+
+
+<ins> 18/08/2026 </ins>
+
+I've had to make a fix/change for dx orders but its in the middle of the excel stuff so i'll commit once this is done or EoD, whichever is first
+
+I still need to rewrite the stock levels from sales report but can do that tomorrow while wfh - I will also do everything needed with the sharepoint whilst wfh as well recording the last few videos
+
 
 # Commit History
 
@@ -402,3 +417,5 @@ ab2f9db - Added the sales report info, creating and emailing
 899487f - Buffalo added
  
 9113bf3 - Xero order number changed
+
+[commit num] - Excel salesforce replacement created

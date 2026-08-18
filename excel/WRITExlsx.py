@@ -35,6 +35,3 @@ def update():
 
     email("Sales report", "See the attached sales report", "rebecca@haywardjardine.co.uk",True)
     email("Sales report", "See the attached sales report", "alistair@haywardjardine.co.uk",True)
-
-
-update()

@@ -41,7 +41,7 @@ def getM(company):
                 curr["shipping_address"] = order["customer"]["shipping_address"]
 
                 for product in order["order_lines"]:
-                    curr["products"][product["product_title"]] = product["quantity"]
+                    curr["products"][product["product_title"]] = (product["quantity"],product["offer_sku"])
 
                 filtered_orders.append(curr)
 

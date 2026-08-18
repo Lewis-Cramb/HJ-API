@@ -91,7 +91,7 @@ def postAPI(orders):
                 product_payload = {
                     "OrderID": response.json().get("id"),
                     "PricebookEntryID":prod_id,
-                    "Quantity":order["products"][key],
+                    "Quantity":order["products"][key][0],
                     "UnitPrice":order["cost"],
                 }
 
