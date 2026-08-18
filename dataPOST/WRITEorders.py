@@ -10,9 +10,9 @@ def upload(orders):
     sheet = workbook[sheetName]
 
     lines = []
-    info = {"Date":"","SKU":"","Product":"","Order/Reference":"","Movement Type":"Sale / Order","Quantity":""}
 
     for order in orders:
+        info = {"Date":"","SKU":"","Product":"","Order/Reference":"","Movement Type":"Sale / Order","Quantity":""}
         info["Date"] = dt.fromisoformat(order["orderDate"]).strftime("%d/%m/%Y")
         info["Order/Reference"] = order["custPO"]
         for product in order["products"]:
