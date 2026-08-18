@@ -1,5 +1,6 @@
 import openpyxl as xlsx
 from datetime import date as dt
+from general.productNames import barToSku as sku
 
 
 def upload(orders):
@@ -18,15 +19,11 @@ def upload(orders):
         for product in order["products"]:
             info["Product"] = product
             info["Quantity"] = order["products"][product][0]
-            info["SKU"] = order["products"][product][1]
+            info["SKU"] = sku.get(order["products"][product][1],order["products"][product][1])
 
             lines.append(info)
 
-    row = 0
-    for i, cell in enumerate(sheet["A"]):
-        pass
-
-    row = i+2
+    row = max(cell.row for cell in sheet["A"] if cell.value is not None) + 1
 
     merged_range = list(sheet.merged_cells.ranges)
     for merged_cell_range in merged_range:
@@ -34,8 +31,8 @@ def upload(orders):
 
     for line in lines:
         sheet[f"A{row}"] = line["Date"]
-        sheet[f"B{row}"] = line["SKU"]
-        sheet[f"C{row}"] = line["Product"]
+        sheet[f"B{row}"] = str(line["SKU"])
+        sheet[f"C{row}"] = str(line["Product"])
         sheet[f"D{row}"] = line["Order/Reference"]
         sheet[f"E{row}"] = line["Movement Type"]
         sheet[f"F{row}"] = line["Quantity"]
