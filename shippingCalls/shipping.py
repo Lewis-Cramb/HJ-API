@@ -69,7 +69,7 @@ def updateTrackingInfo(order, key, line_part_url):
             trackMkl.updateTracking(order, "HJ")
 
 def shipping(orders, key, line_part_url):
-    knPOs, pfPOs, dxPOs = [],[], []
+    knPOs, pfPOs, dxPOs, failed = [],[],[],[]
     for order in orders:
         try:
             dxContentsHJ, dxContentsDT  = [],[]
@@ -88,29 +88,33 @@ def shipping(orders, key, line_part_url):
                     pfPOs.append(order["custPO"])
 
             num = ""
-            if dxContentsHJ != []:
-                num += f"{dx.tracking("HJ", order, dxContentsHJ)}"
-                if "0001" in num:
-                    num = num[0:num.index("0001")]
-                num += " "
+            try:
+                if dxContentsHJ != []:
+                    num += f"{dx.tracking("HJ", order, dxContentsHJ)}"
+                    if "0001" in num:
+                        num = num[0:num.index("0001")]
+                    num += " "
 
-            if dxContentsDT != []:
-                num += f"{dx.tracking("DT", order, dxContentsDT)}"    
-                if "0001" in num:
-                    num = num[0:num.index("0001")]
-                num += " "
-            
-            order["tracking_number"] = f"{num[:-1]}"
+                if dxContentsDT != []:
+                    num += f"{dx.tracking("DT", order, dxContentsDT)}"    
+                    if "0001" in num:
+                        num = num[0:num.index("0001")]
+                    num += " "
+                
+                order["tracking_number"] = f"{num[:-1]}"
+            except:
+                dxPOs.append(order["custPO"])
 
-            
-            dxOrders = [order for order in orders if order["shipName"]=="DX"]
-            for dxOrder in dxOrders:
-                updateTrackingInfo(dxOrder, key, line_part_url)
 
         except Exception:
-            dxPOs.append(order["custPO"])
+            failed.append(f"{order["custPO"]} - shipping")
+
+            
+        dxOrders = [order for order in orders if order["shipName"]=="DX"]
+        for dxOrder in dxOrders:
+            updateTrackingInfo(dxOrder, key, line_part_url)
 
 
 
-    return knPOs, pfPOs, dxPOs
+    return knPOs, pfPOs, dxPOs, failed
     

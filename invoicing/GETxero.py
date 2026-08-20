@@ -19,4 +19,7 @@ def invoiceNumber():
         if "INV" not in number:
             properNumbers.append(number)
 
-    return findMax(properNumbers)+1
+    invNum = findMax(properNumbers)+1
+    if invNum == 2705:
+        invNum += 11
+    return invNum

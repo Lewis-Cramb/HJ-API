@@ -330,6 +330,11 @@ I've had to make a fix/change for dx orders but its in the middle of the excel s
 I still need to rewrite the stock levels from sales report but can do that tomorrow while wfh - I will also do everything needed with the sharepoint whilst wfh as well recording the last few videos
 
 
+<ins> 20/08/2026 </ins>
+
+Committing today whilst in london, general fixes - this may be partially through something but i'm sitting in LCY airport rn so as long as it runs fine idm committing it so that it can be pulled at the office
+
+
 # Commit History
 
 93a2db8 - Set-up the repo

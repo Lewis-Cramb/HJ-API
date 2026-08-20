@@ -7,32 +7,36 @@ from copy import deepcopy as dc
 import dataPOST.WRITEorders as xlsx
 
 
-def transfer(sources, key, knPOs, pfPOs, dxPOs, sfPOs):
+def transfer(sources, key, knPOs, pfPOs, dxPOs, fails):
     data, line_part = sources[key]
-    if data != []:
+    if data != [] and key=="JLP":
         data = conversion(data, key)
 
         #shipping
         parse(data, key)
-        kn, pf, dx = ship(data, key, line_part)
+        kn, pf, dx, failed = ship(data, key, line_part)
         knPOs += kn
         pfPOs += pf
         dxPOs += dx
+        fails += failed
 
         #invoicing    
         copyData = dc(data)
         copyData = conversion(copyData, "SF")
         for order in copyData:
-            if key == "JLP":
-                xero(order)
+            try:
+                if key == "JLP":
+                    xero(order)
+            except Exception:
+                fails.append(f"{order["custPO"]} - invoicing")
 
         #salesforce
         data = titles(data)
         printing(data)
-        xlsx.upload(data)
-        sf = POSTsf.postAPI(data)
-        sfPOs += sf
+        #xlsx.upload(data)
+        failed = POSTsf.postAPI(data)
+        fails += failed
 
-    return knPOs, pfPOs, dxPOs, sfPOs
+    return knPOs, pfPOs, dxPOs, fails
 
 

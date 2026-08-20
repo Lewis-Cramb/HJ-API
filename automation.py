@@ -8,18 +8,13 @@ from excel.WRITExlsx import update as report
 
 sources = {"B&Qhj":mir.getM("HJ"), "B&Qb":mir.getM("Buffalo"), "JLP":vs.getVS()}
 current_day = dt.now().strftime("%A")
-knPOs, pfPOs, dxPOs, sfPOs = [],[],[],[]
+knPOs, pfPOs, dxPOs, failed = [],[],[],[]
 if current_day not in ["Saturday", "Sunday"]:
     for index,(key,value) in enumerate(sources.items()):
-        knPOs, pfPOs, dxPOs, sfPOs = automate(sources, key, knPOs, pfPOs, dxPOs, sfPOs)
+        knPOs, pfPOs, dxPOs, failed = automate(sources, key, knPOs, pfPOs, dxPOs, failed)
 
     send, title, body = False, "Daily update", ""
 
-    if sfPOs != []:
-        send = True
-        body += f"Here are the POs of orders that do not have products in the pricebook (e.g outdoor edit cushions) so need to be made on SalesForce:\n"
-        for po in sfPOs:
-            body += f"{po}\n"
     if knPOs != []:
         send = True
         body += f"Here are the POs of orders that need to have orders created in Kinetic for them: \n"
@@ -34,6 +29,12 @@ if current_day not in ["Saturday", "Sunday"]:
         send = True
         body += "Below are POs of orders on SalesForce that need DX consignments created for them: \n"
         for po in dxPOs:
+            body += f"{po}\n"
+
+    if failed != []:
+        send = True
+        body += f"Some orders failed, listed are their POs and where they failed:\n"
+        for po in failed:
             body += f"{po}\n"
 
     if send:
