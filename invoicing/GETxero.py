@@ -20,6 +20,13 @@ def invoiceNumber():
             properNumbers.append(number)
 
     invNum = findMax(properNumbers)+1
-    if invNum == 2705:
-        invNum += 11
     return invNum
+
+def numberExists(number, header):
+    params = {"where": f'InvoiceNumber=="{number}"'}
+    response = rqs.get("https://api.xero.com/api.xro/2.0/Invoices", headers=header, params=params)
+    root = xml.fromstring(response.text)
+    invoices = root.find("Invoices")
+    if invoices is None:
+        return False
+    return len(invoices.findall("Invoice")) > 0

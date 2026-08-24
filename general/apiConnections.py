@@ -6,10 +6,9 @@ from invoicing.POSTxero import postData as xero
 from copy import deepcopy as dc
 import dataPOST.WRITEorders as xlsx
 
-
 def transfer(sources, key, knPOs, pfPOs, dxPOs, fails):
     data, line_part = sources[key]
-    if data != [] and key=="JLP":
+    if data != []:
         data = conversion(data, key)
 
         #shipping
@@ -23,11 +22,13 @@ def transfer(sources, key, knPOs, pfPOs, dxPOs, fails):
         #invoicing    
         copyData = dc(data)
         copyData = conversion(copyData, "SF")
+        invoiceNumbers = []
         for order in copyData:
             try:
                 if key == "JLP":
-                    xero(order)
+                    invoiceNumbers = xero(order, invoiceNumbers)
             except Exception:
+                invoiceNumbers.pop()
                 fails.append(f"{order["custPO"]} - invoicing")
 
         #salesforce

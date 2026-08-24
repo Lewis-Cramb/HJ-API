@@ -57,6 +57,8 @@ def parseShipping(orders, channel):
         order["shipping_address"] = shipDetails
 
 def updateTrackingInfo(order, key, line_part_url):
+    if order["tracking_number"] == "":
+        return
     if " " in order["tracking_number"]:
         order["tracking_number"] = order["tracking_number"].partition(" ")[0]
 
@@ -104,6 +106,7 @@ def shipping(orders, key, line_part_url):
                 order["tracking_number"] = f"{num[:-1]}"
             except:
                 dxPOs.append(order["custPO"])
+                order["tracking_number"] = ""
 
 
         except Exception:

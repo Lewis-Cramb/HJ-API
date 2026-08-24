@@ -97,7 +97,7 @@ def postAPI(orders):
 
                 rqs.post(f"{instance_url}/services/data/v67.0/sobjects/OrderItem/Id",headers=sf_headers,json=product_payload)
         except Exception:
-            failed.append(order["custPO"])
+            failed.append(f"{order["custPO"]} - SalesForce")
 
     return failed
 
