@@ -334,6 +334,29 @@ I still need to rewrite the stock levels from sales report but can do that tomor
 
 Committing today whilst in london, general fixes - this may be partially through something but i'm sitting in LCY airport rn so as long as it runs fine idm committing it so that it can be pulled at the office
 
+<ins> 24/08/2026 </ins>
+
+There are always like one or two wee kinks per day but fixed them today, XERO was acting up
+I hope thats them stopped as I only have like three weeks left
+
+Creating a .ps1 script for backing up the OneDrive/SharePoint and also adjusting the commited python stuff as its nowhere near complete and was committed part-way through
+
+I also need to fix the excel stuff but can do this tomorrow so that we can easily transfer from SF to xlsx
+
+The plan for the backup is to create backup@haywardjardine.co.uk and register it as an admin on all one drive and sharepoint sites, keep everything on device on the automation laptop and then run backup.ps1 to robocopy everything onto the drive
+
+Going to chat to emma before doing this, the only thing committed may end up being this readme as it will literally only be one line on the ps1 and it will be edited on the automation laptop
+I'm going to leave a placeholder in the ps1 so it is at least tracked
+
+Okay we need to pay for a couple of things to add backup@haywardjardine.co.uk - might try using either my email or the helpdesk? Neither my email nor the helpdesk is going to work
+
+Feel like I've gone full circle, using graph api again instead of straight downloads
+
+<ins> 25/08/2026 </ins>
+
+lewisbot has worked almost fully, just the email not working
+Added the stuff for one drive backups, thats it sorted
+
 
 # Commit History
 
@@ -424,3 +447,5 @@ ab2f9db - Added the sales report info, creating and emailing
 9113bf3 - Xero order number changed
 
 90ab115 - Excel salesforce replacement created
+
+[commit num] - OneDrive backup created

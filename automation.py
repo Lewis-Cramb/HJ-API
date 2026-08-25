@@ -2,6 +2,7 @@
 from datetime import datetime as dt
 from general.apiConnections import transfer as automate
 from general.functions import sendEmail as email
+from backupOneDrive import employeeBackups as oneDriveBackup
 import infoGet.GETmirakl as mir, infoGet.GETvirtual as vs
 from excel.WRITExlsx import update as report
 
@@ -39,6 +40,9 @@ if current_day not in ["Saturday", "Sunday"]:
 
     if send:
         email(title, body, "help@haywardjardine.co.uk")
+
+
+    oneDriveBackup()
 
 
 if current_day == "Monday":

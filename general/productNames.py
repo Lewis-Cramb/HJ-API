@@ -69,6 +69,7 @@ vsToSF = {
     "683L Galv Storage Box - Gry":"L Premium Metal Storage Box - 683L / Grey",
     "680L Recycled Storage Box Bk":"Heavy Duty Storage Box - 680L / Black",
     "980L Recycled Storage Box Bk":"Heavy Duty Storage Box - 980L / Black",
+    "#980L Recycled Storage Box B":"Heavy Duty Storage Box - 980L / Black",
     "270L Recycled Storage Box":"Heavy Duty Storage Box - 270L / Taupe",
     "680L Recycled Storage Box":"Heavy Duty Storage Box - 680L / Taupe",
     "870L Recycled Storage Box":"Heavy Duty Storage Box - 870L / Taupe",
