@@ -1,6 +1,6 @@
 from general.productCarriers import dx as dxProds, kinetic as knProds
 from general.dxPlatform import HJ, DT
-import shippingCalls.POSTparcelforce as pf, shippingCalls.POSTdx as dx, shippingCalls.PUTvs as trackVS, shippingCalls.PUTmkl as trackMkl
+import shippingCalls.POSTdx as dx, shippingCalls.PUTvs as trackVS, shippingCalls.PUTmkl as trackMkl
 from general.functions import shippingPostcodes as surcharge
 
 general = ["address_1", "address_2", "post_code", "country", "city", "state"]

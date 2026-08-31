@@ -12,7 +12,7 @@ current_day = dt.now().strftime("%A")
 knPOs, pfPOs, dxPOs, failed = [],[],[],[]
 if current_day not in ["Saturday", "Sunday"]:
     for index,(key,value) in enumerate(sources.items()):
-        knPOs, pfPOs, dxPOs, failed = automate(sources, key, knPOs, pfPOs, dxPOs, failed)
+         knPOs, pfPOs, dxPOs, failed = automate(sources, key, knPOs, pfPOs, dxPOs, failed)
 
     send, title, body = False, "Daily update", ""
 
@@ -41,11 +41,13 @@ if current_day not in ["Saturday", "Sunday"]:
     if send:
         email(title, body, "help@haywardjardine.co.uk")
 
-
-    oneDriveBackup()
-
+    try:
+        oneDriveBackup()
+    except Exception:
+        title = "OneDrive"
+        body = "The OneDrive backup has crashed today, take a look at the python script to figure out why. Manually upload to the laptop.\n"
+        email(title, body, "help@haywardjardine.co.uk")
 
 if current_day == "Monday":
     report()
-
 

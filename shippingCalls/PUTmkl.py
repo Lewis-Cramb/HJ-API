@@ -18,13 +18,7 @@ def updateTracking(order, company):
         "tracking_number":order["tracking_number"]
     }
 
-    paramsShip = {
-        "shop_id":0
-    }
-
     urlTrack = f"https://marketplace.kingfisher.com/api/orders/{order["orderId"]}/tracking"
-    urlShip = f"https://marketplace.kingfisher.com/api/orders/{order["orderId"]}/ship"
 
     rqs.put(urlTrack, json=paramsTrack, headers=header)
-    rqs.put(urlShip, headers=header, json=paramsShip)
 

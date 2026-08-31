@@ -3,6 +3,7 @@ import emails, requests as rqs
 from general.productNames import miraklToSF, vsToSF, sfToXero
 from general.surchargePostcodes import codes as surCodes
 from base64 import b64encode as b64
+import openpyxl as xlsx
 
 def oldHeader(filename): #Use this function if you do not need the "bearer" in the auth key (So older APIs without OAuth 2.0)
     with open(f"txts/{filename}.txt") as rf:
@@ -180,3 +181,57 @@ def findMax(list):
         if list[i] > max:
             max = list[i]
     return int(max)
+
+def monthToCol(monthNum, year):
+    conversions = {
+        "1":"W", "2":"X", "3":"Y", "4":"Z", "5":"AA", "6":"AB",
+        "7":"AC", "8":"AD", "9":"AE", "10":"AF", "11":"AG", "12":"AH"
+    }
+    if year=="this:":
+        return f"{conversions[monthNum]}6"
+    else:
+        return f"{conversions[monthNum]}9"
+    
+
+def excelYearlyWipe():
+    workbook = xlsx.load_workbook("excel/SalesReport.xlsx")
+    sheet = workbook.active
+    
+    next_year = dt.now().year + 1
+
+    data_ranges = [
+        (21, 35),  
+        (40, 54),  
+    ]
+    
+    for start_row, end_row in data_ranges:
+        for row in sheet.iter_rows(min_row=start_row, max_row=end_row):
+            for cell in row:
+                cell.value = None
+    
+    header_row_pairs = [
+        (19, 20),
+        (38, 39),
+        (62, 63),
+        (81, 82)
+    ]
+    
+    jan_1 = dt(next_year, 1, 1)
+    first_monday = jan_1 + td(days=(7 - jan_1.weekday()) % 7)
+    
+    for header_row_1, header_row_2 in header_row_pairs:
+        col = 2 
+        curDate = first_monday
+        
+        while curDate.year == next_year:
+            monthHeader = curDate.strftime("%d %b")
+            sheet.cell(row=header_row_1, column=col, value=monthHeader)
+            
+            weekEnd = curDate + td(days=6)
+            weekHeader = f"{curDate.strftime('%d %b')} - {weekEnd.strftime('%d %b')}"
+            sheet.cell(row=header_row_2, column=col, value=weekHeader)
+            
+            col += 1
+            curDate += td(days=7)
+    
+    workbook.save("excel/SalesReport.xlsx")

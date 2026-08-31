@@ -357,6 +357,11 @@ Feel like I've gone full circle, using graph api again instead of straight downl
 lewisbot has worked almost fully, just the email not working
 Added the stuff for one drive backups, thats it sorted
 
+<ins> 31/08/2026 </ins>
+
+Three things to do: Dashboard xlsx data inputs, solve email problem, solve VS tracking number inputs
+
+I can't really test any of this so will need to keep and eye and make sure all working after commiting
 
 # Commit History
 

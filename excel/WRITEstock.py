@@ -1,10 +1,12 @@
 import openpyxl as xlsx
+from datetime import datetime as dt
 import sys
 sys.path.append("../HJ-API")
 from general.xlsxRows import reorderList
+from general.functions import monthToCol, week_range
 
-def reorder(quantities):
-    workbook = xlsx.load_workbook("excel/StockLevels.xlsx")
+def reorder(quantities,totals, totalUnits, monthTotal):
+    workbook = xlsx.load_workbook("excel/StockLevels_TEST.xlsx")
     sheet = workbook.active
 
     readWeeks, writeWeeks = ["C","D","E"],["B","C","D"]
@@ -31,6 +33,43 @@ def reorder(quantities):
         sheet[f"G{row}"] = sheet[f"G{row}"].value - quantities[product]
         row += 1
 
+    sheetNum = 2
+    sheets = workbook.sheetnames
+    sheetName = sheets[sheetNum]
+    sheet = workbook[sheetName]
+
+    sheet["O4"].value = f"£{totals[1]}"
+    sheet["P4"].value = f"£{totals[2]}"
+    sheet["Q4"].value = f"£{totals[0]}"
 
 
-    workbook.save("excel/StockLevels.xlsx")
+    if sheet["U16"].value > sheet["U13"].value:
+        sheet["U13"].value = sheet["U16"].value
+        sheet["T13"].value = sheet["T16"].value
+
+    sheet["U16"].value = totalUnits
+    sheet["T16"].value = week_range()
+
+    matrix = {}
+    for row in sheet:
+        for cell in row:
+            matrix[cell.value] = f"{cell.column_letter}{cell.row+1}"
+    
+
+    sheet["Y12"].value = sheet[matrix[week_range()]].value
+
+    sheet[matrix[week_range()]].value = sheet["U16"].value
+
+    
+    if dt.today().day <= 7: 
+        if dt.today().month == 2:
+            monthNums = [1,2,3,4,5,6,7,8,9,10,11,12]
+            for i in range(0, 11):
+                sheet[monthToCol(monthNums[i],"last")].value = sheet[monthToCol(monthNums[i],"this")].value
+            sheet["W9"].value = monthTotal
+        else:
+            sheet[monthToCol(dt.today().month,"this")].value = monthTotal 
+
+
+
+    workbook.save("excel/StockLevels_TEST.xlsx")
