@@ -1,6 +1,8 @@
 import openpyxl as xlsx
 from datetime import date as dt
-from general.productNames import barToSku as sku
+from general.productCarriers import dx, parcelforce
+from general.functions import formatDateOpposite as formatDate
+
 
 
 def upload(orders):
@@ -13,13 +15,14 @@ def upload(orders):
     lines = []
 
     for order in orders:
-        info = {"Date":"","SKU":"","Product":"","Order/Reference":"","Movement Type":"Sale / Order","Quantity":""}
-        info["Date"] = dt.fromisoformat(order["orderDate"]).strftime("%d/%m/%Y")
-        info["Order/Reference"] = order["custPO"]
-        for product in order["products"]:
-            info["Product"] = product
-            info["Quantity"] = order["products"][product][0]
-            info["SKU"] = sku.get(order["products"][product][1],order["products"][product][1])
+        if order["product"] in dx or order["product"] in parcelforce:
+            info = {"Date":"","SKU":"","Product":"","Order/Reference":"","Movement Type":"Sale / Order","Quantity":""}
+            info["Date"] = formatDate(order["orderDate"])
+            info["Order/Reference"] = order["custPO"]
+            info["Product"] = order["product"]
+            info["Quantity"] = order["quantity"]
+            info["SKU"] = order["sku"]
+            info["Retailer"] = order["accountName"]
 
             lines.append(info)
 
@@ -33,10 +36,10 @@ def upload(orders):
         sheet[f"A{row}"] = line["Date"]
         sheet[f"B{row}"] = str(line["SKU"])
         sheet[f"C{row}"] = str(line["Product"])
-        sheet[f"D{row}"] = line["Order/Reference"]
-        sheet[f"E{row}"] = line["Movement Type"]
-        sheet[f"F{row}"] = line["Quantity"]
+        sheet[f"D{row}"] = line["Retailer"]
+        sheet[f"E{row}"] = str(line["Order/Reference"])
+        sheet[f"F{row}"] = line["Movement Type"]
+        sheet[f"G{row}"] = int(line["Quantity"])
         row += 1
 
     workbook.save("dataPOST/D2c Stock and Sales Sheet.xlsx")
-    print()

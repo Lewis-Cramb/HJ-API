@@ -34,7 +34,7 @@ def transfer(sources, key, knPOs, pfPOs, dxPOs, fails):
         #salesforce
         data = titles(data)
         printing(data)
-        #xlsx.upload(data)
+        xlsx.upload(data)
         failed = POSTsf.postAPI(data)
         fails += failed
 

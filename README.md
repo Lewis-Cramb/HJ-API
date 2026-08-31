@@ -367,6 +367,11 @@ this email stuff it weird, I added a try except (that never triggered) and yet t
 
 I need the VS carrier slugs to complete the VS tracking number inputs i think - found it using an api call and this should now be fixed
 
+Now thats all done all that is left is fixing the xlsx for tracking orders - the file was corrupted on the automation machine but thats done now
+
+File wasnt updated but fixed it now, tomorrows problem (or maybe mine for the next hour tbf) will be uploading this to the sharepoint using graph api
+
+
 # Commit History
 
 93a2db8 - Set-up the repo

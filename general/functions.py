@@ -36,6 +36,10 @@ def format_date(raw_date): #this function is used to convert the date into yyyy-
         return dt.strptime(raw_date, "%Y-%m-%d").strftime("%Y-%m-%d")
     except ValueError:
         return dt.strptime(raw_date, "%d-%m-%Y").strftime("%Y-%m-%d")
+
+def formatDateOpposite(date): #this formats dd-mm-yyyy hence opposite
+    comps = date.split("-")
+    return f"{comps[2]}/{comps[1]}/{comps[0]}"
     
 def xeroDue():
     today = date.today()
