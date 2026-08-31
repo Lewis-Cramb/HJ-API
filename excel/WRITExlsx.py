@@ -8,7 +8,7 @@ import excel.GETquantities as quant, excel.WRITEstock as stock
 
 def update():
     jlpQuant, bqQuant, jlpTotal, bqTotal,totalUnits = quant.pullSF()
-    workbook = xlsx.load_workbook("excel/SalesReport_TEST.xlsx")
+    workbook = xlsx.load_workbook("excel/SalesReport.xlsx")
     sheet = workbook.active
     dateRange = week_range()
 
@@ -46,7 +46,7 @@ def update():
             break
 
 
-    workbook.save("excel/SalesReport_TEST.xlsx")
+    workbook.save("excel/SalesReport.xlsx")
 
     totalQuant = jlpQuant.copy()
     total = jlpTotal + bqTotal
@@ -55,7 +55,5 @@ def update():
         totalQuant[key] = totalQuant.get(key, 0) + value
     stock.reorder(totalQuant, totals, totalUnits, monthTotal)
 
-    # email("Sales report", "See the attached sales report", "rebecca@haywardjardine.co.uk",True)
-    # email("Sales report", "See the attached sales report", "alistair@haywardjardine.co.uk",True)
-
-update()
+    email("Sales report", "See the attached sales report", "rebecca@haywardjardine.co.uk",True)
+    email("Sales report", "See the attached sales report", "alistair@haywardjardine.co.uk",True)

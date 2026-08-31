@@ -6,7 +6,7 @@ from general.xlsxRows import reorderList
 from general.functions import monthToCol, week_range
 
 def reorder(quantities,totals, totalUnits, monthTotal):
-    workbook = xlsx.load_workbook("excel/StockLevels_TEST.xlsx")
+    workbook = xlsx.load_workbook("excel/StockLevels.xlsx")
     sheet = workbook.active
 
     readWeeks, writeWeeks = ["C","D","E"],["B","C","D"]
@@ -72,4 +72,4 @@ def reorder(quantities,totals, totalUnits, monthTotal):
 
 
 
-    workbook.save("excel/StockLevels_TEST.xlsx")
+    workbook.save("excel/StockLevels.xlsx")

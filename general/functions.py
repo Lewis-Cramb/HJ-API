@@ -110,10 +110,10 @@ def sendEmail(title, body, to="help@haywardjardine.co.uk", report=False):
             filename="StockLevels.xlsx",
             data=open("excel/StockLevels.xlsx","rb")
         )
-
-    message.send(
+    response = message.send(
         to=to,
         smtp={"host": "smtp.mail.icloud.com","port": 587,"tls": True,"user": "lewiscramb@icloud.com","password": password})
+    pass
 
 
 def shippingPostcodes(location):

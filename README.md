@@ -363,6 +363,10 @@ Three things to do: Dashboard xlsx data inputs, solve email problem, solve VS tr
 
 I can't really test any of this so will need to keep and eye and make sure all working after commiting
 
+this email stuff it weird, I added a try except (that never triggered) and yet the email sent that time and not the other four times of asking - added a variable and a pass so can breakpoint and check next time that it breaks
+
+I need the VS carrier slugs to complete the VS tracking number inputs i think - found it using an api call and this should now be fixed
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -453,4 +457,6 @@ ab2f9db - Added the sales report info, creating and emailing
 
 90ab115 - Excel salesforce replacement created
 
-[commit num] - OneDrive backup created
+ed4f252 - OneDrive backup created
+
+51613cd - Excel dashboard

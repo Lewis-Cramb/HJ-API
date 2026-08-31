@@ -9,11 +9,11 @@ def updateTracking(order, line_part_url):
     items = []
     i = 0
     if order["shipName"] == "DX":
-        carrier = "DX Freight (Tracked)"
+        carrier = "dx-untracked"
     elif order["shipName"] == "Parcel force":
-        carrier = "Royal Mail (Tracked)"
+        carrier = "royal-mail-untracked"
     else:
-        carrier = "Kinetics (Untracked)"
+        carrier = "kinetics-untracked"
     for product in order["products"]:
         part = line_part_url[i][0]
         line = line_part_url[i][1]
