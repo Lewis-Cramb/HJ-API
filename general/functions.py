@@ -133,7 +133,7 @@ def shippingPostcodes(location):
 
 def date_format(date):
     day = date.day
-    month = date.strftime("%B")
+    month = date.strftime("%b")
     
     suffix = get_suffix(day)
     
@@ -159,7 +159,7 @@ def week_range():
     end_formatted = date_format(end_date)
     
     if start_date.month == end_date.month:
-        return f"{start_date.day}{get_suffix(start_date.day)}-{end_date.day}{get_suffix(end_date.day)} {start_date.strftime('%b')}"
+        return f"{start_date.day}{get_suffix(start_date.day)}-{end_date.day}{get_suffix(end_date.day)} {start_date.strftime('%B')}"
     else:
         return f"{start_formatted} - {end_formatted}"
 

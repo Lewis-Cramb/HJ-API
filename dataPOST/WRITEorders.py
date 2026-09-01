@@ -2,6 +2,7 @@ import openpyxl as xlsx
 from datetime import date as dt
 from general.productCarriers import dx, parcelforce
 from general.functions import formatDateOpposite as formatDate
+from general.productNames import barToSku
 
 
 
@@ -15,16 +16,18 @@ def upload(orders):
     lines = []
 
     for order in orders:
-        if order["product"] in dx or order["product"] in parcelforce:
-            info = {"Date":"","SKU":"","Product":"","Order/Reference":"","Movement Type":"Sale / Order","Quantity":""}
-            info["Date"] = formatDate(order["orderDate"])
-            info["Order/Reference"] = order["custPO"]
-            info["Product"] = order["product"]
-            info["Quantity"] = order["quantity"]
-            info["SKU"] = order["sku"]
-            info["Retailer"] = order["accountName"]
+        if order["products"]:
+            for prod in order["products"]:
+                if prod in dx or prod in parcelforce:
+                    info = {"Date":"","SKU":"","Product":"","Order/Reference":"","Movement Type":"Sale / Order","Quantity":""}
+                    info["Date"] = formatDate(order["orderDate"])
+                    info["Order/Reference"] = order["custPO"]
+                    info["Product"] = prod
+                    info["Quantity"] = order["products"][prod][0]
+                    info["SKU"] = barToSku[order["products"][prod][1]]
+                    info["Retailer"] = order["accName"]
 
-            lines.append(info)
+                    lines.append(info)
 
     row = max(cell.row for cell in sheet["A"] if cell.value is not None) + 1
 

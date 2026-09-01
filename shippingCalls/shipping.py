@@ -79,11 +79,9 @@ def shipping(orders, key, line_part_url):
                 if productName in dxProds or (productName in knProds and surcharge(order["shipping_address"])):
                     order["shipName"] = "DX"
                     if productName in HJ:
-                        pass
-                        #dx.payload(productName, order, dxContentsHJ)
+                        dx.payload(productName, order, dxContentsHJ)
                     elif productName in DT:
-                        pass
-                        #dx.payload(productName, order, dxContentsDT)
+                        dx.payload(productName, order, dxContentsDT)
                 elif productName in knProds:
                     order["shipName"] = "KINETIC LOGISTICS"
                     knPOs.append(order["custPO"])

@@ -10,33 +10,35 @@ def transfer(sources, key, knPOs, pfPOs, dxPOs, fails):
     data, line_part = sources[key]
     if data != []:
         data = conversion(data, key)
-
-        #shipping
-        parse(data, key)
-        kn, pf, dx, failed = ship(data, key, line_part)
-        knPOs += kn
-        pfPOs += pf
-        dxPOs += dx
-        fails += failed
-
-        #invoicing    
-        copyData = dc(data)
-        copyData = conversion(copyData, "SF")
-        invoiceNumbers = []
-        for order in copyData:
-            try:
-                if key == "JLP":
-                    invoiceNumbers = xero(order, invoiceNumbers)
-            except Exception:
-                invoiceNumbers.pop()
-                fails.append(f"{order["custPO"]} - invoicing")
-
-        #salesforce
-        data = titles(data)
-        printing(data)
         xlsx.upload(data)
-        failed = POSTsf.postAPI(data)
-        fails += failed
+        print()
+
+        # #shipping
+        # parse(data, key)
+        # kn, pf, dx, failed = ship(data, key, line_part)
+        # knPOs += kn
+        # pfPOs += pf
+        # dxPOs += dx
+        # fails += failed
+
+        # #invoicing    
+        # copyData = dc(data)
+        # copyData = conversion(copyData, "SF")
+        # invoiceNumbers = []
+        # for order in copyData:
+        #     try:
+        #         if key == "JLP":
+        #             invoiceNumbers = xero(order, invoiceNumbers)
+        #     except Exception:
+        #         invoiceNumbers.pop()
+        #         fails.append(f"{order["custPO"]} - invoicing")
+
+        # #salesforce
+        # data = titles(data)
+        # printing(data)
+        # xlsx.upload(data)
+        # failed = POSTsf.postAPI(data)
+        # fails += failed
 
     return knPOs, pfPOs, dxPOs, fails
 

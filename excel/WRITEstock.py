@@ -48,7 +48,6 @@ def reorder(quantities,totals, totalUnits, monthTotal):
         sheet["T13"].value = sheet["T16"].value
 
     sheet["U16"].value = totalUnits
-    sheet["T16"].value = week_range()
 
     matrix = {}
     for row in sheet:
