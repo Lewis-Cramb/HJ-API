@@ -37,7 +37,7 @@ def format_date(raw_date): #this function is used to convert the date into yyyy-
     except ValueError:
         return dt.strptime(raw_date, "%d-%m-%Y").strftime("%Y-%m-%d")
 
-def formatDateOpposite(date): #this formats dd-mm-yyyy hence opposite
+def formatDateOpposite(date): #this formats yyyy-mm-dd to dd/mm/yyyy hence opposite
     comps = date.split("-")
     return f"{comps[2]}/{comps[1]}/{comps[0]}"
     
@@ -242,11 +242,12 @@ def excelYearlyWipe():
 
 
 def getSPToken():
-    info = {
+    data = {
         "client_id": open("txts/msID.txt").read().strip(),
         "client_secret": open("txts/msSec.txt").read().strip(),
         "grant_type":"client_credentials",
         "scope":"https://graph.microsoft.com/.default"
-        }
-    response = rqs.post("https://login.microsoftonline.com/common/oauth2/v2.0/token",data=info)
+    }
+    tenantId = open("txts/msTen.txt").read().strip()
+    response = rqs.post(f"https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token", data=data)
     return response.json()["access_token"]

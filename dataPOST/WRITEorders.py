@@ -3,12 +3,16 @@ from datetime import date as dt
 from general.productCarriers import dx, parcelforce
 from general.functions import formatDateOpposite as formatDate
 from general.productNames import barToSku
+from dataPOST.sharepoint import download as downloadFile, upload as uploadFile
 
 
 
 def upload(orders):
+
+    downloadFile()
+
     sheetNum = 1
-    workbook = xlsx.load_workbook("dataPOST/D2c Stock and Sales Sheet.xlsx")
+    workbook = xlsx.load_workbook("dataPOST/D2C Stock and Sales Sheet.xlsx")
     sheets = workbook.sheetnames
     sheetName = sheets[sheetNum]
     sheet = workbook[sheetName]
@@ -45,4 +49,6 @@ def upload(orders):
         sheet[f"G{row}"] = int(line["Quantity"])
         row += 1
 
-    workbook.save("dataPOST/D2c Stock and Sales Sheet.xlsx")
+    workbook.save("dataPOST/D2C Stock and Sales Sheet.xlsx")
+
+    uploadFile()

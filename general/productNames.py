@@ -172,3 +172,17 @@ barToSku = {
     "S321976": "HJ865 - D",
     "S321984": "HJ866 - D",
 }
+
+nameToSku = {
+    "L Premium Metal Storage Box - 683L / Green":"HJ865-D",
+    "Heavy Duty Storage Box - 450L / Taupe":"HJ846-D",
+    "Heavy Duty Storage Box - 980L / Taupe":"HJ849-D",
+    "L Premium Metal Storage Box - 683L / Grey":"HJ850-D",
+    "Heavy Duty Storage Box - 680L / Black":"HJ862-D",
+    "Heavy Duty Storage Box - 980L / Black":"HJ864-D",
+    "Heavy Duty Storage Box - 270L / Taupe":"HJ845-D",
+    "Heavy Duty Storage Box - 680L / Taupe":"HJ847-D",
+    "Heavy Duty Storage Box - 870L / Taupe":"HJ848-D",
+    "Heavy Duty Storage Box - 870L / Black":"HJ863-D",
+    "Premium Pop Up Gazebo With Sides":"HJ852-D",
+}

@@ -384,6 +384,25 @@ First fix commit has fixed the issues with xero not uploading invoices as well a
 
 Just accidentally committed half of the stuff for downloading/uploading from the sharepoint, its fine i'll fix it after
 
+Now that the fixes are done I'm going to deal with OneDrive as I think this will be simple and then deal with the SF xlsx after
+
+The OneDrive is running but taking ages, remind myself to put that section of the code after the report section - the reason its taking forever is because no one has migrated their onedrive/sharepoint stuff yet (THIS NEEDS TO BE A PRIORITY FOR COMPANY)
+
+Lets see what needs done
+
+1. Xlsx tracker
+1.1 download from sp
+1.2 update tracker
+1.3 upload to sp
+2. figure out why the emails aren't sending
+
+
+I've got three days including today left - the plan is to finish 1 today, spend tomorrow potentially debugging and completing 2 and then on wednesday debug and wrap up
+
+Okay all that's left is fixing the emails and creating a wee plan for "handover" when I leave
+
+The one drive backup is still commented out for a reason, it's commented so that the wifi doesn't get backloaded with millions of API calls
+
 # Commit History
 
 93a2db8 - Set-up the repo

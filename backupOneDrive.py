@@ -4,17 +4,7 @@ from datetime import datetime as dt, timedelta as td
 import sys
 sys.path.append("../hj-api")
 from general.employees import employeeList as employees
-
-def getToken():
-    data = {
-        "client_id": open("txts/msID.txt").read().strip(),
-        "client_secret": open("txts/msSec.txt").read().strip(),
-        "grant_type":"client_credentials",
-        "scope":"https://graph.microsoft.com/.default"
-    }
-    tenantId = open("txts/msTen.txt").read().strip()
-    response = rqs.post(f"https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token", data=data)
-    return response.json()["access_token"]
+from general.functions import getSPToken as getToken
 
 def getDriveID(email):
     header = {"Authorization": f"Bearer {getToken()}"}
@@ -47,8 +37,8 @@ def downloadFiles(root_id, emp, local_path):
 
 
 def employeeBackups():
-    path = f"D:/backups/{dt.now().strftime("%Y-%m-%d")}"
-    oldPath = f"D:/backups/{(dt.now()-td(days=2)).strftime("%Y-%m-%d")}"
+    path = f"D:/{dt.now().strftime("%Y-%m-%d")}"
+    oldPath = f"D:/{(dt.now()-td(days=3)).strftime("%Y-%m-%d")}"
     shutil.rmtree(oldPath)
     for employee in employees:
         root_id = getDriveID(f"{employee.lower()}@haywardjardine.co.uk")
