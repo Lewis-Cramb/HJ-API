@@ -371,6 +371,16 @@ Now thats all done all that is left is fixing the xlsx for tracking orders - the
 
 File wasnt updated but fixed it now, tomorrows problem (or maybe mine for the next hour tbf) will be uploading this to the sharepoint using graph api
 
+<ins> 01/09/2026 </ins>
+
+Got distracted and lwk forgot that I need to do graph stuff today cause im not in tomorrow so doing that now
+I'll work on this on the train to london but won't be able to do anything until monday
+
+<ins> 07/09/2026 </ins>
+
+Okay so there were some issues over my time off, it seems to always crash when I'm not there lol
+
+First fix commit has fixed the issues with xero not uploading invoices as well as the fix with the 680Ls on DX weights - next fix is to check on the xlsx spreadsheets for the report and then the xlsx SF replacement and finally the one drive downloading
 
 # Commit History
 
@@ -465,3 +475,5 @@ ab2f9db - Added the sales report info, creating and emailing
 ed4f252 - OneDrive backup created
 
 51613cd - Excel dashboard
+
+[commit num] - Sharepoint upload and download

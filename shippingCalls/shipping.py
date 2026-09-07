@@ -113,9 +113,8 @@ def shipping(orders, key, line_part_url):
             failed.append(f"{order["custPO"]} - shipping")
 
             
-        dxOrders = [order for order in orders if order["shipName"]=="DX"]
-        for dxOrder in dxOrders:
-            updateTrackingInfo(dxOrder, key, line_part_url)
+        if order["shipName"] == "DX":
+            updateTrackingInfo(order, key, line_part_url)
 
 
 

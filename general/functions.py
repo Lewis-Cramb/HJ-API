@@ -174,7 +174,7 @@ def xeroToken():
     return token.json()["access_token"]
 
 def xeroDate():
-    now = (startDate()-td(days=3)).strftime("%Y-%m-%d")
+    now = (startDate()-td(days=5)).strftime("%Y-%m-%d")
     comps = now.split("-")
     return f"DateTime({comps[0]}, {comps[1]}, {comps[2]})"
 
@@ -239,3 +239,14 @@ def excelYearlyWipe():
             curDate += td(days=7)
     
     workbook.save("excel/SalesReport.xlsx")
+
+
+def getSPToken():
+    info = {
+        "client_id": open("txts/msID.txt").read().strip(),
+        "client_secret": open("txts/msSec.txt").read().strip(),
+        "grant_type":"client_credentials",
+        "scope":"https://graph.microsoft.com/.default"
+        }
+    response = rqs.post("https://login.microsoftonline.com/common/oauth2/v2.0/token",data=info)
+    return response.json()["access_token"]

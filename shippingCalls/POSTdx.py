@@ -14,7 +14,7 @@ def payload(product,order, contents):
         "ContentDescriptionID": 1,
         "ContentDescription": "CartonKG",
         "ContentQuantity": qty,
-        "ContentTotalWeight": weight[product]*qty
+        "ContentTotalWeight": weight[product]
     })
 
 

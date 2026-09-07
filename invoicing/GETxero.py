@@ -23,10 +23,6 @@ def invoiceNumber():
     return invNum
 
 def numberExists(number, header):
-    params = {"where": f'InvoiceNumber=="{number}"'}
+    params = {"where": f"InvoiceNumber==\"{number}\" AND (Status==\"AUTHORISED\" OR Status=\"DRAFT\")"}
     response = rqs.get("https://api.xero.com/api.xro/2.0/Invoices", headers=header, params=params)
-    root = xml.fromstring(response.text)
-    invoices = root.find("Invoices")
-    if invoices is None:
-        return False
-    return len(invoices.findall("Invoice")) > 0
+    return f"<InvoiceNumber>{number}</InvoiceNumber>" in response.text
