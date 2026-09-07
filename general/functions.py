@@ -192,9 +192,9 @@ def monthToCol(monthNum, year):
         "7":"AC", "8":"AD", "9":"AE", "10":"AF", "11":"AG", "12":"AH"
     }
     if year=="this:":
-        return f"{conversions[monthNum]}6"
+        return f"{conversions[str(monthNum)]}6"
     else:
-        return f"{conversions[monthNum]}9"
+        return f"{conversions[str(monthNum)]}9"
     
 
 def excelYearlyWipe():

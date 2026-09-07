@@ -7,7 +7,10 @@ from general.functions import monthToCol, week_range
 
 def reorder(quantities,totals, totalUnits, monthTotal):
     workbook = xlsx.load_workbook("excel/StockLevels.xlsx")
-    sheet = workbook.active
+    sheetNum = 0
+    sheets = workbook.sheetnames
+    sheetName = sheets[sheetNum]
+    sheet = workbook[sheetName]
 
     readWeeks, writeWeeks = ["C","D","E"],["B","C","D"]
     week4s, week3s, week2s = [],[],[]
@@ -30,7 +33,7 @@ def reorder(quantities,totals, totalUnits, monthTotal):
     row = 7
     for product in reorderList:
         sheet[f"E{row}"] = quantities[product]
-        sheet[f"G{row}"] = sheet[f"G{row}"].value - quantities[product]
+        sheet[f"G{row}"] = (sheet[f"G{row}"].value or 0) - quantities[product]
         row += 1
 
     sheetNum = 2
