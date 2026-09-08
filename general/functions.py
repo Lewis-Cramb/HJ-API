@@ -66,7 +66,6 @@ def convertNames(data, source): #this function is used to change the names of pr
     elif source == "SF":
         conversion = sfToXero
     for order in data:
-        new_prods = {}
         for product in order["products"]:
             if "2x " in product:
                 order["products"][product] = order["products"][product]*2
@@ -174,7 +173,7 @@ def xeroToken():
     return token.json()["access_token"]
 
 def xeroDate():
-    now = (startDate()-td(days=5)).strftime("%Y-%m-%d")
+    now = (startDate()-td(weeks=2)).strftime("%Y-%m-%d")
     comps = now.split("-")
     return f"DateTime({comps[0]}, {comps[1]}, {comps[2]})"
 

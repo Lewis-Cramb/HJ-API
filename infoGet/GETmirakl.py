@@ -3,6 +3,7 @@ import requests as rqs
 from datetime import date as dt
 from general.functions import oldHeader, startDate
 from general.GETerrors import handle
+from general.productNames import SkuToName
 
 def getM(company):
     #Define the commerce platform header here 
@@ -32,7 +33,7 @@ def getM(company):
                 curr["custName"] = f"{order["customer"]["firstname"]} {order["customer"]["lastname"]}"
                 curr["orderDate"] = order["created_date"][0:order["created_date"].index("T")]
                 curr["custEmail"] = "" #Customers do not provide emails
-                curr["custPhone"] = "0" + order["customer"]["shipping_address"]["phone"]
+                curr["custPhone"] = order["customer"]["shipping_address"]["phone"]
                 curr["shipName"] = order["shipping_company"]
                 curr["expDate"] = order["delivery_date"]["latest"][0:order["delivery_date"]["latest"].index("T")] 
                 curr["products"] = {}
@@ -41,10 +42,11 @@ def getM(company):
                 curr["shipping_address"] = order["customer"]["shipping_address"]
 
                 for product in order["order_lines"]:
-                    curr["products"][product["product_title"]] = (product["quantity"],product["offer_sku"])
+                    sku = product["product_shop_sku"].replace(" ","")
+                    name = SkuToName.get(sku, product["product_title"])
+                    curr["products"][name] = (product["quantity"])
 
                 filtered_orders.append(curr)
 
         
-    return [filtered_orders,""]
-
+    return filtered_orders

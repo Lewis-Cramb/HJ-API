@@ -403,6 +403,19 @@ Okay all that's left is fixing the emails and creating a wee plan for "handover"
 
 The one drive backup is still commented out for a reason, it's commented so that the wifi doesn't get backloaded with millions of API calls
 
+<ins> 08/09/2026 </ins>
+
+Good news and bad news - good news is that it emailed this morning with no changes, bad news is that xero broke for everything AGAIN
+
+I've got today and tomorrow to fix Xero and all its wee problems as it feels like every day I spend hours fixing it and once I get it eventually working for that day I commit it just for that fix to not work the next day
+
+The issue seems to be that the invoice number keeps getting used elsewhere but I don't want to pull all ~3k orders for every invoice, 2 weeks should be enough
+
+Okay this will be fun, need to revamp the whole system to use Skus rather than names
+This shouldn't actually be too hard, just need to add a function that converts the name based on the SKU
+
+Should have just done it correctly, it worked for moving a product from Mirakl to SF without delivery, will commit and keep and eye on it tomorrow
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -497,4 +510,6 @@ ed4f252 - OneDrive backup created
 
 51613cd - Excel dashboard
 
-[commit num] - Sharepoint upload and download
+32cb1f4 - Sharepoint upload and download
+
+[commit num] - Changed from names to skus

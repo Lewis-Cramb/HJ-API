@@ -2,7 +2,7 @@ import openpyxl as xlsx
 from datetime import date as dt
 from general.productCarriers import dx, parcelforce
 from general.functions import formatDateOpposite as formatDate
-from general.productNames import barToSku
+from general.productNames import nameToSku
 from dataPOST.sharepoint import download as downloadFile, upload as uploadFile
 
 
@@ -27,8 +27,8 @@ def upload(orders):
                     info["Date"] = formatDate(order["orderDate"])
                     info["Order/Reference"] = order["custPO"]
                     info["Product"] = prod
-                    info["Quantity"] = order["products"][prod][0]
-                    info["SKU"] = barToSku[order["products"][prod][1]]
+                    info["Quantity"] = order["products"][prod]
+                    info["SKU"] = nameToSku[prod]
                     info["Retailer"] = order["accName"]
 
                     lines.append(info)

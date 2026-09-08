@@ -56,21 +56,19 @@ def parseShipping(orders, channel):
 
         order["shipping_address"] = shipDetails
 
-def updateTrackingInfo(order, key, line_part_url):
+def updateTrackingInfo(order, key):
     if order["tracking_number"] == "":
         return
     if " " in order["tracking_number"]:
         order["tracking_number"] = order["tracking_number"].partition(" ")[0]
 
-    if order["accName"] == "John Lewis D2C":
-        trackVS.updateTracking(order, line_part_url)
-    elif order["accName"] == "B&Q Marketplace":
+    if order["accName"] == "B&Q Marketplace":
         if key == "B&Qb":
             trackMkl.updateTracking(order, "Buffalo")
         elif key == "B&Qhj":
             trackMkl.updateTracking(order, "HJ")
 
-def shipping(orders, key, line_part_url):
+def shipping(orders, key):
     knPOs, pfPOs, dxPOs, failed = [],[],[],[]
     for order in orders:
         try:
@@ -114,7 +112,7 @@ def shipping(orders, key, line_part_url):
 
             
         if order["shipName"] == "DX":
-            updateTrackingInfo(order, key, line_part_url)
+            updateTrackingInfo(order, key)
 
 
 

@@ -32,7 +32,7 @@ def postData(order, invoiceNumbers):
         lineItems.append(
             {
                 "ItemCode":product,
-                "quantity":order["products"][product][0]
+                "quantity":order["products"][product]
             }
         )
 

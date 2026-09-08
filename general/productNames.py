@@ -142,35 +142,19 @@ sfToXero = {
 }
 
 vsBarToSku = {
-    "5060786511454":"S306374",
-    "5060786511447": "S306401",
-    "5060786511461": "S310009",
-    "5060786511430": "S310011",
-    "5060786511478": "S310013",
-    "5060786511423": "S310017",
-    "5060786511485": "S310020",
-    "5060786511416": "S310022",
-    "5060786511409": "S321974",
-    "5060786511393": "S321981",
-    "5060786511386": "S314688",
-    "5060786511492": "S321976",
-    "5060786511508": "S321984",
-}
-
-barToSku = {
-    "S306374": "HJ845 - D",
-    "S306401": "HJ846 - D",
-    "S310009": "HJ862 - D",
-    "S310011": "HJ847 - D",
-    "S310013": "HJ863 - D",
-    "S310017": "HJ848 - D",
-    "S310020": "HJ864 - D",
-    "S310022": "HJ849 - D",
-    "S321974": "HJ850 - D",
-    "S321981": "HJ851 - D",
-    "S314688": "HJ852 - D",
-    "S321976": "HJ865 - D",
-    "S321984": "HJ866 - D",
+    "5060786511454": "HJ845-D",
+    "5060786511447": "HJ846-D",
+    "5060786511461": "HJ862-D",
+    "5060786511430": "HJ847-D",
+    "5060786511478": "HJ863-D",
+    "5060786511423": "HJ848-D",
+    "5060786511485": "HJ864-D",
+    "5060786511416": "HJ849-D",
+    "5060786511409": "HJ850-D",
+    "5060786511393": "HJ851-D",
+    "5060786511386": "HJ852-D",
+    "5060786511492": "HJ865-D",
+    "5060786511508": "HJ866-D",
 }
 
 nameToSku = {
@@ -185,4 +169,18 @@ nameToSku = {
     "Heavy Duty Storage Box - 870L / Taupe":"HJ848-D",
     "Heavy Duty Storage Box - 870L / Black":"HJ863-D",
     "Premium Pop Up Gazebo With Sides":"HJ852-D",
+}
+
+SkuToName = {
+    "HJ865-D":"L Premium Metal Storage Box - 683L / Green",
+    "HJ846-D":"Heavy Duty Storage Box - 450L / Taupe",
+    "HJ849-D":"Heavy Duty Storage Box - 980L / Taupe",
+    "HJ850-D":"L Premium Metal Storage Box - 683L / Grey",
+    "HJ862-D":"Heavy Duty Storage Box - 680L / Black",
+    "HJ864-D":"Heavy Duty Storage Box - 980L / Black",
+    "HJ845-D":"Heavy Duty Storage Box - 270L / Taupe",
+    "HJ847-D":"Heavy Duty Storage Box - 680L / Taupe",
+    "HJ848-D":"Heavy Duty Storage Box - 870L / Taupe",
+    "HJ863-D":"Heavy Duty Storage Box - 870L / Black",
+    "HJ852-D":"Premium Pop Up Gazebo With Sides",
 }

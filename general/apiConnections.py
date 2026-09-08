@@ -7,13 +7,13 @@ from copy import deepcopy as dc
 import dataPOST.WRITEorders as xlsx
 
 def transfer(sources, key, knPOs, pfPOs, dxPOs, fails):
-    data, line_part = sources[key]
+    data = sources[key]
     if data != []:
         data = conversion(data, key)
 
         #shipping
         parse(data, key)
-        kn, pf, dx, failed = ship(data, key, line_part)
+        kn, pf, dx, failed = ship(data, key)
         knPOs += kn
         pfPOs += pf
         dxPOs += dx

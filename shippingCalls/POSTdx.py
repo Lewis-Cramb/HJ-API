@@ -9,7 +9,7 @@ def payload(product,order, contents):
         mod = 2
     else:
         mod = 1
-    qty = order["products"][product][0]*mod
+    qty = order["products"][product]*mod
     contents.append({
         "ContentDescriptionID": 1,
         "ContentDescription": "CartonKG",
