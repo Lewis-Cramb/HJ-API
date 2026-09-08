@@ -8,7 +8,7 @@ from general.productNames import vsBarToSku as bts, SkuToName
 def getVS():
     #Create the additional information for the request
     vs_headers = vsHeader()
-    vs_params = {"status":"ORDER_ACK","limit":100, "offset":0}
+    vs_params = {"limit":100, "offset":0}
 
     #Call APIs using rqs.get() to get the data
     vs_resp = rqs.get("https://api.virtualstock.com/restapi/v4/orders",headers=vs_headers, params=vs_params) #Get all acknowledged orders from VirtualStock
@@ -22,7 +22,7 @@ def getVS():
     vs_data = vs_resp.json()
 
     #Finally, filter it and join it all together
-    filtered_orders, line_part_url = [], []
+    filtered_orders = []
 
     for order in vs_data["results"]:
         order_date = dt.fromisoformat(order["order_date"][0:order["order_date"].index("T")])
@@ -47,6 +47,7 @@ def getVS():
 
             for product in order["items"]:
                 sku = bts[product["retailer_sku_reference"]]
+                name = SkuToName.get(sku, product["description"])
                 curr["products"][SkuToName[sku]] = (product["quantity"])
 
             filtered_orders.append(curr)
