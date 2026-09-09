@@ -416,6 +416,23 @@ This shouldn't actually be too hard, just need to add a function that converts t
 
 Should have just done it correctly, it worked for moving a product from Mirakl to SF without delivery, will commit and keep and eye on it tomorrow
 
+I think this is finished now, don't want to do the final commit until tomorrow incase it breaks whilst running and then the "finished" commit isnt the last - similar to how the "live" commit got pushed multiple times and loads of fixes
+
+I want to cut down and optimise the repo but I'm worried that if I delete something then something else will break elsewhere
+
+<ins> 09/09/2026 </ins>
+
+This is my last full/proper day at Hayward Jardine - it's been amazing getting the practical experience of being a software engineer as well as practical business experience. It's currently 0914, if the program runs automatically with no errors I will commit right here. Obviously, if there are errors then I'll fix them and commit that. 
+
+Should be 6 DX orders, 7 orders total (can't see buffalo)
+
+I know that the SKU conversion has worked but I'm worried that it won't work for everything, also worried that Xero will just randomly break again
+
+Speaking of the SKU conversions I'll need to remake the video again I think to include adding the SKUs
+
+IT FULLY WORKED SO GOING TO COMMIT HERE
+
+
 # Commit History
 
 93a2db8 - Set-up the repo
@@ -512,4 +529,6 @@ ed4f252 - OneDrive backup created
 
 32cb1f4 - Sharepoint upload and download
 
-[commit num] - Changed from names to skus
+574c386 - Changed from names to skus
+
+Final commit - Complete
